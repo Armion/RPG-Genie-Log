@@ -12,12 +12,7 @@ import shionn.slick.animation.AnimationListener;
 import shionn.slick.animation.BezierPath;
 import shionn.slick.animation.PathAnimation;
 
-/**
- * Code sous licence GPLv3 (http://www.gnu.org/licenses/gpl.html)
- * 
- * @author <b>Shionn</b>, shionn@gmail.com <i>http://shionn.org</i><br>
- *         GCS d- s+:+ a+ C++ UL/M P L+ E--- W++ N K- w-- M+ t+ 5 X R+ !tv b+ D+ G- e+++ h+ r- y+
- */
+//la meme que pour l'ennemi
 public class BattlePlayer {
 
 	private int pv = 50;

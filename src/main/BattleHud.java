@@ -12,12 +12,7 @@ import org.newdawn.slick.gui.MouseOverArea;
 import shionn.slick.ui.TextArea;
 import shionn.slick.ui.align.VerticalAlignement;
 
-/**
- * Code sous licence GPLv3 (http://www.gnu.org/licenses/gpl.html)
- * 
- * @author <b>Shionn</b>, shionn@gmail.com <i>http://shionn.org</i><br>
- *         GCS d- s+:+ a+ C++ UL/M P L+ E--- W++ N K- w-- M+ t+ 5 X R+ !tv b+ D+ G- e+++ h+ r- y+
- */
+//HUD de combat
 public class BattleHud implements ComponentListener {
 
 	private static final int Y_PADDING = 3;
@@ -29,11 +24,13 @@ public class BattleHud implements ComponentListener {
 	private MouseOverArea defendButton;
 	private TextArea log;
 
+	
 	public BattleHud(BattleController controller) {
 		this.controller = controller;
 		this.controller.setHud(this);
 	}
 
+	//à l'initialisation on va charger les images
 	public void init(GameContainer container) throws SlickException {
 		Image buttonImage = new Image("hud/button.png");
 		attackButton = new MouseOverArea(container, buttonImage, SPACE, container.getHeight()
@@ -49,6 +46,7 @@ public class BattleHud implements ComponentListener {
 		log.setDefaultFont(container.getDefaultFont());
 	}
 
+	//pour afficher l'HUD
 	public void render(GameContainer container, Graphics g) {
 		g.setColor(Color.black);
 		attackButton.render(container, g);
@@ -60,6 +58,7 @@ public class BattleHud implements ComponentListener {
 		log.render();
 	}
 
+	//on regarde quand on objet de l'HUD est utilisé pour appeller la bonne commande
 	@Override
 	public void componentActivated(AbstractComponent source) {
 		if (source == attackButton) {
@@ -71,6 +70,7 @@ public class BattleHud implements ComponentListener {
 		}
 	}
 
+	//methode pour afficher du text au centre en bas
 	public void addLog(String text) {
 		log.addFirstText(text, VerticalAlignement.LEFT);
 	}

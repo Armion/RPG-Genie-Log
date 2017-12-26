@@ -5,12 +5,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-/**
- * Code sous licence GPLv3 (http://www.gnu.org/licenses/gpl.html)
- * 
- * @author <b>Shionn</b>, shionn@gmail.com <i>http://shionn.org</i><br>
- *         GCS d- s+:+ a+ C++ UL/M P L+ E--- W++ N K- w-- M+ t+ 5 X R+ !tv b+ D+ G- e+++ h+ r- y-
- */
+//classe qui représente l'HUD qu'on affiche par dessus la map durant la phase de map
 public class MapHud {
 
 	private static final int P_BAR_X = 10;
@@ -28,10 +23,12 @@ public class MapHud {
 
 	private Image playerbars;
 
+	//chargement des resources
 	public void init() throws SlickException {
 		this.playerbars = new Image("hud/player-bar.png");
 	}
 
+	//rendu de l'HUD
 	public void render(Graphics g) {
 		g.resetTransform();
 		g.setColor(LIFE_COLOR);

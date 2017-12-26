@@ -11,12 +11,7 @@ import org.newdawn.slick.command.KeyControl;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-/**
- * Code sous licence GPLv3 (http://www.gnu.org/licenses/gpl.html)
- * 
- * @author <b>Shionn</b>, shionn@gmail.com <i>http://shionn.org</i><br>
- *         GCS d- s+:+ a+ C++ UL/M P L+ E--- W++ N K- w-- M+ t+ 5 X R+ !tv b+ D+ G- e+++ h+ r- y+
- */
+//classe qui représente le jeu dans un etat de bataille
 public class BattleGameState extends BasicGameState {
 
 	public static final int ID = 3;
@@ -26,6 +21,7 @@ public class BattleGameState extends BasicGameState {
 	private BattleHud hud;
 	private Music music;
 
+	//methode pour preparer le combat, on attribut les touches aux commandes et prepare l'HUD ainsi que le listener
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 		this.background = new Image("background/battle.png");
@@ -43,29 +39,31 @@ public class BattleGameState extends BasicGameState {
 		this.music = new Music("sound/the-last-encounter-short-loop.ogg");
 	}
 
+	//quand on entre dans la bataille, on boucle la musique et reset l'ennemi
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
 		this.music.loop(1, .2f);
 		this.ennemy.reset();
 	}
 
+	//quand on quitte la bataille on stop la musique
 	@Override
 	public void leave(GameContainer container, StateBasedGame game) throws SlickException {
 		this.music.stop();
 	}
 
+	//methode d'affichage, on affiche le fond, le joueur, l'ennemi et l'HUD
 	@Override
-	public void render(GameContainer container, StateBasedGame game, Graphics g)
-			throws SlickException {
+	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		this.background.draw(0, 0, container.getWidth(), container.getHeight());
 		this.player.render(container, g);
 		this.ennemy.render(container, g);
 		this.hud.render(container, g);
 	}
 
+	//methode d'update de la bataille, on va update les combattants
 	@Override
-	public void update(GameContainer container, StateBasedGame game, int delta)
-			throws SlickException {
+	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		this.player.update(delta);
 		this.ennemy.update(delta);
 	}

@@ -3,12 +3,8 @@ package main;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
 
-/**
- * Code sous licence GPLv3 (http://www.gnu.org/licenses/gpl.html)
- * 
- * @author <b>Shionn</b>, shionn@gmail.com <i>http://shionn.org</i><br>
- *         GCS d- s+:+ a+ C++ UL/M P L+ E--- W++ N K- w-- M+ t+ 5 X R+ !tv b+ D+ G- e+++ h+ r- y-
- */
+//methode pour controler le joueur et ses mouvements
+
 public class MapPlayerController implements KeyListener {
 
 	private MapPlayer player;
@@ -18,6 +14,7 @@ public class MapPlayerController implements KeyListener {
 		this.player = player;
 	}
 
+	//methode d'update, elle est utile lorsque qu'une manette est connecté, sinon c'est le KeyListener qui s'en charge
 	public void update() {
 		if (input.getControllerCount() > 0) {
 			player.setDx(input.getAxisValue(0, 1));
@@ -45,6 +42,7 @@ public class MapPlayerController implements KeyListener {
 
 	}
 
+	//on met le vecteur à jour en fonction de la touche préssée
 	@Override
 	public void keyPressed(int key, char c) {
 		switch (key) {
@@ -63,6 +61,7 @@ public class MapPlayerController implements KeyListener {
 		}
 	}
 
+	//de meme lors du relachement
 	@Override
 	public void keyReleased(int key, char c) {
 		switch (key) {

@@ -10,12 +10,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import shionn.slick.animation.AnimationListener;
 
-/**
- * Code sous licence GPLv3 (http://www.gnu.org/licenses/gpl.html)
- * 
- * @author <b>Shionn</b>, shionn@gmail.com <i>http://shionn.org</i><br>
- *         GCS d- s+:+ a+ C++ UL/M P L+ E--- W++ N K- w-- M+ t+ 5 X R+ !tv b+ D+ G- e+++ h+ r- y+
- */
+//classe pour gerer les combats
 public class BattleController implements InputProviderListener {
 
 	private StateBasedGame game;
@@ -31,6 +26,7 @@ public class BattleController implements InputProviderListener {
 
 	private Music victory;
 
+	//constructeur qui charge le joueur, les ennemis ainsi que la phase de jeu pour le combat
 	public BattleController(BattlePlayer player, BattleEnnemy ennemy, StateBasedGame game)
 			throws SlickException {
 		this.player = player;
@@ -40,7 +36,9 @@ public class BattleController implements InputProviderListener {
 		initAnimationListeners();
 	}
 
+	//on prepare les animationListeners de l'extension slick Util
 	private void initAnimationListeners() {
+		//declaration
 		AnimationListener playerAssignDamage = new AnimationListener() {
 			@Override
 			public void on() {
@@ -68,11 +66,13 @@ public class BattleController implements InputProviderListener {
 
 		};
 
+		//attribution
 		this.player.addAnimationListener(playerAssignDamage, endPlayerAttack);
 		this.ennemy.addAnimationListener(ennemiAssignDamage, endEnnemiAttack);
 	}
 
 	@Override
+	//si c'est bon on demarre la bataille (none est renvoy� apres que l'ennemi ait tapp�)
 	public void controlPressed(Command command) {
 		if (mode == BattleCommand.NONE) {
 			this.mode = (BattleCommand) command;
@@ -96,10 +96,7 @@ public class BattleController implements InputProviderListener {
 		}
 	}
 
-	/**
-	 * Calcul des dégat infligé par le joueur à l'ennemi
-	 * <em>dans le cas d'une attaque le joueur peut faire un critique et infligé +50% de dégat</em>
-	 */
+	//calcule des degats
 	private void playerAsignDamage() {
 		int playerAttack = 7 + random.nextInt(4);
 		if (mode == BattleCommand.ATTACK && random.nextDouble() < .1) {
@@ -109,19 +106,18 @@ public class BattleController implements InputProviderListener {
 		ennemy.setPv(ennemy.getPv() - playerAttack);
 	}
 
-	/**
-	 * A la fin d'une attaque du joueur,
-	 * <ul>
-	 * <li>si l'ennemi n'as plus de pv le joueur à gagné, retour à la carte</li>
-	 * <li>Sinon, on appel l'action suivant en fonction du mode.</li>
-	 * </ul>
-	 */
+	//quand un joueur fini de tapper, on check l'etat du combat
 	private void endPlayerAttack() {
-		if (ennemy.getPv() <= 0) {
+		//si l'ennemie est mort
+		if (ennemy.getPv() <= 0) 
+		{
 			hud.addLog("Vous avez gagné !");
 			victory.play();
 			quitBattle(MapGameState.ID);
-		} else {
+		}
+		else 
+		{
+			//sinon on passe dans le bon mode
 			switch (mode) {
 			// si le joueur attaquait, contre attaque de l'ennemy
 			case ATTACK:
@@ -135,9 +131,7 @@ public class BattleController implements InputProviderListener {
 		}
 	}
 
-	/**
-	 * Calcul des dégat infligé par l'ennemy au joueur
-	 */
+	//calcul des degats de l'ennemi sur le joueur
 	private void ennemyAsignDamage() {
 		int ennemyAttack = 5 + random.nextInt(5);
 		if (mode == BattleCommand.DEFEND) {
@@ -147,14 +141,9 @@ public class BattleController implements InputProviderListener {
 		player.setPv(player.getPv() - ennemyAttack);
 	}
 
-	/**
-	 * A la fin d'une attaque de l'ennemi,
-	 * <ul>
-	 * <li>si le joueur n'as plus de pv le joueur à perdu, retour à l'écran titre</li>
-	 * <li>Sinon, on appel l'action suivant en fonction du mode.</li>
-	 * </ul>
-	 */
+	//quand l'ennemi a fini, on doit aussi check l'etat du combat
 	private void endEnnemyAttack() {
+		
 		if (player.getPv() <= 0) {
 			hud.addLog("Vous avez perdu !");
 			quitBattle(MapGameState.ID);
@@ -175,6 +164,7 @@ public class BattleController implements InputProviderListener {
 		}
 	}
 
+	//methode pour quitter la bataille
 	public void quitBattle(final int nextState) {
 		// création d'une pause dans un autre thread pour ne pas bloquer l'affichage
 		new Thread(new Runnable() {

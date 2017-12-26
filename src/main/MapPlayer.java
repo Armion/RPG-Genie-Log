@@ -1,9 +1,3 @@
-/**
- * Code sous licence GPLv3 (http://www.gnu.org/licenses/gpl.html)
- *
- * @author <b>Shionn</b>, shionn@gmail.com <i>http://shionn.org</i><br>
- * GCS d- s+:+ a C++ UL/M P L+ E--- W++ N K- w-- M+ t+ 5 X R+ !tv b+ D+ G- e+++ h+ r- y+
- */
 package main;
 
 import org.newdawn.slick.Animation;
@@ -12,14 +6,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
-/**
- * Code sous licence GPLv3 (http://www.gnu.org/licenses/gpl.html)
- * 
- * ReprÃ©sente le joueur
- * 
- * @author <b>Shionn</b>, shionn@gmail.com <i>http://shionn.org</i><br>
- *         GCS d- s+:+ a C++ UL/M P L+ E--- W++ N K- w-- M+ t+ 5 X R+ !tv b+ D+ G- e+++ h+ r- y+
- */
+//classe qui représente le joueur sur la map
 public class MapPlayer {
 
 	private float x = 300, y = 300;
@@ -30,38 +17,71 @@ public class MapPlayer {
 
 	private Map map;
 
+	//constructeur qui va charger la map du joueur
 	public MapPlayer(Map map) {
 		this.map = map;
 	}
 
+	//init qui va charger les bons sprites pour faire l'animation
 	public void init() throws SlickException {
+		//on charge l'animation
 		SpriteSheet spriteSheet = new SpriteSheet("sprites/character.png", 64, 64);
-		this.animations[0] = loadAnimation(spriteSheet, 0, 1, 0);
-		this.animations[1] = loadAnimation(spriteSheet, 0, 1, 1);
-		this.animations[2] = loadAnimation(spriteSheet, 0, 1, 2);
-		this.animations[3] = loadAnimation(spriteSheet, 0, 1, 3);
-		this.animations[4] = loadAnimation(spriteSheet, 1, 9, 0);
-		this.animations[5] = loadAnimation(spriteSheet, 1, 9, 1);
-		this.animations[6] = loadAnimation(spriteSheet, 1, 9, 2);
-		this.animations[7] = loadAnimation(spriteSheet, 1, 9, 3);
+		
+		this.animations = MapPlayer.createAnime("sprites/character.png", 64, 64);
 	}
-
-	private Animation loadAnimation(SpriteSheet spriteSheet, int startX, int endX, int y) {
-		Animation animation = new Animation();
-		for (int x = startX; x < endX; x++) {
-			animation.addFrame(spriteSheet.getSprite(x, y), 100);
+	
+	
+	public static Animation[] createAnime(String path, int x, int y) throws SlickException
+	{
+	
+		//on creer un nouveau sprite, on lui donne les dimensions des images pour l'animation
+		SpriteSheet sprite = new SpriteSheet(path, x, y);
+		
+		//dans notre cas il y 4 directions + 4 cas de repos
+		Animation[] anime = new Animation[8];
+		
+		//on remplit le tableau d'animations 
+		
+		//d'abord les etats de repos, ils ne comprennent que la premiere image de 0 à 1, à la ligne i correspondant
+		for(int i = 0; i < 4; i++)
+		{
+			anime[i] = loadAnimation(sprite, 0, 1, i);
 		}
-		return animation;
+		
+		//ensuite les etats pour bouger qui comprennent les 7 images de mouvement, on a i qui vas aller de 4 à 7, donc on fait i-4 pour ne pas utiliser une autre variable
+		for(int i = 4; i < 8; i++)
+		{
+			anime[i] = loadAnimation(sprite, 1, 9, i-4);
+		}
+		
+		return anime;
 	}
 
+
+	//methode qui va creer une animation en chargeant les images du sprite
+	public static Animation loadAnimation(SpriteSheet spriteSheet, int startX, int endX, int y) {
+	    Animation animation = new Animation();
+	    
+	    //on charge les x images de la ligne y, en mettant 100ms entre les animations
+	    for (int x = startX; x < endX; x++) {
+	        animation.addFrame(spriteSheet.getSprite(x, y), 100);
+	    }
+	    return animation;
+	}
+
+
+	//methode pour afficher le rendu du perso avec une petite ombre sympas
 	public void render(Graphics g) {
 		g.setColor(new Color(0, 0, 0, .5f));
 		g.fillOval((int) x - 16, (int) y - 8, 32, 16);
 		g.drawAnimation(animations[direction + (isMoving() ? 4 : 0)], (int) x - 32, (int) y - 60);
 	}
 
+	//methode d'update du joueur
 	public void update(int delta) {
-		if (this.isMoving()) {
+		//on a besoin d'update si le joueur bouge en vérifiant la collision
+		if (this.isMoving()) 
+		{
 			updateDirection();
 			float futurX = getFuturX(delta);
 			float futurY = getFuturY(delta);
@@ -75,6 +95,7 @@ public class MapPlayer {
 		}
 	}
 
+	//getters et setters
 	private float getFuturX(int delta) {
 		return this.x + .15f * delta * dx;
 	}
@@ -103,9 +124,7 @@ public class MapPlayer {
 		this.y = y;
 	}
 
-	/**
-	 * mise Ã  jour de la direction en fonction du vecteur de dÃ©placement
-	 */
+	//on peut aussi etre obligé d'update la direction du joueur
 	private void updateDirection() {
 		if (dx > 0 && dx >= Math.abs(dy)) {
 			direction = 3;
@@ -118,6 +137,7 @@ public class MapPlayer {
 		}
 	}
 
+	//on oubli pas qu'on travail avec des vecteurs
 	public void setDirection(int direction) {
 		switch (direction) {
 		case 0:
@@ -143,15 +163,18 @@ public class MapPlayer {
 		}
 	}
 
+	//pour savoir si le joueur se deplace
 	public boolean isMoving() {
 		return dx != 0 || dy != 0;
 	}
 
+	//pour que le joueur ne bouge plus
 	public void stopMoving() {
 		dx = 0;
 		dy = 0;
 	}
 
+	//pour savoir si le joueur est sur un escalier
 	public boolean isOnStair() {
 		return onStair;
 	}

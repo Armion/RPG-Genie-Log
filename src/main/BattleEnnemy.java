@@ -12,32 +12,32 @@ import shionn.slick.animation.AnimationListener;
 import shionn.slick.animation.BezierPath;
 import shionn.slick.animation.PathAnimation;
 
-/**
- * Code sous licence GPLv3 (http://www.gnu.org/licenses/gpl.html)
- * 
- * @author <b>Shionn</b>, shionn@gmail.com <i>http://shionn.org</i><br>
- *         GCS d- s+:+ a+ C++ UL/M P L+ E--- W++ N K- w-- M+ t+ 5 X R+ !tv b+ D+ G- e+++ h+ r- y+
- */
+//methode pour creer un ennemi pour les combats
 public class BattleEnnemy {
 	private int pv = 12;
 	private Image ennemy;
 	private PathAnimation animation;
 
+	//à l'initialisation on va chercher l'image et les animations
 	public void init() throws SlickException {
 		this.ennemy = new Image("battle/gobelin.png").getScaledCopy(2);
 		this.animation = new PathAnimation(new BezierPath(0, 0, -400, 1, 50, 20, 0, 0), 2000);
 	}
 
+	//on ajoute un AnimationListener pour l'attaque, au debut et à la fin
 	public void addAnimationListener(AnimationListener assignDamage, AnimationListener endAttack) {
 		this.animation.addListener(1000, assignDamage);
 		this.animation.addListener(2000, endAttack);
 	}
 
+	//methode pour reset les PV de l'ennemi
 	public void reset() {
 		this.pv = 12;
 	}
 
+	//methode pour afficher l'ennemi, on dessine le bon moment de l'animation au bon endroit
 	public void render(GameContainer container, Graphics g) {
+		
 		Vector2f p = animation.currentLocation();
 		this.ennemy.drawCentered(p.x + container.getWidth() * 3 / 4, p.y + container.getHeight()
 				/ 2);
@@ -48,14 +48,17 @@ public class BattleEnnemy {
 				Color.white);
 	}
 
+	//on update l'animation
 	public void update(int delta) {
 		animation.update(delta);
 	}
 
+	//quand on attaque on demarre l'animaion
 	public void startAttack() {
 		animation.start();
 	}
 
+	//setters et getters
 	public void setPv(int pv) {
 		this.pv = pv;
 	}
