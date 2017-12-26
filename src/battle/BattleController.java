@@ -1,6 +1,5 @@
 package battle;
 
-import java.util.Random;
 
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
@@ -11,15 +10,19 @@ import org.newdawn.slick.state.StateBasedGame;
 import map.MapGameState;
 import shionn.slick.animation.AnimationListener;
 
+import character.*;
+
 //classe pour gerer les combats
 public class BattleController implements InputProviderListener {
 
 	private StateBasedGame game;
 
-	private BattlePlayer player;
+	private BattleCharacter player;
+	
+	
 	private BattleEnnemy ennemy;
+	private Guerrier ennemi;
 
-	private Random random = new Random();
 
 	private BattleCommand mode = BattleCommand.NONE;
 
@@ -28,10 +31,11 @@ public class BattleController implements InputProviderListener {
 	private Music victory;
 
 	//constructeur qui charge le joueur, les ennemis ainsi que la phase de jeu pour le combat
-	public BattleController(BattlePlayer player, BattleEnnemy ennemy, StateBasedGame game)
+	public BattleController(BattleCharacter player, BattleEnnemy ennemy, StateBasedGame game)
 			throws SlickException {
 		this.player = player;
 		this.ennemy = ennemy;
+		this.ennemi = new Guerrier();
 		this.game = game;
 		this.victory = new Music("resources/sound/lively-meadow-victory-fanfare.ogg");
 		initAnimationListeners();
@@ -99,20 +103,17 @@ public class BattleController implements InputProviderListener {
 
 	//calcule des degats
 	private void playerAsignDamage() {
-		int playerAttack = 7 + random.nextInt(4);
-		if (mode == BattleCommand.ATTACK && random.nextDouble() < .1) {
-			playerAttack += playerAttack / 2;
-		}
-		hud.addLog("Vous attaquez et infligez " + playerAttack + " dégats.");
-		ennemy.setPv(ennemy.getPv() - playerAttack);
+		
+		hud.addLog("Vous attaquez et infligez " + player.getAttack() + " dégats.");
+		player.attaquer(ennemi);
 	}
 
 	//quand un joueur fini de tapper, on check l'etat du combat
 	private void endPlayerAttack() {
 		//si l'ennemie est mort
-		if (ennemy.getPv() <= 0) 
+		if (! ennemi.isAlive()) 
 		{
-			hud.addLog("Vous avez gagné !");
+			hud.addLog("Vous avez gagn� !");
 			victory.play();
 			quitBattle(MapGameState.ID);
 		}
@@ -120,7 +121,7 @@ public class BattleController implements InputProviderListener {
 		{
 			//sinon on passe dans le bon mode
 			switch (mode) {
-			// si le joueur attaquait, contre attaque de l'ennemy
+			// si le joueur attaquait, contre attaque de l'ennemi
 			case ATTACK:
 				ennemy.startAttack();
 				break;
@@ -134,18 +135,15 @@ public class BattleController implements InputProviderListener {
 
 	//calcul des degats de l'ennemi sur le joueur
 	private void ennemyAsignDamage() {
-		int ennemyAttack = 5 + random.nextInt(5);
-		if (mode == BattleCommand.DEFEND) {
-			ennemyAttack = ennemyAttack / 2;
-		}
-		hud.addLog("Vous encaissez une attaque et recevez " + ennemyAttack + " dégats.");
-		player.setPv(player.getPv() - ennemyAttack);
+		
+		hud.addLog("Vous encaissez une attaque et recevez " + ennemi.getAttack() + " d�gats.");
+		ennemi.attaquer(player.getCible());
 	}
 
 	//quand l'ennemi a fini, on doit aussi check l'etat du combat
 	private void endEnnemyAttack() {
 		
-		if (player.getPv() <= 0) {
+		if (!player.isAlive()) {
 			hud.addLog("Vous avez perdu !");
 			quitBattle(MapGameState.ID);
 		} else {

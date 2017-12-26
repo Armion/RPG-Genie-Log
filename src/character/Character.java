@@ -57,11 +57,10 @@ public abstract class Character {
 	
 	public void recevoirDegats(int degats)
 	{
-		this.pv -= degats*1/(0.01*this.deff);
+		this.pv -= degats*(1-(this.deff/100));
 		
 		if(this.pv < 0)
 			this.pv = 0;
-		
 	}
 	
 	public void attaquer(Character cible)
@@ -74,5 +73,17 @@ public abstract class Character {
 	{
 		return this.pv > 0;
 	}
+	
+	public int getAttack()
+	{
+		return this.attack;
+	}
+	
+	public int getPv()
+	{
+		return this.pv;
+	}
+	
+	
 
 }

@@ -11,13 +11,15 @@ import org.newdawn.slick.command.KeyControl;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import character.*;
+
 //classe qui représente le jeu dans un etat de bataille
 public class BattleGameState extends BasicGameState {
 
 	public static final int ID = 3;
 	private Image background;
 	private BattleEnnemy ennemy = new BattleEnnemy();
-	private BattlePlayer player = new BattlePlayer();
+	private BattleCharacter player = new BattleCharacter(new Guerrier());
 	private BattleHud hud;
 	private Music music;
 
