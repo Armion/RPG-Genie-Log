@@ -15,7 +15,7 @@ public class Map {
 	private TiledMap tiledMap;
 
 	public void init() throws SlickException {
-		this.tiledMap = new TiledMap("resources/graphics/maps/village.tmx");
+		this.tiledMap = new TiledMap("map/exemple-change-map.tmx");
 	}
 
 	public void renderBackground() {
@@ -27,30 +27,18 @@ public class Map {
 	public void renderForeground() {
 		this.tiledMap.render(0, 0, 3);
 		this.tiledMap.render(0, 0, 4);
-		this.tiledMap.render(0, 0, 5);
-		this.tiledMap.render(0, 0, 6);
 	}
 
 	public boolean isCollision(float x, float y) {
-		
-		
 		int tileW = this.tiledMap.getTileWidth();
 		int tileH = this.tiledMap.getTileHeight();
 		int logicLayer = this.tiledMap.getLayerIndex("logic");
-		
-		System.out.println("verif 1");
 		Image tile = this.tiledMap.getTileImage((int) x / tileW, (int) y / tileH, logicLayer);
-		
-		System.out.println("verif 2");
-		
 		boolean collision = tile != null;
-		
-		
 		if (collision) {
 			Color color = tile.getColor((int) x % tileW, (int) y % tileH);
 			collision = color.getAlpha() > 0;
 		}
-		
 		return collision;
 	}
 
