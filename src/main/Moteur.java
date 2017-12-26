@@ -6,6 +6,9 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import battle.BattleGameState;
+import map.MapGameState;
+
 
 //classe principal du jeu
 public class Moteur extends StateBasedGame {

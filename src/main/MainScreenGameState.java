@@ -7,6 +7,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import map.MapGameState;
+
 //classe qui represente le menu principal
 public class MainScreenGameState extends BasicGameState {
 
@@ -19,7 +21,7 @@ public class MainScreenGameState extends BasicGameState {
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 		this.game = game;
-		this.background = new Image("background/forest.png");
+		this.background = new Image("resources/background/forest.png");
 	}
 
 	//la methode qui gere l'affichage pour cette etat
