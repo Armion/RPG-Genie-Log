@@ -9,8 +9,6 @@ import org.newdawn.slick.tiled.TiledMap;
 public class Map {
 	//on va faire de la delegation
 	private TiledMap tiledMap;
-	
-	public Map() {}
 
 	//methode init qui est appellé quand on initialise la map
 	public void init() throws SlickException {

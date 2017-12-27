@@ -22,11 +22,6 @@ public class MapHud {
 	private static final Color XP_COLOR = new Color(0, 255, 0);
 
 	private Image playerbars;
-	
-	public MapHud()
-	{
-	
-	}
 
 	//chargement des resources
 	public void init() throws SlickException {
