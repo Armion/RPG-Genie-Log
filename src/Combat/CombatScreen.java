@@ -167,7 +167,7 @@ public class CombatScreen extends BasicGameState {
 					{
 						this.status=4;
 					}
-					else
+					else if(this.choix.getCible()==false)
 					{
 						this.status=5;
 					}
@@ -185,7 +185,10 @@ public class CombatScreen extends BasicGameState {
 			}
 			else if(this.status==4 || this.status==5)
 			{	
+				if(this.status==4)
 				this.combat.actionJoueur(current, this.choix, this.combat.ciblage(current, true).get(curseur));
+				else
+				this.combat.actionJoueur(current, this.choix, this.combat.ciblage(current, false).get(curseur));
 				this.status=6;
 				this.choix=null;
 				this.curseur=1;
