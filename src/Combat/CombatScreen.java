@@ -225,10 +225,10 @@ public class CombatScreen extends BasicGameState {
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
 		this.container=arg0;
-		this.background=new Image("src/background/battle.jpg");
-		this.music=new Music("src/battle-song.ogg");
-		this.defeat=new Music("src/defeat_song.ogg");
-		this.menu=new Image("src/background/interface.png");
+		this.background=new Image("src/Combat/background/battle.jpg");
+		this.music=new Music("src/Combat/battle-song.ogg");
+		this.defeat=new Music("src/Combat/defeat_song.ogg");
+		this.menu=new Image("src/Combat/background/interface.png");
 		
 		
 		
@@ -260,7 +260,7 @@ public class CombatScreen extends BasicGameState {
 			debut=false;
 			for( Entitee i : this.groupe)
 			{
-				i.setText("src/personnages/sprites/generique.png");
+				i.setText("src/Combat/personnages/sprites/generique.png");
 			}
 			
 		}

@@ -30,7 +30,7 @@ public class Liche extends Ennemi {
 		this.sorts=new ArrayList<Competence> ();
 		this.sorts.add(new Eclair_givre());
 		
-		this.setText("src/personnages/sprites/liche.png");
+		this.setText("src/Combat/personnages/sprites/liche.png");
 	}
 	
 	public static int getLoot()
