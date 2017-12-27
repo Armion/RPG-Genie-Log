@@ -169,6 +169,26 @@ public abstract class Entitee {
 		
 	}
 	
+	public void retirerEffets()
+	{
+
+		boolean blesse=false;
+		int compteur=0;
+		while(blesse==false && compteur<this.effets_subis.size())
+		{
+			if(this.effets_subis.get(compteur).getDuree()==0)
+			{
+				this.effets_subis.remove(this.effets_subis.get(compteur));
+				
+				
+				retirerEffets();
+				blesse=true;
+			}
+			
+			compteur++;
+		}
+	}
+	
 	public String subirEffet()
 	{
 		String log="";
