@@ -1,4 +1,4 @@
-package Combat.personnages;
+package character;
 
 import java.util.ArrayList;
 

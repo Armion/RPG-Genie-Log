@@ -8,6 +8,11 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 
 import Combat.personnages.*;
+import character.DarkKnight;
+import character.Entitee;
+import character.Joueur;
+import character.Liche;
+import character.Squelette;
 import Combat.competences.*;
 
 public class Combat {

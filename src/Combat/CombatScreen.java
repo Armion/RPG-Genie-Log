@@ -14,8 +14,8 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import Combat.competences.Competence;
-import Combat.personnages.Entitee;
-import Combat.personnages.Joueur;
+import character.Entitee;
+import character.Joueur;
 
 public class CombatScreen extends BasicGameState {
 	

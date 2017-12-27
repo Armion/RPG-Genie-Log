@@ -1,4 +1,4 @@
-package Combat.personnages;
+package character;
 
 import org.newdawn.slick.SlickException;
 

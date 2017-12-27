@@ -2,8 +2,8 @@ package Combat;
 import java.util.ArrayList;
 
 import Combat.competences.Competence;
-import Combat.personnages.Clone;
-import Combat.personnages.Entitee;
+import character.Clone;
+import character.Entitee;
 
 public class IA {
 

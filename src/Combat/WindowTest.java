@@ -5,10 +5,10 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import Combat.personnages.Assassin;
-import Combat.personnages.Guerrier;
-import Combat.personnages.Joueur;
-import Combat.personnages.Paladin;
+import character.Assassin;
+import character.Guerrier;
+import character.Joueur;
+import character.Paladin;
 
 public class WindowTest extends StateBasedGame {
 
