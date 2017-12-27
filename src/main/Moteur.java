@@ -23,7 +23,7 @@ public class Moteur extends StateBasedGame {
 	{
 		
 		//on Instancie la classe BattleGame
-		AppGameContainer app = new AppGameContainer(new Moteur(), 1000, 800, false);
+		AppGameContainer app = new AppGameContainer(new Moteur(), 1640, 960, false);
 		//on active le Vsync
 		app.setVSync(true);
 		//on affiche les FPS
