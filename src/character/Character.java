@@ -57,7 +57,9 @@ public abstract class Character {
 	
 	public void recevoirDegats(int degats)
 	{
-		this.pv -= degats*(1-(this.deff/100));
+
+		//java est cool pour les cast
+		this.pv -= degats*(1-(float)this.deff/100);
 		
 		if(this.pv < 0)
 			this.pv = 0;
@@ -82,6 +84,14 @@ public abstract class Character {
 	public int getPv()
 	{
 		return this.pv;
+	}
+	
+	public void reset()
+	{
+		this.pv = this.pvMax;
+		this.attack = this.attackMax;
+		this.deff = this.deffMax;
+		this.mana = this.manaMax;
 	}
 	
 	

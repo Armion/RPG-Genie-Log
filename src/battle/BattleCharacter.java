@@ -86,5 +86,9 @@ public class BattleCharacter {
 		return this.perso;
 	}
 
+	public void reset()
+	{
+		this.perso.reset();
+	}
 
 }

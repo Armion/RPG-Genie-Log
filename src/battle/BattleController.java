@@ -20,8 +20,7 @@ public class BattleController implements InputProviderListener {
 	private BattleCharacter player;
 	
 	
-	private BattleEnnemy ennemy;
-	private Guerrier ennemi;
+	private BattleCharacter ennemy;
 
 
 	private BattleCommand mode = BattleCommand.NONE;
@@ -31,11 +30,10 @@ public class BattleController implements InputProviderListener {
 	private Music victory;
 
 	//constructeur qui charge le joueur, les ennemis ainsi que la phase de jeu pour le combat
-	public BattleController(BattleCharacter player, BattleEnnemy ennemy, StateBasedGame game)
+	public BattleController(BattleCharacter player, BattleCharacter ennemy, StateBasedGame game)
 			throws SlickException {
 		this.player = player;
 		this.ennemy = ennemy;
-		this.ennemi = new Guerrier();
 		this.game = game;
 		this.victory = new Music("resources/sound/lively-meadow-victory-fanfare.ogg");
 		initAnimationListeners();
@@ -105,13 +103,13 @@ public class BattleController implements InputProviderListener {
 	private void playerAsignDamage() {
 		
 		hud.addLog("Vous attaquez et infligez " + player.getAttack() + " dÃ©gats.");
-		player.attaquer(ennemi);
+		player.attaquer(ennemy.getCible());
 	}
 
 	//quand un joueur fini de tapper, on check l'etat du combat
 	private void endPlayerAttack() {
 		//si l'ennemie est mort
-		if (! ennemi.isAlive()) 
+		if (! ennemy.isAlive()) 
 		{
 			hud.addLog("Vous avez gagné !");
 			victory.play();
@@ -136,8 +134,8 @@ public class BattleController implements InputProviderListener {
 	//calcul des degats de l'ennemi sur le joueur
 	private void ennemyAsignDamage() {
 		
-		hud.addLog("Vous encaissez une attaque et recevez " + ennemi.getAttack() + " dégats.");
-		ennemi.attaquer(player.getCible());
+		hud.addLog("Vous encaissez une attaque et recevez " + ennemy.getAttack() + " dégats.");
+		ennemy.attaquer(player.getCible());
 	}
 
 	//quand l'ennemi a fini, on doit aussi check l'etat du combat
