@@ -18,7 +18,7 @@ public class BattleGameState extends BasicGameState {
 
 	public static final int ID = 3;
 	private Image background;
-	private BattleEnnemy ennemy = new BattleEnnemy();
+	private BattleCharacter ennemy = new BattleCharacter (new Guerrier());
 	private BattleCharacter player = new BattleCharacter(new Guerrier());
 	private BattleHud hud;
 	private Music music;
