@@ -113,7 +113,7 @@ public abstract class Entitee {
 	
 	public abstract boolean isFriendly();
 	
-	public abstract void getXP(int xp);
+	public abstract String getXP(int xp);
 	
 	
 	public void reduireMana(int cout)
@@ -137,6 +137,10 @@ public abstract class Entitee {
 		return this.pv;
 	}
 	
+	public void setPV(int pv)
+	{
+		this.pv=pv;
+	}
 	
 	
 	public String subirComp(Competence sort)
@@ -180,6 +184,11 @@ public abstract class Entitee {
 		{
 			if(this.effets_subis.get(compteur).getDuree()==0)
 			{
+				if(this.effets_subis.get(compteur).getBolus()!=null)
+				{
+				this.atk=this.atk-this.effets_subis.get(compteur).getBolus().get(0);
+				this.def=this.def-this.effets_subis.get(compteur).getBolus().get(1);
+				}
 				this.effets_subis.remove(this.effets_subis.get(compteur));
 				
 				
@@ -197,12 +206,6 @@ public abstract class Entitee {
 		String log="";
 		for (Effet i : this.effets_subis)
 		{
-			if(i.getDuree()==0)
-			{
-				this.atk=this.atk-i.getBolus().get(0);
-				this.def=this.def-i.getBolus().get(1);
-				this.effets_subis.remove(i);
-			}
 			
 			int deg=i.getDegheal();
 			if(deg<0)
@@ -213,7 +216,7 @@ public abstract class Entitee {
 			}
 			else if(deg>0)
 			{
-				log=log+this.getHeal(deg);
+				log=log+this.getHeal(deg)+" venant de "+i.getNom()+'\n';
 			}
 			
 			i.reduireDurée();
@@ -241,6 +244,15 @@ public abstract class Entitee {
 	public int getMana()
 	{
 		return this.mana;
+	}
+	
+	public void recupMana(int mana)
+	{
+		this.mana=this.mana+mana;
+		if(this.mana>this.manaMax)
+		{
+			this.mana=this.manaMax;
+		}
 	}
 	
 	public boolean fullLife()

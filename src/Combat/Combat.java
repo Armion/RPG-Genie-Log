@@ -42,6 +42,11 @@ public class Combat {
 		this.recompense=0;
 	}
 	
+	public int getRecomp()
+	{
+		return this.recompense;
+	}
+	
 	public ArrayList<Entitee> getProta()
 	{
 		return this.protagonistes;
@@ -75,7 +80,9 @@ public class Combat {
 			this.protagonistes.get(debut+i).setX((fenetre.getWidth()/4)*3);
 			this.protagonistes.get(debut+i).setY(fenetre.getHeight()/5+(i*(fenetre.getHeight()/8))+3*fenetre.getHeight()/12);
 			
+			
 		}
+		this.recompense=10*nb*moy;
 		
 	}
 	
@@ -89,6 +96,7 @@ public class Combat {
 		for(i=0;i<this.protagonistes.size();i++)
 		{
 			moyenneNiveau=moyenneNiveau+this.protagonistes.get(i).getLVL();
+			
 		}
 		moyenneNiveau=(moyenneNiveau/i)+difficult;
 		GenererMonstres(moyenneNiveau,debut);

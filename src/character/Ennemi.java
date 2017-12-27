@@ -29,8 +29,9 @@ public abstract class Ennemi extends Entitee {
 
 	
 	@Override
-	public void getXP(int xp)
+	public String getXP(int xp)
 	{
+		return "";
 		
 	}
 	

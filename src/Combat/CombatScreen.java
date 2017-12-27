@@ -356,6 +356,13 @@ public class CombatScreen extends BasicGameState {
 		if(this.status==8)
 		{
 			arg2.drawString("Victoire !",(arg0.getWidth()/12)*4, 0*(arg0.getHeight()/19)+(arg0.getHeight()/5)*4);
+			for(int i=0;i<this.combat.log.size();i++)
+			{
+			
+			arg2.drawString(this.combat.log.get(i),(arg0.getWidth()/12)*4, (i+1)*(arg0.getHeight()/19)+(arg0.getHeight()/5)*4);
+			
+			}
+			
 			
 		
 		}
@@ -464,6 +471,11 @@ public class CombatScreen extends BasicGameState {
 			this.combat.actionIA(current);
 			this.status=2;
 		}
+		
+		if(this.status==9)
+		{
+			maitreCombat();
+		}
 	
 		
 		if(this.status==10)
@@ -472,6 +484,14 @@ public class CombatScreen extends BasicGameState {
 			this.actif=false;
 			this.defeat.stop();
 			this.status=0;
+			for(Entitee i :this.groupe)
+			{
+				if(i.getPV()<=0)
+				{
+					i.setPV(1);
+				}
+				i.recupMana(i.getManaMax());
+			}
 			arg1.enterState(NotCombat.ID);
 		}
 		
@@ -513,7 +533,8 @@ public class CombatScreen extends BasicGameState {
 		{
 			this.combat.log=new ArrayList<String>();
 			this.combat.retirerBlesse(passage);
-			this.passage.remove(0);
+			if(this.passage.size()>0)
+			{this.passage.remove(0);}
 			if(this.passage.size()==0)
 			{
 				this.actif=false;
@@ -540,6 +561,14 @@ public class CombatScreen extends BasicGameState {
 			else if(combat.conditionVictoire()==2)
 			{
 				this.status=9;
+			}
+		}
+		
+		if(this.status==8)	
+		{
+			for(Entitee i : this.groupe)
+			{
+				this.combat.log.add(i.getXP(this.combat.getRecomp()));
 			}
 		}
 		

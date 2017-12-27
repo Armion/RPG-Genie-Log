@@ -1,10 +1,15 @@
 package character;
 
+import java.util.Random;
+
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
+import competences.Charge;
 import competences.Eclair_givre;
+import competences.Fumigene;
+import competences.Saignement;
 import competences.Smite;
 
 public class Guerrier extends Joueur {
@@ -22,7 +27,28 @@ public class Guerrier extends Joueur {
 		 this.manaMax=75;
 		 this.mana=75;
 		 
-		 this.sorts.add(new Smite());
-		 this.sorts.add(new Eclair_givre());
+		 this.sorts.add(new Charge());
 	 }
+	 
+	 @Override
+		protected void UpgradeComp()
+		{
+			Random rand=new Random();
+			int augAtk=rand.nextInt(3)+3;
+			int augDef=rand.nextInt(3)+3;
+			int augPV=rand.nextInt(5)+5;
+			int augMana=rand.nextInt(5)+1;
+			this.atk=this.atk+augAtk;
+			this.def=this.def+augDef;
+			this.pvMax=this.pvMax+augPV;
+			this.manaMax=this.manaMax+augMana;
+			if(this.lvl==3)
+			{
+				this.sorts.add(new Saignement());
+			}
+			
+			
+		}
+		
+	 
 }
