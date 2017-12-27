@@ -7,6 +7,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import Combat.CombatScreen;
 import map.MapGameState;
 
 //classe qui represente le menu principal
@@ -43,7 +44,7 @@ public class MainScreenGameState extends BasicGameState {
 	//gestion des touches relachés, peu importe la touché on va charger la phase de jeu de la Map
 	@Override
 	public void keyReleased(int key, char c) {
-		game.enterState(MapGameState.ID);
+		game.enterState(CombatScreen.ID/*MapGameState.ID*/);
 	}
 
 	//Un identifiant, il permet d'indentifier l'etat dans le quel on est
