@@ -44,7 +44,7 @@ public class MainScreenGameState extends BasicGameState {
 	//gestion des touches relachés, peu importe la touché on va charger la phase de jeu de la Map
 	@Override
 	public void keyReleased(int key, char c) {
-		game.enterState(CombatScreen.ID/*MapGameState.ID*/);
+		game.enterState(MapGameState.ID/*MapGameState.ID*/);
 	}
 
 	//Un identifiant, il permet d'indentifier l'etat dans le quel on est

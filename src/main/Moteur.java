@@ -8,7 +8,6 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import battle.BattleGameState;
 import map.MapGameState;
 import Combat.CombatScreen;
 import Combat.personnages.*;

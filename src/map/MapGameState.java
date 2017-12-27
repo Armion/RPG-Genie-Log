@@ -10,7 +10,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import battle.BattleGameState;
+import Combat.CombatScreen;
+
 
 
 public class MapGameState extends BasicGameState {
@@ -87,7 +88,7 @@ public class MapGameState extends BasicGameState {
 		
 		//enfin, on a une chance de rentrer en combat, dans ce cas on passe à la phase de combat
 		if (Math.random() < 0.005 && player.isMoving()) {
-			game.enterState(BattleGameState.ID);
+			game.enterState(CombatScreen.ID);
 		}
 	}
 
