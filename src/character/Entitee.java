@@ -191,6 +191,7 @@ public abstract class Entitee {
 	
 	public String subirEffet()
 	{
+		retirerEffets();
 		String log="";
 		for (Effet i : this.effets_subis)
 		{
