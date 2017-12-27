@@ -169,36 +169,17 @@ public abstract class Entitee {
 		
 	}
 	
-	private void retirerEffet()
-	{
-
-		boolean blesse=false;
-		int compteur=0;
-		while(blesse==false && compteur<this.effets_subis.size())
-		{
-			if(this.effets_subis.get(compteur).getDuree()==0)
-			{
-				this.effets_subis.remove(this.effets_subis.get(compteur));
-				
-				
-				retirerEffet();
-				blesse=true;
-			}
-			
-			compteur++;
-		}
-		
-	}
-	
 	public String subirEffet()
 	{
-		
 		String log="";
-		retirerEffet();
-		
 		for (Effet i : this.effets_subis)
 		{
-			
+			if(i.getDuree()==0)
+			{
+				this.atk=this.atk-i.getBolus().get(0);
+				this.def=this.def-i.getBolus().get(1);
+				this.effets_subis.remove(i);
+			}
 			
 			int deg=i.getDegheal();
 			if(deg<0)
@@ -214,9 +195,7 @@ public abstract class Entitee {
 			
 			i.reduireDurée();
 			
-			}
-			
-		
+		}
 		
 		return log;
 	}

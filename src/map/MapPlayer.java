@@ -4,7 +4,8 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
-import character.Character;
+import org.newdawn.slick.SpriteSheet;
+
 
 //classe qui représente le joueur sur la map
 public class MapPlayer {
@@ -26,7 +27,7 @@ public class MapPlayer {
 	public void init() throws SlickException {
 		
 		//on charge l'animation
-		this.animations = Character.createAnime("resources/sprites/character.png", 64, 64);
+		this.animations = this.createAnime("resources/sprites/character.png", 64, 64);
 	}
 	
 	
@@ -58,6 +59,46 @@ public class MapPlayer {
 		}
 	}
 
+	
+	
+	public static Animation[] createAnime(String path, int x, int y) throws SlickException
+	{
+	
+		//on creer un nouveau sprite, on lui donne les dimensions des images pour l'animation
+		SpriteSheet sprite = new SpriteSheet(path, x, y);
+		
+		//dans notre cas il y 4 directions + 4 cas de repos
+		Animation[] anime = new Animation[8];
+		
+		//on remplit le tableau d'animations 
+		
+		//d'abord les etats de repos, ils ne comprennent que la premiere image de 0 à 1, à la ligne i correspondant
+		for(int i = 0; i < 4; i++)
+		{
+			anime[i] = loadAnimation(sprite, 0, 1, i);
+		}
+		
+		//ensuite les etats pour bouger qui comprennent les 7 images de mouvement, on a i qui vas aller de 4 à 7, donc on fait i-4 pour ne pas utiliser une autre variable
+		for(int i = 4; i < 8; i++)
+		{
+			anime[i] = loadAnimation(sprite, 1, 9, i-4);
+		}
+		
+		return anime;
+	}
+
+	//methode qui va creer une animation en chargeant les images du sprite
+	public static Animation loadAnimation(SpriteSheet spriteSheet, int startX, int endX, int y) {
+	    Animation animation = new Animation();
+	    
+	    //on charge les x images de la ligne y, en mettant 100ms entre les animations
+	    for (int x = startX; x < endX; x++) {
+	        animation.addFrame(spriteSheet.getSprite(x, y), 100);
+	    }
+	    return animation;
+	}
+
+	
 	//getters et setters
 	private float getFuturX(int delta) {
 		return this.x + .15f * delta * dx;

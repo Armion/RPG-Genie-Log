@@ -11,6 +11,10 @@ import org.newdawn.slick.state.StateBasedGame;
 import map.MapGameState;
 import Combat.CombatScreen;
 import Combat.personnages.*;
+import character.Assassin;
+import character.Guerrier;
+import character.Joueur;
+import character.Paladin;
 
 //classe principal du jeu
 public class Moteur extends StateBasedGame {
