@@ -24,6 +24,7 @@ public class CombatScreen extends BasicGameState {
 	private Combat combat;
 	Image background;
 	Image menu;
+	Image hud;
 	private ArrayList<Joueur> groupe;
 	Music music;
 	Music defeat;
@@ -36,6 +37,11 @@ public class CombatScreen extends BasicGameState {
 	private int status=1;
 	private Competence choix;
 	ArrayList<Entitee> passage;
+	
+	
+	private static final Color LIFE=new Color(255,0,0);
+	private static final Color MANA=new Color(0,0,255);
+	private static final Color WHITE=new Color(255,255,255);
 	
 	public CombatScreen(ArrayList<Joueur> groupe)
 	{
@@ -78,8 +84,9 @@ public class CombatScreen extends BasicGameState {
 					else this.curseur=0;	
 				}
 				
-				else if(this.status==3 || this.status==5 || this.status==4)
+				else if(this.status==3 || this.status==4)
 				{
+					
 					if(this.curseur<this.combat.ciblage(current, true).size()-1)
 					{
 						this.curseur++;
@@ -88,6 +95,18 @@ public class CombatScreen extends BasicGameState {
 					{
 						this.curseur=0;
 					}
+				}
+				else if(this.status==5 )
+				{
+					if(this.curseur<this.combat.ciblage(current, false).size()-1)
+					{
+						this.curseur++;
+					}
+					else
+					{
+						this.curseur=0;
+					}
+					
 				}
 				
 				
@@ -124,7 +143,10 @@ public class CombatScreen extends BasicGameState {
 					}
 					else
 					{
+						if(this.status==3 || this.status==4)
 						this.curseur=this.combat.ciblage(current, true).size()-1;
+						else
+						this.curseur=this.combat.ciblage(current, false).size()-1;
 					}
 				
 			}
@@ -232,7 +254,7 @@ public class CombatScreen extends BasicGameState {
 		this.music=new Music("src/Combat/battle-song.ogg");
 		this.defeat=new Music("src/Combat/defeat_song.ogg");
 		this.menu=new Image("src/Combat/background/interface.png");
-		
+		this.hud=new Image("src/Combat/personnages/sprites/hud.png");
 		
 		
 		
@@ -270,8 +292,10 @@ public class CombatScreen extends BasicGameState {
 		
 		this.background.draw(0,0,container.getWidth(),container.getHeight());
 		affichagePerso(arg2,this.combat.getProta());
+		
 		this.menu.draw(0, 0, arg0.getWidth(),arg0.getHeight());
-		//arg2.drawString("Interface de combat stylé", (arg0.getWidth()/12)*4, (arg0.getHeight()/5)*4);
+		if(this.actif==true)
+		{afficherHUD(arg2,arg0);}
 		if(tourJoueur==true)
 		{
 			if(this.status==1)
@@ -351,6 +375,34 @@ public class CombatScreen extends BasicGameState {
 		}
 			
 	
+	}
+	
+	public void afficherHUD(Graphics g,GameContainer con)
+	{
+		for(Entitee i : this.combat.getProta())
+		{
+			if(i.isFriendly()==true)
+			{
+			g.setColor(LIFE);
+			g.fillRect(i.getX()-(con.getWidth()/10), 50+i.getY(), (float)(((float)i.getPV()/i.getPVMax())*96), 9);
+			g.setColor(MANA);
+			g.fillRect(i.getX()-(con.getWidth()/10), 50+i.getY()+9, (float)(((float)i.getMana()/i.getManaMax())*96), 9);
+			g.drawImage(this.hud,(float)i.getX()-(con.getWidth()/10)-2 ,(float)50+i.getY()-2);
+			g.setColor(WHITE);
+			}
+			else if(i.isFriendly()==false)
+			{
+				g.setColor(LIFE);
+				g.fillRect(i.getX()+(con.getWidth()/10), 50+i.getY(), (float)(((float)i.getPV()/i.getPVMax())*96), 9);
+				g.setColor(MANA);
+				g.fillRect(i.getX()+(con.getWidth()/10), 50+i.getY()+9, (float)(((float)i.getMana()/i.getManaMax())*96), 9);
+				g.drawImage(this.hud,(float)i.getX()+(con.getWidth()/10)-2 ,(float)50+i.getY()-2);
+				g.setColor(WHITE);
+				
+			}
+			
+		}
+		
 	}
 	
 	public void afficherCibles(Graphics g,GameContainer con,boolean allies)

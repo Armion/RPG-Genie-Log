@@ -78,6 +78,8 @@ public abstract class Entitee {
 	public String getHeal(int heal)
 	{
 		String log="";
+		if(heal>this.pvMax-this.pv)
+		{heal=this.pvMax-this.pv;}
 		this.pv=this.pv+heal;
 		log=log+this.nom+" regagne "+heal+" PV!"+'\n';
 		
