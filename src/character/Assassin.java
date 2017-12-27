@@ -2,7 +2,7 @@ package character;
 
 import org.newdawn.slick.SlickException;
 
-import Combat.competences.Poison;
+import competences.Poison;
 
 public class Assassin extends Joueur {
 	

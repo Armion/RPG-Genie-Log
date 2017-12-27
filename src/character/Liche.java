@@ -6,8 +6,8 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
-import Combat.competences.Competence;
-import Combat.competences.Eclair_givre;
+import competences.Competence;
+import competences.Eclair_givre;
 
 public class Liche extends Ennemi {
 	

@@ -13,7 +13,7 @@ import character.Entitee;
 import character.Joueur;
 import character.Liche;
 import character.Squelette;
-import Combat.competences.*;
+import competences.*;
 
 public class Combat {
 	

@@ -1,4 +1,5 @@
 package character;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,11 +9,7 @@ public abstract class Joueur extends Entitee {
 	
 	protected int xp;
 	
-	/*public Joueur() throws SlickException
-	{
-		this.setText("src/personnages/sprites/generique.png");
-	}
-	*/
+
 	
 	private void lvlUp()//TODO:Augmenter les carac(voir redéfinir dans la classe de perso)
 	{

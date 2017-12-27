@@ -1,4 +1,4 @@
-package Combat.competences;
+package competences;
 
 import java.util.ArrayList;
 
@@ -13,6 +13,7 @@ public abstract class Competence {
 	protected int deghealDurr;
 	protected int cout; // cout en mana
 	protected int tag;//1=offensif,2=support,3=soins;
+	protected boolean outOfFight;
 	
 	
 	
@@ -33,6 +34,13 @@ public abstract class Competence {
 	public int getZone()
 	{
 		return this.zone;
+	}
+	
+	public boolean usableOutOfFight()
+	{
+		if(outOfFight)
+			return true;
+		return false;
 	}
 	
 	

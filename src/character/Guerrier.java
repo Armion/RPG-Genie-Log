@@ -4,8 +4,8 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
-import Combat.competences.Eclair_givre;
-import Combat.competences.Smite;
+import competences.Eclair_givre;
+import competences.Smite;
 
 public class Guerrier extends Joueur {
 

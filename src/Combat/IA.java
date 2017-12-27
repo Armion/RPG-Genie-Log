@@ -1,9 +1,9 @@
 package Combat;
 import java.util.ArrayList;
 
-import Combat.competences.Competence;
 import character.Clone;
 import character.Entitee;
+import competences.Competence;
 
 public class IA {
 

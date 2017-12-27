@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import org.newdawn.slick.SlickException;
 
-import Combat.competences.Competence;
-import Combat.competences.Eclair_givre;
+import competences.Competence;
+import competences.Eclair_givre;
 
 public class DarkKnight extends Ennemi {
 	

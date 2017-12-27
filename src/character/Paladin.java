@@ -1,7 +1,7 @@
 package character;
 import org.newdawn.slick.SlickException;
 
-import Combat.competences.*;
+import competences.*;
 
 
 public class Paladin extends Joueur {
@@ -19,6 +19,7 @@ public class Paladin extends Joueur {
 		this.manaMax=200;
 		this.mana=200;
 		this.sorts.add(new Smite());
+		this.sorts.add(new Heal());
 		
 	}
 	

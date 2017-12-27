@@ -13,9 +13,9 @@ import org.newdawn.slick.font.effects.ColorEffect;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import Combat.competences.Competence;
 import character.Entitee;
 import character.Joueur;
+import competences.Competence;
 
 public class CombatScreen extends BasicGameState {
 	

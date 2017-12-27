@@ -2,8 +2,8 @@ package character;
 
 import java.util.ArrayList;
 
-import Combat.competences.Competence;
-import Combat.competences.Effet;
+import competences.Competence;
+import competences.Effet;
 
 public class Clone extends Entitee {
 

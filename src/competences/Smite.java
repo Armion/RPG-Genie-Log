@@ -1,4 +1,4 @@
-package Combat.competences;
+package competences;
 
 import java.util.ArrayList;
 
