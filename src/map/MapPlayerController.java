@@ -16,10 +16,10 @@ public class MapPlayerController implements KeyListener {
 
 	//methode d'update, elle est utile lorsque qu'une manette est connecté, sinon c'est le KeyListener qui s'en charge
 	public void update() {
-		if (input.getControllerCount() > 0) {
+		/*if (input.getControllerCount() > 0) {
 			player.setDx(input.getAxisValue(0, 1));
 			player.setDy(input.getAxisValue(0, 2));
-		}
+		}*/
 	}
 
 	@Override

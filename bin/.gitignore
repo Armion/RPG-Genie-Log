@@ -1,18 +1,4 @@
-/Combat/
-/main/
-<<<<<<< refs/remotes/origin/Johann
-=======
-/resources/
-/battle/
 /map/
-/Character/
-/Personnage/
-/character/
-/Camera.class
-/MainScreenGameState.class
-/Map.class
-/MapGameState.class
-/Player.class
-/PlayerController.class
-/StateGame.class
-/TriggerController.class
+/Combat/
+/resources/
+/main/
