@@ -1,10 +1,14 @@
 package map;
 
+import java.util.List;
+
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
+
+import character.Entitee;
 
 
 //classe qui représente le joueur sur la map
@@ -15,6 +19,8 @@ public class MapPlayer {
 	private Animation[] animations = new Animation[8];
 	private float dx = 0, dy = 0;
 	private int direction;
+	
+	List<Entitee> team;
 
 	private Map map;
 
