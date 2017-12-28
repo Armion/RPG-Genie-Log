@@ -11,8 +11,12 @@ import competences.Eclair_givre;
 import competences.Fumigene;
 import competences.Saignement;
 import competences.Smite;
+import items.Item;
+import items.potions.HealPot;
 
 public class Guerrier extends Joueur {
+	
+	
 
 	 public Guerrier() throws SlickException
 	 {
@@ -26,6 +30,7 @@ public class Guerrier extends Joueur {
 		 this.nom="Guerrier"; 
 		 this.manaMax=75;
 		 this.mana=75;
+		 
 		 
 		 this.sorts.add(new Charge());
 	 }

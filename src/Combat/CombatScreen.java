@@ -17,6 +17,7 @@ import character.Entitee;
 import character.Joueur;
 import competences.Competence;
 import map.MapGameState;
+import singleton.Team;
 
 public class CombatScreen extends BasicGameState {
 	
@@ -44,9 +45,9 @@ public class CombatScreen extends BasicGameState {
 	private static final Color MANA=new Color(0,0,255);
 	private static final Color WHITE=new Color(255,255,255);
 	
-	public CombatScreen(ArrayList<Joueur> groupe)
+	public CombatScreen()
 	{
-		this.groupe=groupe;
+		
 		
 	}
 	
@@ -68,7 +69,11 @@ public class CombatScreen extends BasicGameState {
 			{
 				if(this.status==1)
 				{
-					if(this.curseur<3)
+					if(this.curseur==3)
+					{
+						this.curseur=5;
+					}
+					else if(this.curseur<4 &&this.curseur!=3)
 					{
 						this.curseur++;
 					}
@@ -109,6 +114,10 @@ public class CombatScreen extends BasicGameState {
 					}
 					
 				}
+				else if(this.status==12)
+				{
+					
+				}
 				
 				
 			}
@@ -119,11 +128,15 @@ public class CombatScreen extends BasicGameState {
 
 				if(this.status==1)
 				{
-					if(this.curseur>1)
+					if(this.curseur==5)
+					{
+						this.curseur=4;
+					}
+					if(this.curseur>1 && this.curseur!=5)
 					{
 						this.curseur--;
 					}
-					else this.curseur=3;
+					else this.curseur=5;
 				}
 				
 				else if(this.status==2)
@@ -173,8 +186,14 @@ public class CombatScreen extends BasicGameState {
 					this.curseur=0;
 					this.status=2;
 				}
-				
 				else if(this.curseur==3)
+				{
+					this.curseur=0;
+					this.status=11;
+					//TODO:Affichage des objets
+				}
+				
+				else if(this.curseur==5)
 				{
 					
 				this.status=9;
@@ -256,10 +275,10 @@ public class CombatScreen extends BasicGameState {
 
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
+		this.groupe=(ArrayList<Joueur>) Team.getInstance().getTeam();
 		this.container=arg0;
 		this.background=new Image("src/Combat/background/battle.jpg");
 		this.music=new Music("src/Combat/battle-song.ogg");
-		this.defeat=new Music("src/Combat/defeat_song.ogg");
 		this.menu=new Image("src/Combat/background/interface.png");
 		this.hud=new Image("src/Combat/personnages/sprites/hud.png");
 		
@@ -340,6 +359,13 @@ public class CombatScreen extends BasicGameState {
 				
 				}
 			}
+			
+			else if(this.status==11)
+			{
+				afficherObjets(arg2,arg0);
+				afficherCurseur(arg2,arg0);
+				
+			}
 				
 			
 			
@@ -387,29 +413,51 @@ public class CombatScreen extends BasicGameState {
 			
 		
 		}
+		
+		
 			
 	
+	}
+	
+	public void afficherObjets(Graphics g,GameContainer con)
+	{
+		/*
+		g.drawString(this.current.item.getName(),(con.getWidth()/12)*4, 0*(con.getHeight()/19)+(con.getHeight()/5)*4);
+		g.drawString("Retour",(con.getWidth()/12)*4, 1*(con.getHeight()/19)+(con.getHeight()/5)*4);
+		//TODO: tests
+		 */
+		 
 	}
 	
 	public void afficherHUD(Graphics g,GameContainer con)
 	{
 		for(Entitee i : this.combat.getProta())
 		{
+			float pv=(float)(((float)i.getPV()/i.getPVMax())*(float)96);
+			float mana=(float)(((float)i.getMana()/i.getManaMax())*(float)96);
+			if(pv<0)
+			{
+				pv=0;
+			}
+			if(mana<0)
+			{
+				mana=0;
+			}
 			if(i.isFriendly()==true)
 			{
 			g.setColor(LIFE);
-			g.fillRect(i.getX()-(con.getWidth()/10), 50+i.getY(), (float)(((float)i.getPV()/i.getPVMax())*96), 9);
+			g.fillRect(i.getX()-(con.getWidth()/10), 50+i.getY(), pv, 9);
 			g.setColor(MANA);
-			g.fillRect(i.getX()-(con.getWidth()/10), 50+i.getY()+9, (float)(((float)i.getMana()/i.getManaMax())*96), 9);
+			g.fillRect(i.getX()-(con.getWidth()/10), 50+i.getY()+9, mana, 9);
 			g.drawImage(this.hud,(float)i.getX()-(con.getWidth()/10)-2 ,(float)50+i.getY()-2);
 			g.setColor(WHITE);
 			}
 			else if(i.isFriendly()==false)
 			{
 				g.setColor(LIFE);
-				g.fillRect(i.getX()+(con.getWidth()/10), 50+i.getY(), (float)(((float)i.getPV()/i.getPVMax())*96), 9);
+				g.fillRect(i.getX()+(con.getWidth()/10), 50+i.getY(), pv, 9);
 				g.setColor(MANA);
-				g.fillRect(i.getX()+(con.getWidth()/10), 50+i.getY()+9, (float)(((float)i.getMana()/i.getManaMax())*96), 9);
+				g.fillRect(i.getX()+(con.getWidth()/10), 50+i.getY()+9, mana, 9);
 				g.drawImage(this.hud,(float)i.getX()+(con.getWidth()/10)-2 ,(float)50+i.getY()-2);
 				g.setColor(WHITE);
 				
@@ -447,14 +495,21 @@ public class CombatScreen extends BasicGameState {
 	{	g.drawString("Action de "+this.current.getNom()+"(PV:"+this.current.getPV()+"/Mana:"+this.current.getMana()+")",(con.getWidth()/12)*4, 0*(con.getHeight()/19)+(con.getHeight()/5)*4);
 		g.drawString("Attaque",(con.getWidth()/12)*4, 1*(con.getHeight()/19)+(con.getHeight()/5)*4);
 		g.drawString("Competences",(con.getWidth()/12)*4, 2*(con.getHeight()/19)+(con.getHeight()/5)*4);
-		g.drawString("Fuir",(con.getWidth()/12)*4, 3*(con.getHeight()/19)+(con.getHeight()/5)*4);
+		g.drawString("Objet",(con.getWidth()/12)*4, 3*(con.getHeight()/19)+(con.getHeight()/5)*4);
+		g.drawString("Fuir",(con.getWidth()/12)*6, 1*(con.getHeight()/19)+(con.getHeight()/5)*4);
 	}
 	
 	public void afficherCurseur(Graphics g,GameContainer con)
 	{
+		if(this.curseur>=4)
+		{
+			g.fillOval(((con.getWidth()/12)*6)-(con.getWidth()/55), (this.curseur-4)*(con.getHeight()/19)+(con.getHeight()/5)*4, 10, 10);
+		}
 		
-		g.fillOval(((con.getWidth()/12)*4)-(con.getWidth()/55), this.curseur*(con.getHeight()/19)+(con.getHeight()/5)*4, 10, 10);
-		
+		else
+		{
+			g.fillOval(((con.getWidth()/12)*4)-(con.getWidth()/55), this.curseur*(con.getHeight()/19)+(con.getHeight()/5)*4, 10, 10);
+		}
 	}
 
 
@@ -523,10 +578,10 @@ public class CombatScreen extends BasicGameState {
 		
 		passage = this.combat.getPassage();
 		this.current=passage.get(0);
-		}
-		this.actif=true;
-		
 		this.tourJoueur=this.current.isFriendly();
+		this.actif=true;
+		}
+		
 		
 		if(this.status==7)
 		{

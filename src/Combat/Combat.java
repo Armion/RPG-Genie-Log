@@ -101,20 +101,7 @@ public class Combat {
 		moyenneNiveau=(moyenneNiveau/i)+difficult;
 		GenererMonstres(moyenneNiveau,debut);
 		
-		/*for(int j=0;j<2;j++) //TODO:MODIFIER LE 3
-		{
-			this.protagonistes.add(new Squelette(moyenneNiveau));
-			this.protagonistes.get(debut).setX((fenetre.getWidth()/4)*3);
-			this.protagonistes.get(debut).setY(fenetre.getHeight()/5+(j*(fenetre.getHeight()/8))+3*fenetre.getHeight()/12);
-			debut++;
-		}
-		this.protagonistes.add(new Liche(moyenneNiveau));
-		this.protagonistes.get(debut).setX((fenetre.getWidth()/4)*3);
-		this.protagonistes.get(debut).setY(fenetre.getHeight()/5+(2*(fenetre.getHeight()/8))+3*fenetre.getHeight()/12);
 		
-		this.recompense=moyenneNiveau*25*Squelette.getLoot();*/
-		
-		//mainCombat();
 	}
 	
 	private ArrayList<Integer> Initiative()
@@ -270,70 +257,7 @@ public class Combat {
 						this.log.add(actif.subirEffet());
 					}
 					
-					
-				
-				/*do	
-				{
-					System.out.println("->Action de "+actif.getNom());
-					System.out.println("Pv:"+actif.getPV());
-					System.out.println("1.Attaque\n2.Competences");
-					
-					choix=sc.nextInt();
-					if(choix==1)
-					{
-					cible=this.choixCible(actif,true);
-					attaque(cible,actif);
-					break;
-					}
-					else if(choix==2)
-					{
-						
-						
-							do {
-							int c=1;
-							for(Competence i :actif.getSorts())
-							{
-								System.out.println(c+". "+i.getNom());
-								c++;
-							}
-							System.out.println(0+"."+"retour");
-							
-							
-							choix=sc.nextInt();
-							
-							if(choix>0)
-							{
-								if(actif.getComp().get(choix-1).getCout()>actif.getMana())
-								{
-								manaOut=true;
-								System.out.println("Plus assez de mana !");
-								}
-							
-							}
-							else if (choix==0)
-							{
-								retour=0;
-							}
-							
-							}while(actif.getComp().get(choix-1).getCout()>actif.getMana() && manaOut==false);
-					
-							if(manaOut==false && retour==1)
-							{
-							cible=this.choixCible(actif,actif.getComp().get(choix-1).getCible());
-							cible.subirComp(actif.getComp().get(choix-1));
-							actif.reduireMana(actif.getComp().get(choix-1).getCout());
-							
-							}
-							
-					}
-					
-			
-			
-			
-			}while(retour==0);*/
-					
-			
-					
+	
 				
 				
 				

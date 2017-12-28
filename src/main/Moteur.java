@@ -56,7 +56,7 @@ public class Moteur extends StateBasedGame {
 		addState(new MapGameState());
 		
 		//ajout de l'etat des batailles
-		addState(new CombatScreen(this.groupe));
+		addState(new CombatScreen());
 	}
 
 }

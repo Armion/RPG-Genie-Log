@@ -7,6 +7,7 @@ import org.newdawn.slick.SpriteSheet;
 
 import competences.*;
 import effects.FightEffect;
+import items.Item;
 
 
 public abstract class Entitee {
@@ -20,6 +21,7 @@ public abstract class Entitee {
 	protected int manaMax;
 	protected int mana;
 	protected ArrayList<Competence> sorts=new ArrayList<Competence>();
+	
 	
 	protected int posX;
 	protected int posY;
