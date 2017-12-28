@@ -1,6 +1,7 @@
 package items;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.newdawn.slick.Image;
 
@@ -14,6 +15,7 @@ public abstract class Item {
 	protected String name;
 	protected List<Effect> effects;
 	protected Image icone;
+	protected UUID id;
 	
 	
 	
@@ -24,6 +26,7 @@ public abstract class Item {
 		this.name = "noname";
 		effects = new ArrayList<>();
 		this.icone = null;
+		this.id = UUID.randomUUID();
 	}
 	
 
@@ -60,6 +63,11 @@ public abstract class Item {
 	public Image getIcone()
 	{
 		return this.icone;
+	}
+	
+	public UUID getId()
+	{
+		return this.id;
 	}
 
 }

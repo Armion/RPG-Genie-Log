@@ -24,19 +24,16 @@ public class MapInventory implements ComponentListener{
 	private int y = 100;
 	private Inventory inventaire;
 	private java.util.Map<MouseOverArea, Item> items;
+	private GameContainer container;
 	
 
 	
 	public void init(GameContainer container, Inventory inventaire) throws SlickException {
 		
 		this.inventaire = inventaire;
+		this.container = container;
 		
-		this.items = new HashMap<>();
-		//on fabrique le map des boutons avec l'item correspondant
-		for(int i = 0; i < inventaire.getItemsList().size() ; i++)
-		{
-			this.items.put(new MouseOverArea(container, inventaire.getItemsList().get(i).getIcone(), (x+11+i*35), y+36*((i/4)+1), this), inventaire.getItemsList().get(i));
-		}
+		this.loadInventory(container);
 		
 		
 		
@@ -78,11 +75,25 @@ public class MapInventory implements ComponentListener{
 		{
 			if(source == entry.getKey())
 			{
-				System.out.println(entry.getValue().getName());
+				Team.getInstance().getTeam().get(0).getDegats(3);
+				System.out.println(Team.getInstance().getTeam().get(0).getPV());
+				inventaire.useItem(entry.getValue().getId(), Team.getInstance().getTeam().get(0), "");
+				System.out.println(Team.getInstance().getTeam().get(0).getPV());
+				this.loadInventory(this.container);
 			}
-			
 		}
 		
+		
+	}
+	
+	private void loadInventory(GameContainer container)
+	{
+		this.items = new HashMap<>();
+		//on fabrique le map des boutons avec l'item correspondant
+		for(int i = 0; i < inventaire.getItemsList().size() ; i++)
+		{
+			this.items.put(new MouseOverArea(container, inventaire.getItemsList().get(i).getIcone(), (x+11+i*35), y+36*((i/4)+1), this), inventaire.getItemsList().get(i));
+		}
 		
 	}
 	
