@@ -1,5 +1,6 @@
 package singleton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.newdawn.slick.SlickException;
@@ -15,6 +16,7 @@ public class Team {
 	
 	private Team()
 	{
+		this.membres = new ArrayList<>();
 		try {
 			this.membres.add(new Paladin());
 			this.membres.add(new Paladin());
