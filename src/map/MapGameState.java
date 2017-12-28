@@ -22,6 +22,7 @@ public class MapGameState extends BasicGameState {
 	private GameContainer container;
 	private Map map = new Map();
 	private MapPlayer player = new MapPlayer(map);
+	private MapInventory inventaire = new MapInventory();
 	private MapTriggerController triggers = new MapTriggerController(map, player);
 	private MapCamera camera = new MapCamera(player);
 	private MapPlayerController controller = new MapPlayerController(player);
@@ -32,6 +33,7 @@ public class MapGameState extends BasicGameState {
 	//on charge et initialise si besoin les resources à l'initialisation
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 		
+		this.inventaire.init();
 		this.container = container;
 		this.musicBack = new Music("resources/sound/lost-in-the-meadows.ogg");
 		this.map.init();
@@ -70,6 +72,10 @@ public class MapGameState extends BasicGameState {
 		//on remet ce qui doit etre par dessus le joueur
 		this.map.renderForeground();
 		
+		//si l'inventaire doit l'etre, on l'affiche
+		if(inventaire.isVisible())
+			inventaire.render(g);
+		
 	}
 
 	//methode d'update pour mettre à jour les elements de la phase
@@ -91,9 +97,14 @@ public class MapGameState extends BasicGameState {
 	//on regarde les touches relachées, si c'est un echappe, alors on quitte le jeu
 	@Override
 	public void keyReleased(int key, char c) {
-		if (Input.KEY_ESCAPE == key) {
-			this.container.exit();
+		
+		switch(key)
+		{
+		case Input.KEY_ESCAPE : this.container.exit();
+			break;
+		case Input.KEY_I : inventaire.changeState();
 		}
+		
 	}
 
 	@Override
