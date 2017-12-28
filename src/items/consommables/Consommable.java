@@ -5,6 +5,20 @@ import items.Item;
 
 public abstract class Consommable extends Item {
 
-	private Entitee cible;
+	protected Entitee cible;
+	protected boolean typeTarget; // true ennemies, false alliés
+	
+	
+	
+	public Consommable()
+	{
+		super();
+		this.cible = null;
+	}
+	
+	public boolean isTargatable()
+	{
+		return this.typeTarget;
+	}
 	
 }

@@ -42,6 +42,11 @@ public abstract class Effect {
 			this.duree--;
 	}
 	
+	public void changeTarget(Entitee target)
+	{
+		this.cible = target;
+	}
+	
 	public void reduireDurée(int tours)
 	{
 		if(this.duree > tours)
