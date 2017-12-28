@@ -405,12 +405,7 @@ public class CombatScreen extends BasicGameState {
 			arg2.drawString("Défaite...",(arg0.getWidth()/12)*4, 0*(arg0.getHeight()/19)+(arg0.getHeight()/5)*4);
 			
 				
-				if(defeat.playing()==false)
-				{
-					//this.music.stop();
-					//defeat.play();
-				}
-			
+		
 		
 		}
 		
@@ -544,7 +539,7 @@ public class CombatScreen extends BasicGameState {
 		{
 			this.debut=true;
 			this.actif=false;
-			this.defeat.stop();
+
 			this.status=0;
 			for(Entitee i :this.groupe)
 			{
