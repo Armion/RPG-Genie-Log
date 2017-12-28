@@ -5,11 +5,12 @@ import java.util.List;
 import org.newdawn.slick.SlickException;
 
 import character.Entitee;
+import character.Joueur;
 import character.Paladin;
 
 public class Team {
 	
-	private List<Entitee> membres;
+	private List<Joueur> membres;
 	private int money;
 	
 	private Team()
@@ -34,9 +35,19 @@ public class Team {
 		return INSTANCE;
 	}
 	
-	public  List<Entitee> getTeam()
+	public  List<Joueur> getTeam()
 	{
 		return this.membres;
+	}
+	
+	public void virerMembre(Joueur membre)
+	{
+		membres.remove(membre);
+	}
+	
+	public void addMembre(Joueur membre)
+	{
+		membres.add(membre);
 	}
 
 }

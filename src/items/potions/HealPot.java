@@ -11,6 +11,8 @@ public class HealPot extends Item {
 		
 		this.effects.add(new RestoreHeal(5, null));
 	}
+	
+	
 
 
 }
