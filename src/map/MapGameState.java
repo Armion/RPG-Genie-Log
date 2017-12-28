@@ -11,6 +11,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import Combat.CombatScreen;
+import singleton.Team;
 
 
 
@@ -22,10 +23,13 @@ public class MapGameState extends BasicGameState {
 	private GameContainer container;
 	private Map map = new Map();
 	private MapPlayer player = new MapPlayer(map);
+	private Team team = Team.getInstance();
 	private MapInventory inventaire = new MapInventory();
 	private MapTriggerController triggers = new MapTriggerController(map, player);
 	private MapCamera camera = new MapCamera(player);
 	private MapPlayerController controller = new MapPlayerController(player);
+	
+	
 
 	private Music musicBack;
 
@@ -33,7 +37,7 @@ public class MapGameState extends BasicGameState {
 	//on charge et initialise si besoin les resources à l'initialisation
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 		
-		this.inventaire.init();
+		this.inventaire.init(container, this.team.getInventory());
 		this.container = container;
 		this.musicBack = new Music("resources/sound/lost-in-the-meadows.ogg");
 		this.map.init();
@@ -74,7 +78,7 @@ public class MapGameState extends BasicGameState {
 		
 		//si l'inventaire doit l'etre, on l'affiche
 		if(inventaire.isVisible())
-			inventaire.render(g);
+			inventaire.render(container, g);
 		
 	}
 

@@ -2,6 +2,8 @@ package items;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.newdawn.slick.Image;
+
 import character.Entitee;
 import effects.*;
 
@@ -11,6 +13,7 @@ public abstract class Item {
 	protected float weight;
 	protected String name;
 	protected List<Effect> effects;
+	protected Image icone;
 	
 	
 	
@@ -20,6 +23,7 @@ public abstract class Item {
 		this.weight = 0f;
 		this.name = "noname";
 		effects = new ArrayList<>();
+		this.icone = null;
 	}
 	
 
@@ -51,6 +55,11 @@ public abstract class Item {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public Image getIcone()
+	{
+		return this.icone;
 	}
 
 }

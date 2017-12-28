@@ -1,5 +1,8 @@
 package items.consommables.potions;
 
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+
 import character.Entitee;
 import effects.Effect;
 import effects.RestoreHeal;
@@ -15,6 +18,12 @@ private int amount;
 		super();
 		this.effects.add(new RestoreMana(5, null));
 		this.name="Potion de mana";
+		
+		try {
+			this.icone = new Image("resources/Icones/ManaPot.png");
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public ManaPot(int amount)

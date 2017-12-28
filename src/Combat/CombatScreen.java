@@ -119,7 +119,7 @@ public class CombatScreen extends BasicGameState {
 				else if(this.status==11)
 				{
 					
-				 if(this.curseur<Team.getInstance().getInventory().getItem().size() &&this.curseur!=3)
+				 if(this.curseur<Team.getInstance().getInventory().getItemsList().size() &&this.curseur!=3)
 					{
 						this.curseur++;
 					}
@@ -179,7 +179,7 @@ public class CombatScreen extends BasicGameState {
 						this.curseur--;
 					}
 					else 
-						this.curseur=Team.getInstance().getInventory().getItem().size()-1;
+						this.curseur=Team.getInstance().getInventory().getItemsList().size()-1;
 							
 				}
 			
@@ -264,7 +264,7 @@ public class CombatScreen extends BasicGameState {
 			else if(this.status==11)
 			{
 				this.objet=this.curseur;
-				if(((Consommable)Team.getInstance().getInventory().getItem().get(this.objet)).isTargatable()==true)	
+				if(((Consommable)Team.getInstance().getInventory().getItemsList().get(this.objet)).isTargatable()==true)	
 				{
 					this.status=12;
 				
@@ -277,9 +277,9 @@ public class CombatScreen extends BasicGameState {
 				String log="";
 				this.combat.log.add(log);
 				if(this.status==12)
-				Team.getInstance().getInventory().getItem().get(this.objet).utiliser(this.combat.log.get(0),this.combat.ciblage(current, true).get(curseur) );
+				Team.getInstance().getInventory().getItemsList().get(this.objet).utiliser(this.combat.log.get(0),this.combat.ciblage(current, true).get(curseur) );
 				else
-				Team.getInstance().getInventory().getItem().get(this.objet).utiliser(this.combat.log.get(0),this.combat.ciblage(current, false).get(curseur) );
+				Team.getInstance().getInventory().getItemsList().get(this.objet).utiliser(this.combat.log.get(0),this.combat.ciblage(current, false).get(curseur) );
 				
 				
 				this.status=6;
@@ -444,7 +444,7 @@ public class CombatScreen extends BasicGameState {
 	public void afficherObjets(Graphics g,GameContainer con)
 	{
 		int j=0;
-		for(Item i :Team.getInstance().getInventory().getItem())
+		for(Item i :Team.getInstance().getInventory().getItemsList())
 		{
 			if(i.fightUsable()==true)
 			{

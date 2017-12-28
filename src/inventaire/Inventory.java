@@ -24,7 +24,7 @@ public class Inventory {
 		this.list = list;
 	}
 	
-	public List<Item> getItem()
+	public List<Item> getItemsList()
 	{
 		return this.list;
 	}

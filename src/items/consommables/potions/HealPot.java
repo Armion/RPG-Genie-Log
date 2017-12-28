@@ -1,5 +1,8 @@
 package items.consommables.potions;
 
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+
 import character.Entitee;
 import effects.Effect;
 import effects.RestoreHeal;
@@ -15,6 +18,11 @@ public class HealPot extends Consommable {
 		super();
 		this.effects.add(new RestoreHeal(5, null));
 		this.name="Potion de soins";
+		try {
+			this.icone = new Image("resources/Icones/HealPot.png");
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public HealPot(int amount)
