@@ -2,17 +2,11 @@ package character;
 
 import java.util.Random;
 
-import org.newdawn.slick.Animation;
+
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.SpriteSheet;
 
 import competences.Charge;
-import competences.Eclair_givre;
-import competences.Fumigene;
 import competences.Saignement;
-import competences.Smite;
-import items.Item;
-import items.potions.HealPot;
 
 public class Guerrier extends Joueur {
 	

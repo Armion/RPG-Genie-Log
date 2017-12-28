@@ -1,4 +1,4 @@
-package items.potions;
+package items.consommables.potions;
 
 import effects.RestoreHeal;
 import items.Item;
@@ -11,6 +11,8 @@ public class HealPot extends Item {
 		
 		this.effects.add(new RestoreHeal(5, null));
 	}
+	
+	
 	
 	
 

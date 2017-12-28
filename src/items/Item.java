@@ -2,6 +2,7 @@ package items;
 import java.util.ArrayList;
 import java.util.List;
 
+import character.Entitee;
 import effects.*;
 
 public abstract class Item {
@@ -21,7 +22,7 @@ public abstract class Item {
 		effects = new ArrayList<>();
 	}
 	
-	public void utiliser(String log)
+	public void utiliser(String log, Entitee cible)
 	{
 		for(Effect e : effects)
 		{
