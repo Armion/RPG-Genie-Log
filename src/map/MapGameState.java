@@ -25,7 +25,6 @@ public class MapGameState extends BasicGameState {
 	private MapTriggerController triggers = new MapTriggerController(map, player);
 	private MapCamera camera = new MapCamera(player);
 	private MapPlayerController controller = new MapPlayerController(player);
-	private MapHud hud = new MapHud();
 
 	private Music musicBack;
 
@@ -37,7 +36,6 @@ public class MapGameState extends BasicGameState {
 		this.musicBack = new Music("resources/sound/lost-in-the-meadows.ogg");
 		this.map.init();
 		this.player.init();
-		this.hud.init();
 		this.controller.setInput(container.getInput());
 		container.getInput().addKeyListener(controller);
 	}
@@ -72,8 +70,6 @@ public class MapGameState extends BasicGameState {
 		//on remet ce qui doit etre par dessus le joueur
 		this.map.renderForeground();
 		
-		//enfin, on peut afficher l'HUD
-		this.hud.render(g);
 	}
 
 	//methode d'update pour mettre à jour les elements de la phase
