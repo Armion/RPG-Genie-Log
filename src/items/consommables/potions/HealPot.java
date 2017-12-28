@@ -36,7 +36,7 @@ public class HealPot extends Consommable {
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
-		
+		this.name="Potion de soins";
 		this.typeTarget=false;
 	}
 	

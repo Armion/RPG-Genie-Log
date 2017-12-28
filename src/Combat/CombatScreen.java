@@ -121,7 +121,7 @@ public class CombatScreen extends BasicGameState {
 				else if(this.status==11)
 				{
 					
-				 if(this.curseur<Team.getInstance().getInventory().getItemsList().size()-1)
+				 if(this.curseur<this.objets.size()-1)
 					{
 						this.curseur++;
 					}
@@ -181,7 +181,7 @@ public class CombatScreen extends BasicGameState {
 						this.curseur--;
 					}
 					else 
-						this.curseur=Team.getInstance().getInventory().getItemsList().size()-1;
+						this.curseur=this.objets.size()-1;
 							
 				}
 			
