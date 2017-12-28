@@ -1,5 +1,7 @@
 package competences;
 
+import java.util.ArrayList;
+
 public class Saignement extends Competence {
 	
 	
@@ -14,6 +16,7 @@ public class Saignement extends Competence {
 		this.degheal=-10;
 		this.deghealDurr=-5;
 		this.cout=10;
+		this.bolus=new ArrayList<Integer>();
 		this.bolus.add(-5);
 		this.bolus.add(-5);
 	}

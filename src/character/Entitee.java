@@ -152,7 +152,9 @@ public abstract class Entitee {
 			this.effets_subis.add(new Effet(sort.getDuree(),sort.getBolus(),sort.getDegDurr(),sort.getNom()));
 			if(sort.getBolus()!=null)
 			{
-			this.atk=this.atk+sort.getBolus().get(0);
+			if(this.atk+sort.getBolus().get(0)>0)
+				this.atk=this.atk+sort.getBolus().get(0);
+			if(this.def+sort.getBolus().get(1)>0)
 			this.def=this.def+sort.getBolus().get(1);
 			}
 			

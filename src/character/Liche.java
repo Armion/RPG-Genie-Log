@@ -8,6 +8,7 @@ import org.newdawn.slick.SpriteSheet;
 
 import competences.Competence;
 import competences.Eclair_givre;
+import competences.SRituel;
 
 public class Liche extends Ennemi {
 	
@@ -17,18 +18,22 @@ public class Liche extends Ennemi {
 	
 	public Liche(int diff,int nom) throws SlickException
 	{
-		this.atk=3;
-		this.def=3;
+		this.atk=3+((diff-1)*1);
+		this.def=3+((diff-1)*1);
 		this.lvl=diff;
-		this.pvMax=25;
-		this.pv=25;
-		this.loot=1;
+		this.pvMax=25+((diff-1)*2);
+		this.pv=this.pvMax;
+		this.loot=2;
 		this.nom="Liche "+nom;
 		this.profil=1;
-		this.manaMax=200;
-		this.mana=200;
+		this.manaMax=200+((diff-1)*30);
+		this.mana=this.manaMax;
 		this.sorts=new ArrayList<Competence> ();
 		this.sorts.add(new Eclair_givre());
+		if(diff>=3)
+		{
+			this.sorts.add(new SRituel());
+		}
 		
 		this.setText("src/Combat/personnages/sprites/liche.png");
 	}
