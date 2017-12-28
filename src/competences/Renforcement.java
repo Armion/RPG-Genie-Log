@@ -1,5 +1,7 @@
 package competences;
 
+import java.util.ArrayList;
+
 public class Renforcement extends Competence {
 	
 	
@@ -7,6 +9,7 @@ public class Renforcement extends Competence {
 	{
 		this.nom="Renforcement";
 		this.cible=false;
+		this.bolus=new ArrayList<Integer>();
 		this.bolus.add(5);
 		this.bolus.add(5);
 		this.duree=3;

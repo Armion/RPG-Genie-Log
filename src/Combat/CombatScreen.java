@@ -225,7 +225,7 @@ public class CombatScreen extends BasicGameState {
 		}
 		
 		}
-		else
+		else if(this.tourJoueur==false)
 		{
 			if(key==Input.KEY_ENTER)
 			{
@@ -519,22 +519,16 @@ public class CombatScreen extends BasicGameState {
 		}
 		this.actif=true;
 		
-	
-		if(this.current.isFriendly()==true)
-		{
-			this.tourJoueur=true;
-		}
-		else if(this.current.isFriendly()==false)
-		{
-			this.tourJoueur=false;
-		}
+		this.tourJoueur=this.current.isFriendly();
 		
 		if(this.status==7)
 		{
 			this.combat.log=new ArrayList<String>();
-			this.combat.retirerBlesse(passage);
 			if(this.passage.size()>0)
 			{this.passage.remove(0);}
+			
+			this.combat.retirerBlesse(passage);
+			
 			if(this.passage.size()==0)
 			{
 				this.actif=false;
@@ -568,7 +562,7 @@ public class CombatScreen extends BasicGameState {
 		{
 			for(Entitee i : this.groupe)
 			{
-				this.combat.log.add(i.getXP(this.combat.getRecomp()));
+				this.combat.log.add('\n'+i.getXP(this.combat.getRecomp()));
 			}
 		}
 		
