@@ -10,6 +10,7 @@ import character.Joueur;
 import character.Paladin;
 import inventaire.Inventory;
 import items.Item;
+import items.consommables.Pain;
 import items.consommables.potions.HealPot;
 import items.consommables.potions.ManaPot;
 
@@ -39,6 +40,15 @@ public class Team {
 		listeInventaire.add(new HealPot(50));
 		listeInventaire.add(new HealPot(20));
 		listeInventaire.add(new HealPot(30));
+		listeInventaire.add(new HealPot(40));
+		listeInventaire.add(new HealPot(30));
+		listeInventaire.add(new Pain());
+		listeInventaire.add(new ManaPot(80));
+		listeInventaire.add(new ManaPot(80));
+		listeInventaire.add(new ManaPot(80));
+		listeInventaire.add(new ManaPot(80));
+		listeInventaire.add(new Pain());
+		listeInventaire.add(new Pain());
 		listeInventaire.add(new ManaPot(80));
 		
 		this.inventaire = new Inventory( listeInventaire, 500);

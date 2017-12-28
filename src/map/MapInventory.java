@@ -89,7 +89,7 @@ public class MapInventory implements ComponentListener{
 		//on fabrique le map des boutons avec l'item correspondant
 		for(int i = 0; i < inventaire.getItemsList().size() ; i++)
 		{
-			this.items.put(new MouseOverArea(container, inventaire.getItemsList().get(i).getIcone(), (x+11+i*35), y+36*((i/4)+1), this), inventaire.getItemsList().get(i));
+			this.items.put(new MouseOverArea(container, inventaire.getItemsList().get(i).getIcone(), (x+11+(i%6)*35), y+36*((i/6)+1), this), inventaire.getItemsList().get(i));
 		}
 		
 	}
