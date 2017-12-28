@@ -68,7 +68,7 @@ public class CombatScreen extends BasicGameState {
 			{
 				if(this.status==1)
 				{
-					if(this.curseur<2)
+					if(this.curseur<3)
 					{
 						this.curseur++;
 					}
@@ -123,7 +123,7 @@ public class CombatScreen extends BasicGameState {
 					{
 						this.curseur--;
 					}
-					else this.curseur=2;
+					else this.curseur=3;
 				}
 				
 				else if(this.status==2)
@@ -168,10 +168,16 @@ public class CombatScreen extends BasicGameState {
 				
 				
 				
-				if(this.curseur==2)
+				else if(this.curseur==2)
 				{
 					this.curseur=0;
 					this.status=2;
+				}
+				
+				else if(this.curseur==3)
+				{
+					
+				this.status=9;
 				}
 			}
 			
@@ -441,7 +447,7 @@ public class CombatScreen extends BasicGameState {
 	{	g.drawString("Action de "+this.current.getNom()+"(PV:"+this.current.getPV()+"/Mana:"+this.current.getMana()+")",(con.getWidth()/12)*4, 0*(con.getHeight()/19)+(con.getHeight()/5)*4);
 		g.drawString("Attaque",(con.getWidth()/12)*4, 1*(con.getHeight()/19)+(con.getHeight()/5)*4);
 		g.drawString("Competences",(con.getWidth()/12)*4, 2*(con.getHeight()/19)+(con.getHeight()/5)*4);
-		
+		g.drawString("Fuir",(con.getWidth()/12)*4, 3*(con.getHeight()/19)+(con.getHeight()/5)*4);
 	}
 	
 	public void afficherCurseur(Graphics g,GameContainer con)
@@ -537,17 +543,11 @@ public class CombatScreen extends BasicGameState {
 			else
 			{
 				this.current=this.passage.get(0);
+				this.tourJoueur=this.current.isFriendly();
 			}
 			this.status=1;
 
-			if(this.current.isFriendly()==true)
-			{
-				this.tourJoueur=true;
-			}
-			else if(this.current.isFriendly()==false)
-			{
-				this.tourJoueur=false;
-			}
+			
 			
 			if(combat.conditionVictoire()==1)
 			{
