@@ -7,9 +7,9 @@ import effects.*;
 
 public abstract class Item {
 	
-	private boolean fight;
-	private float weight;
-	private String name;
+	protected boolean fight;
+	protected float weight;
+	protected String name;
 	protected List<Effect> effects;
 	
 	

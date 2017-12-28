@@ -13,6 +13,7 @@ public abstract class Consommable extends Item {
 	public Consommable()
 	{
 		super();
+		this.fight = true;
 		this.cible = null;
 	}
 	

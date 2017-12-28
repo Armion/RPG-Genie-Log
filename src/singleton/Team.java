@@ -9,6 +9,9 @@ import character.Entitee;
 import character.Joueur;
 import character.Paladin;
 import inventaire.Inventory;
+import items.Item;
+import items.consommables.potions.HealPot;
+import items.consommables.potions.ManaPot;
 
 public class Team {
 	
@@ -30,6 +33,15 @@ public class Team {
 		}
 		
 		this.money = 100;
+		
+		List<Item> listeInventaire = new ArrayList<>();
+		
+		listeInventaire.add(new HealPot(20));
+		listeInventaire.add(new HealPot(20));
+		listeInventaire.add(new HealPot(20));
+		listeInventaire.add(new ManaPot(20));
+		
+		this.inventaire = new Inventory( listeInventaire, 500);
 	}
 	
 	private static Team INSTANCE = new Team();
