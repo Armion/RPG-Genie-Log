@@ -9,7 +9,7 @@ public abstract class Effect {
 	protected Entitee cible;
 	
 	
-	public abstract void activer();
+	public abstract void activer(String log);
 	
 	public Effect()
 	{

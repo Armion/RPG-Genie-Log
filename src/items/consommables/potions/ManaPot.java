@@ -31,7 +31,7 @@ private int amount;
 		for(Effect e : this.effects)
 		{
 			e.changeTarget(cible);
-			e.activer();
+			e.activer(log);
 		}
 		
 		

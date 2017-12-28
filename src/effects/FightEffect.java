@@ -39,7 +39,7 @@ public class FightEffect extends Effect{
 
 
 	@Override
-	public void activer() 
+	public void activer(String log) 
 	{
 		//nothing to do
 	}
