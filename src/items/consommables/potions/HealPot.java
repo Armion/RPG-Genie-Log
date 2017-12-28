@@ -28,6 +28,7 @@ public class HealPot extends Consommable {
 	public HealPot(int amount)
 	{
 		super();
+		this.name="Potion de soins";
 		this.effects.add(new RestoreHeal(amount, null));
 		this.amount = amount;
 		try {

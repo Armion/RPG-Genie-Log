@@ -37,6 +37,7 @@ public class Team {
 		
 		List<Item> listeInventaire = new ArrayList<>();
 		
+		listeInventaire.add(new Pain());
 		listeInventaire.add(new HealPot(50));
 		listeInventaire.add(new HealPot(20));
 		listeInventaire.add(new HealPot(30));
