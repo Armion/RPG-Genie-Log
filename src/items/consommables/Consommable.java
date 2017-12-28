@@ -15,8 +15,18 @@ public abstract class Consommable extends Item {
 		super();
 		this.fight = true;
 		this.cible = null;
+		this.stacks = 1;
 	}
 	
+	
+	@Override
+	public void utiliser(String log, Entitee cible)
+	{
+		super.utiliser(log, cible);
+		if(this.stacks >0)
+			this.stacks --;
+		
+	}
 	
 	
 	public boolean isTargatable()

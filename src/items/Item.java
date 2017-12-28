@@ -16,6 +16,7 @@ public abstract class Item {
 	protected List<Effect> effects;
 	protected Image icone;
 	protected UUID id;
+	protected int stacks;
 	
 	
 	
@@ -27,6 +28,7 @@ public abstract class Item {
 		effects = new ArrayList<>();
 		this.icone = null;
 		this.id = UUID.randomUUID();
+		this.stacks = -1;
 	}
 	
 
@@ -68,6 +70,11 @@ public abstract class Item {
 	public UUID getId()
 	{
 		return this.id;
+	}
+	
+	public int getStacks()
+	{
+		return this.stacks;
 	}
 
 }

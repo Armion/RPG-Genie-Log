@@ -28,8 +28,15 @@ private int amount;
 	
 	public ManaPot(int amount)
 	{
-		this();
+		super();
+		this.effects.add(new RestoreMana(amount, null));
+		this.name="Potion de mana";
 		this.amount = amount;
+		try {
+			this.icone = new Image("resources/Icones/ManaPot.png");
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	
@@ -43,6 +50,9 @@ private int amount;
 			e.changeTarget(cible);
 			e.activer(log);
 		}
+		
+		if(this.stacks>0)
+			this.stacks --;
 		
 		
 	}

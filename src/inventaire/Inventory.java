@@ -34,8 +34,13 @@ public class Inventory {
 	
 	public void useItem(int index, Entitee cible, String log)
 	{
-		this.list.get(index).utiliser(log, cible);
-		this.list.remove(index);
+		if(index >= 0 && index < this.list.size())
+		{
+			this.list.get(index).utiliser(log, cible);
+			if(this.list.get(index).getStacks() == 0)
+				this.list.remove(index);
+		}
+		
 
 	}
 	
@@ -51,9 +56,32 @@ public class Inventory {
 		}
 		
 			i.utiliser(log, cible);
+			if(i.getStacks() == 0)
+				this.list.remove(i);
+
+	}
+	
+	public void deleteItem(UUID id)
+	{
+		
+		Iterator<Item> it = this.list.iterator();
+		Item i = it.next();
+		
+		while(it.hasNext() && ! i.getId().equals(id) )
+		{	
+			i = it.next();	
+		}
 			this.list.remove(i);
 
 	}
+	
+	public void deleteItem(int index)
+	{
+		if(index >= 0 && index < this.list.size())
+			this.list.remove(index);
+	}
+	
+	
 	
 	
 	

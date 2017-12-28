@@ -27,8 +27,15 @@ public class HealPot extends Consommable {
 	
 	public HealPot(int amount)
 	{
-		this();
+		super();
+		this.effects.add(new RestoreHeal(amount, null));
 		this.amount = amount;
+		try {
+			this.icone = new Image("resources/Icones/HealPot.png");
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
+		
 		this.typeTarget=false;
 	}
 	
@@ -42,6 +49,10 @@ public class HealPot extends Consommable {
 			e.changeTarget(cible);
 			e.activer(log);
 		}
+		
+		if(this.stacks>0)
+			this.stacks --;
+		
 		
 		System.out.println(log);
 	}

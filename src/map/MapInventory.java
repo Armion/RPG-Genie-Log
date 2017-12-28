@@ -75,10 +75,7 @@ public class MapInventory implements ComponentListener{
 		{
 			if(source == entry.getKey())
 			{
-				Team.getInstance().getTeam().get(0).getDegats(3);
-				System.out.println(Team.getInstance().getTeam().get(0).getPV());
 				inventaire.useItem(entry.getValue().getId(), Team.getInstance().getTeam().get(0), "");
-				System.out.println(Team.getInstance().getTeam().get(0).getPV());
 				this.loadInventory(this.container);
 			}
 		}
