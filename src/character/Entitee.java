@@ -21,7 +21,7 @@ public abstract class Entitee {
 	protected int manaMax;
 	protected int mana;
 	protected ArrayList<Competence> sorts=new ArrayList<Competence>();
-	
+	protected ArrayList<Item> equipements=new ArrayList<Item>();
 	
 	protected int posX;
 	protected int posY;
