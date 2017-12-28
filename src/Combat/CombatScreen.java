@@ -16,6 +16,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import character.Entitee;
 import character.Joueur;
 import competences.Competence;
+import map.MapGameState;
 
 public class CombatScreen extends BasicGameState {
 	
@@ -492,7 +493,7 @@ public class CombatScreen extends BasicGameState {
 				}
 				i.recupMana(i.getManaMax());
 			}
-			arg1.enterState(NotCombat.ID);
+			arg1.enterState(MapGameState.ID);
 		}
 		
 	}

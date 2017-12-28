@@ -3,7 +3,7 @@ package character;
 import java.util.ArrayList;
 
 import competences.Competence;
-import competences.Effet;
+import effects.FightEffect;
 
 public class Clone extends Entitee {
 
@@ -12,7 +12,7 @@ public class Clone extends Entitee {
 	
 	
 	
-	public Clone(String nom,int pvMAx,int pv,int atk,int def,int lvl,ArrayList<Effet> zffets,int manaMax,int mana,ArrayList<Competence> sorts) 
+	public Clone(String nom,int pvMAx,int pv,int atk,int def,int lvl,ArrayList<FightEffect> zffets,int manaMax,int mana,ArrayList<Competence> sorts) 
 	{
 		this.nom=nom;
 		this.pvMax=pvMAx;
@@ -75,7 +75,7 @@ public class Clone extends Entitee {
 		
 		if (sort.getDuree()>0)
 		{
-			this.effets_subis.add(new Effet(sort.getDuree(),sort.getBolus(),sort.getDegDurr(),sort.getNom()));
+			this.effets_subis.add(new FightEffect(sort.getDuree(),sort.getBolus(),sort.getDegDurr(),sort.getNom()));
 			this.atk=this.atk+sort.getBolus().get(0);
 			this.def=this.def+sort.getBolus().get(1);
 			

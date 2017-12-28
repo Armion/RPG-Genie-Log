@@ -6,6 +6,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
 import competences.*;
+import effects.FightEffect;
 
 
 public abstract class Entitee {
@@ -15,7 +16,7 @@ public abstract class Entitee {
 	protected int atk;
 	protected int def;
 	protected int lvl;
-	protected ArrayList<Effet> effets_subis=new ArrayList<Effet>();
+	protected ArrayList<FightEffect> effets_subis=new ArrayList<FightEffect>();
 	protected int manaMax;
 	protected int mana;
 	protected ArrayList<Competence> sorts=new ArrayList<Competence>();
@@ -149,7 +150,7 @@ public abstract class Entitee {
 		
 		if (sort.getDuree()>0)
 		{
-			this.effets_subis.add(new Effet(sort.getDuree(),sort.getBolus(),sort.getDegDurr(),sort.getNom()));
+			this.effets_subis.add(new FightEffect(sort.getDuree(),sort.getBolus(),sort.getDegDurr(),sort.getNom()));
 			if(sort.getBolus()!=null)
 			{
 			if(this.atk+sort.getBolus().get(0)>0)
@@ -206,7 +207,7 @@ public abstract class Entitee {
 	{
 		retirerEffets();
 		String log="";
-		for (Effet i : this.effets_subis)
+		for (FightEffect i : this.effets_subis)
 		{
 			
 			int deg=i.getDegheal();
@@ -272,7 +273,7 @@ public abstract class Entitee {
 		return this.pvMax;
 	}
 	
-	public ArrayList<Effet> getEffet()
+	public ArrayList<FightEffect> getEffet()
 	{
 		return this.effets_subis;
 	}

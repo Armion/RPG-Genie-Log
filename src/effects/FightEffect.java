@@ -1,26 +1,25 @@
-package competences;
+package effects;
 import java.util.ArrayList;
 
-public class Effet {
+public class FightEffect extends Effect{
 	
 	private int duree;//0=instant, 1=1 round
 	private ArrayList<Integer> bolus;//0=bolus sur l'atk, 1=bolus sur la def
 	private int degheal;
-	private String nom;
 	
 
-	public Effet(int duree,ArrayList<Integer> bolus,int degheal,String nom)
+	public FightEffect(int duree,ArrayList<Integer> bolus,int degheal,String nom)
 	{
 		this.duree=duree;
 		this.bolus=bolus;
 		this.degheal=degheal;
-		this.nom=nom;
+		this.name=nom;
 	}
 	
 	
 	public String getNom()
 	{
-		return this.nom;
+		return super.getName();
 	}
 	
 	
@@ -42,6 +41,12 @@ public class Effet {
 	public ArrayList<Integer> getBolus()
 	{
 		return this.bolus;
+	}
+
+
+	@Override
+	public void activer() {
+		
 	}
 	
 }
