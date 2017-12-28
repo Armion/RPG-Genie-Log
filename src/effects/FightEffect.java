@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 public class FightEffect extends Effect{
 	
-	private int duree;//0=instant, 1=1 round
 	private ArrayList<Integer> bolus;//0=bolus sur l'atk, 1=bolus sur la def
 	private int degheal;
 	
@@ -23,11 +22,6 @@ public class FightEffect extends Effect{
 	}
 	
 	
-	public void reduireDurée()
-	{
-		this.duree--;
-	}
-	
 	public int getDuree()
 	{
 		return this.duree;
@@ -45,8 +39,9 @@ public class FightEffect extends Effect{
 
 
 	@Override
-	public void activer() {
-		
+	public void activer() 
+	{
+		//nothing to do
 	}
 	
 }

@@ -1,4 +1,5 @@
-package inventaire;
+package items;
+import java.util.ArrayList;
 import java.util.List;
 
 import effects.*;
@@ -12,6 +13,21 @@ public abstract class Item {
 	
 	
 	
+	public Item()
+	{
+		this.fight = false;
+		this.weight = 0f;
+		this.name = "noname";
+		effects = new ArrayList<>();
+	}
+	
+	public void utiliser(String log)
+	{
+		for(Effect e : effects)
+		{
+			e.activer();
+		}
+	}
 	
 	
 	//getters et setters
