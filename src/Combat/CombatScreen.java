@@ -46,6 +46,7 @@ public class CombatScreen extends BasicGameState {
 	private static final Color LIFE=new Color(255,0,0);
 	private static final Color MANA=new Color(0,0,255);
 	private static final Color WHITE=new Color(255,255,255);
+	private static final Color BLACK=new Color(0,0,0);
 	
 	public CombatScreen()
 	{
@@ -277,17 +278,24 @@ public class CombatScreen extends BasicGameState {
 				String log="";
 				this.combat.log.add(log);
 				if(this.status==12)
+				{
 				Team.getInstance().getInventory().getItemsList().get(this.objet).utiliser(this.combat.log.get(0),this.combat.ciblage(current, true).get(curseur) );
-				else
+				}
+				else {
 				Team.getInstance().getInventory().getItemsList().get(this.objet).utiliser(this.combat.log.get(0),this.combat.ciblage(current, false).get(curseur) );
+				}
 				
+				Team.getInstance().getInventory().getItemsList().remove(this.objet);
 				
 				this.status=6;
 			}
 			
 			else if(this.status==6)
 			{
+				
+				
 				this.status=7;
+				
 			}
 			
 		}
@@ -308,6 +316,12 @@ public class CombatScreen extends BasicGameState {
 		
 		if(key==Input.KEY_ENTER && (this.status==8 || this.status==9) )
 		{
+			if(this.combat.log.size()>=3)
+			{
+				for(int i=0;i<3;i++)
+				this.combat.log.remove(0);
+			}
+			else	
 			this.status=10;
 		}
 		
@@ -351,6 +365,12 @@ public class CombatScreen extends BasicGameState {
 		{afficherHUD(arg2,arg0);}
 		if(tourJoueur==true)
 		{
+			if(this.status>=1 && this.status<=6)
+			{
+				arg2.setColor(BLACK);
+				arg2.fillOval(this.current.getX()-(arg0.getWidth()/8), this.current.getY()+50, 10, 10);
+				arg2.setColor(WHITE);
+			}
 			if(this.status==1)
 			{
 			afficherAction(arg2,arg0);
@@ -658,10 +678,11 @@ public class CombatScreen extends BasicGameState {
 		}
 		
 		if(this.status==8)	
-		{
+		{this.combat.log=new ArrayList<String>();
 			for(Entitee i : this.groupe)
 			{
-				this.combat.log.add('\n'+i.getXP(this.combat.getRecomp()));
+			
+				this.combat.log.add(i.getXP(this.combat.getRecomp()));
 			}
 		}
 		
