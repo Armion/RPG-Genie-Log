@@ -40,6 +40,7 @@ public class CombatScreen extends BasicGameState {
 	private int status=1;
 	private Competence choix;
 	ArrayList<Entitee> passage;
+	ArrayList<Item> objets;
 	int objet;
 	
 	
@@ -120,7 +121,7 @@ public class CombatScreen extends BasicGameState {
 				else if(this.status==11)
 				{
 					
-				 if(this.curseur<Team.getInstance().getInventory().getItemsList().size() &&this.curseur!=3)
+				 if(this.curseur<Team.getInstance().getInventory().getItemsList().size()-1)
 					{
 						this.curseur++;
 					}
@@ -209,7 +210,14 @@ public class CombatScreen extends BasicGameState {
 				{
 					this.curseur=0;
 					this.status=11;
-					//TODO:Affichage des objets
+					this.objets=new ArrayList<Item>();
+					for(Item i : Team.getInstance().getInventory().getItemsList())
+					{
+						if(i.fightUsable()==true)
+						{
+							this.objets.add(i);
+						}
+					}
 				}
 				
 				else if(this.curseur==5)
@@ -265,12 +273,14 @@ public class CombatScreen extends BasicGameState {
 			else if(this.status==11)
 			{
 				this.objet=this.curseur;
-				if(((Consommable)Team.getInstance().getInventory().getItemsList().get(this.objet)).isTargatable()==true)	
+				if(((Consommable)this.objets.get(objet)).isTargatable()==true)	
 				{
 					this.status=12;
 				
 				}
 				else this.status=13;
+				
+				
 			}
 			
 			else if(this.status==12 || this.status==13)
@@ -279,13 +289,15 @@ public class CombatScreen extends BasicGameState {
 				this.combat.log.add(log);
 				if(this.status==12)
 				{
-				Team.getInstance().getInventory().getItemsList().get(this.objet).utiliser(this.combat.log.get(0),this.combat.ciblage(current, true).get(curseur) );
+				
+				Team.getInstance().getInventory().useItem(this.objet,this.combat.ciblage(current, true).get(curseur), this.combat.log.get(0));
 				}
 				else {
-				Team.getInstance().getInventory().getItemsList().get(this.objet).utiliser(this.combat.log.get(0),this.combat.ciblage(current, false).get(curseur) );
+				
+				Team.getInstance().getInventory().useItem(this.objet,this.combat.ciblage(current, false).get(curseur), this.combat.log.get(0));
 				}
 				
-				Team.getInstance().getInventory().getItemsList().remove(this.objet);
+				
 				
 				this.status=6;
 			}
@@ -409,7 +421,7 @@ public class CombatScreen extends BasicGameState {
 			
 			else if(this.status==11)
 			{
-				afficherObjets(arg2,arg0);
+				afficherObjets(arg2,arg0,0);
 				afficherCurseur(arg2,arg0);
 				
 			}
@@ -461,23 +473,68 @@ public class CombatScreen extends BasicGameState {
 	
 	}
 	
-	public void afficherObjets(Graphics g,GameContainer con)
+	public void afficherObjets(Graphics g,GameContainer con,int page)
 	{
-		int j=0;
-		for(Item i :Team.getInstance().getInventory().getItemsList())
+		int nb;
+		Item j;
+		if(this.curseur<(8*(page+1)) && this.curseur>=8*(page))
 		{
-			if(i.fightUsable()==true)
+		if(this.objets.size()-(8*page)>8)
+		{nb=8*(page+1);}
+		else
+		{
+			nb=this.objets.size();
+		}
+		
+		
+			for(int i=8*page;i<nb;i++)
 			{
-				if(j<4)
-				g.drawString(i.getName(),(con.getWidth()/12)*4, j*(con.getHeight()/19)+(con.getHeight()/5)*4);
+				j=this.objets.get(i);
+			
+				if(8*page==0)
+				{
+				
+				if(i%8<4)
+				g.drawString(j.getName(),(con.getWidth()/12)*4, (i/((8*page)+1))*(con.getHeight()/19)+(con.getHeight()/5)*4);
 				else
-				g.drawString(i.getName(),(con.getWidth()/12)*6, j*(con.getHeight()/19)+(con.getHeight()/5)*4);
-				j++;
+				g.drawString(j.getName(),(con.getWidth()/12)*6, (i-4)/((8*page)+1)*(con.getHeight()/19)+(con.getHeight()/5)*4);
+				}
+				else
+				{
+					if(i%8<4)
+						g.drawString(j.getName(),(con.getWidth()/12)*4, (i-((8*page)))*(con.getHeight()/19)+(con.getHeight()/5)*4);
+						else
+						g.drawString(j.getName(),(con.getWidth()/12)*6, (i-((8*page))-4)*(con.getHeight()/19)+(con.getHeight()/5)*4);
+					
+				}
+			
+			}
+			afficherCurseur(g,con);
+		}
+		
+	
+		
+			else if(this.curseur>=(8*(page+1))-1)
+			{
+				afficherObjets(g,con,page+1);
+				afficherCurseur(g,con);
+				
+			}
+		
+		
+		
+			else if(this.curseur<8*(page))
+			{
+				afficherObjets(g,con,page-1);
+				afficherCurseur(g,con);
 			}
 			
-		}
-		 
+			
 	}
+		
+		
+		 
+	
 	
 	public void afficherHUD(Graphics g,GameContainer con)
 	{
@@ -551,14 +608,14 @@ public class CombatScreen extends BasicGameState {
 	
 	public void afficherCurseur(Graphics g,GameContainer con)
 	{
-		if(this.curseur>=4)
+		if(this.curseur%8>=4)
 		{
-			g.fillOval(((con.getWidth()/12)*6)-(con.getWidth()/55), (this.curseur-4)*(con.getHeight()/19)+(con.getHeight()/5)*4, 10, 10);
+			g.fillOval(((con.getWidth()/12)*6)-(con.getWidth()/55), ((this.curseur-4)%8)*(con.getHeight()/19)+(con.getHeight()/5)*4, 10, 10);
 		}
 		
 		else
 		{
-			g.fillOval(((con.getWidth()/12)*4)-(con.getWidth()/55), this.curseur*(con.getHeight()/19)+(con.getHeight()/5)*4, 10, 10);
+			g.fillOval(((con.getWidth()/12)*4)-(con.getWidth()/55), (this.curseur%8)*(con.getHeight()/19)+(con.getHeight()/5)*4, 10, 10);
 		}
 	}
 
