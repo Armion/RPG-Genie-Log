@@ -22,6 +22,8 @@ public abstract class Item {
 		effects = new ArrayList<>();
 	}
 	
+
+	
 	public void utiliser(String log, Entitee cible)
 	{
 		for(Effect e : effects)

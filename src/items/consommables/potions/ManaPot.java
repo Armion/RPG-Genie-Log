@@ -14,6 +14,7 @@ private int amount;
 	{
 		super();
 		this.effects.add(new RestoreMana(5, null));
+		this.name="Potion de mana";
 	}
 	
 	public ManaPot(int amount)

@@ -17,6 +17,8 @@ public abstract class Consommable extends Item {
 		this.cible = null;
 	}
 	
+	
+	
 	public boolean isTargatable()
 	{
 		return this.typeTarget;

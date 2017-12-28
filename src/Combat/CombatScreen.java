@@ -16,9 +16,10 @@ import org.newdawn.slick.state.StateBasedGame;
 import character.Entitee;
 import character.Joueur;
 import competences.Competence;
+import items.Item;
 import map.MapGameState;
 import singleton.Team;
-
+import items.consommables.*;;
 public class CombatScreen extends BasicGameState {
 	
 	private GameContainer container;
@@ -39,6 +40,7 @@ public class CombatScreen extends BasicGameState {
 	private int status=1;
 	private Competence choix;
 	ArrayList<Entitee> passage;
+	int objet;
 	
 	
 	private static final Color LIFE=new Color(255,0,0);
@@ -90,7 +92,7 @@ public class CombatScreen extends BasicGameState {
 					else this.curseur=0;	
 				}
 				
-				else if(this.status==3 || this.status==4)
+				else if(this.status==3 || this.status==4 || this.status==12)
 				{
 					
 					if(this.curseur<this.combat.ciblage(current, true).size()-1)
@@ -102,7 +104,7 @@ public class CombatScreen extends BasicGameState {
 						this.curseur=0;
 					}
 				}
-				else if(this.status==5 )
+				else if(this.status==5 || this.status==13)
 				{
 					if(this.curseur<this.combat.ciblage(current, false).size()-1)
 					{
@@ -114,9 +116,14 @@ public class CombatScreen extends BasicGameState {
 					}
 					
 				}
-				else if(this.status==12)
+				else if(this.status==11)
 				{
 					
+				 if(this.curseur<Team.getInstance().getInventory().getItem().size() &&this.curseur!=3)
+					{
+						this.curseur++;
+					}
+					else this.curseur=0;
 				}
 				
 				
@@ -149,7 +156,7 @@ public class CombatScreen extends BasicGameState {
 					else this.curseur=this.current.getComp().size();	
 				}
 				
-				else if(this.status==3 || this.status==5 || this.status==4)
+				else if(this.status==3 || this.status==5 || this.status==4 || this.status==12 || this.status==13)
 				{
 					if(this.curseur>0)
 					{
@@ -164,6 +171,17 @@ public class CombatScreen extends BasicGameState {
 					}
 				
 			}
+				else if(this.status==11)
+				{
+					
+				 if(this.curseur>0 )
+					{
+						this.curseur--;
+					}
+					else 
+						this.curseur=Team.getInstance().getInventory().getItem().size()-1;
+							
+				}
 			
 			
 		}
@@ -241,6 +259,30 @@ public class CombatScreen extends BasicGameState {
 				this.choix=null;
 				this.curseur=1;
 				
+			}
+			
+			else if(this.status==11)
+			{
+				this.objet=this.curseur;
+				if(((Consommable)Team.getInstance().getInventory().getItem().get(this.objet)).isTargatable()==true)	
+				{
+					this.status=12;
+				
+				}
+				else this.status=13;
+			}
+			
+			else if(this.status==12 || this.status==13)
+			{
+				String log="";
+				this.combat.log.add(log);
+				if(this.status==12)
+				Team.getInstance().getInventory().getItem().get(this.objet).utiliser(this.combat.log.get(0),this.combat.ciblage(current, true).get(curseur) );
+				else
+				Team.getInstance().getInventory().getItem().get(this.objet).utiliser(this.combat.log.get(0),this.combat.ciblage(current, false).get(curseur) );
+				
+				
+				this.status=6;
 			}
 			
 			else if(this.status==6)
@@ -337,14 +379,14 @@ public class CombatScreen extends BasicGameState {
 				
 				afficherCurseur(arg2,arg0);
 			}
-			else if(this.status==3 || this.status==4)
+			else if(this.status==3 || this.status==4 || this.status==12)
 			{
 				
 				afficherCibles(arg2,arg0,true);
 				afficherCurseur(arg2,arg0);
 			}
 			
-			else if(this.status==5)
+			else if(this.status==5 || this.status==13)
 			{
 				afficherCibles(arg2,arg0,false);
 				afficherCurseur(arg2,arg0);
@@ -416,11 +458,19 @@ public class CombatScreen extends BasicGameState {
 	
 	public void afficherObjets(Graphics g,GameContainer con)
 	{
-		/*
-		g.drawString(this.current.item.getName(),(con.getWidth()/12)*4, 0*(con.getHeight()/19)+(con.getHeight()/5)*4);
-		g.drawString("Retour",(con.getWidth()/12)*4, 1*(con.getHeight()/19)+(con.getHeight()/5)*4);
-		//TODO: tests
-		 */
+		int j=0;
+		for(Item i :Team.getInstance().getInventory().getItem())
+		{
+			if(i.fightUsable()==true)
+			{
+				if(j<4)
+				g.drawString(i.getName(),(con.getWidth()/12)*4, j*(con.getHeight()/19)+(con.getHeight()/5)*4);
+				else
+				g.drawString(i.getName(),(con.getWidth()/12)*6, j*(con.getHeight()/19)+(con.getHeight()/5)*4);
+				j++;
+			}
+			
+		}
 		 
 	}
 	

@@ -14,13 +14,14 @@ public class HealPot extends Consommable {
 	{
 		super();
 		this.effects.add(new RestoreHeal(5, null));
+		this.name="Potion de soins";
 	}
 	
 	public HealPot(int amount)
 	{
 		this();
 		this.amount = amount;
-		
+		this.typeTarget=false;
 	}
 	
 	
@@ -34,7 +35,7 @@ public class HealPot extends Consommable {
 			e.activer(log);
 		}
 		
-		
+		System.out.println(log);
 	}
 	
 

@@ -18,8 +18,8 @@ public class RestoreHeal extends Effect{
 		
 		//merci Johann, getHeal vérifi deja qu'on depasse pas les PV max
 		
-		log = cible.getNom() + "est soigné de : " + amount;
-		cible.getHeal(amount);	
+		log = log+ cible.getNom() + "est soigné de : " + amount;
+		log=log+cible.getHeal(amount);	
 	}
 	
 	

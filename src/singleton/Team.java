@@ -56,6 +56,11 @@ public class Team {
 		return this.membres;
 	}
 	
+	public Inventory getInventory()
+	{
+		return this.inventaire;
+	}
+	
 	public void virerMembre(Joueur membre)
 	{
 		membres.remove(membre);
