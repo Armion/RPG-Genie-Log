@@ -8,11 +8,13 @@ import org.newdawn.slick.SlickException;
 import character.Entitee;
 import character.Joueur;
 import character.Paladin;
+import inventaire.Inventory;
 
 public class Team {
 	
 	private List<Joueur> membres;
 	private int money;
+	private Inventory inventaire;
 	
 	private Team()
 	{
