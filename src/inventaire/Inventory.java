@@ -1,4 +1,4 @@
-package character.inventaire;
+package inventaire;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.List;
 import items.Item;
 
 public class Inventory {
+	
 	
 	private List<Item> list;
 	private float maxWeight;
@@ -22,6 +23,10 @@ public class Inventory {
 		this.maxWeight = max;
 		this.list = list;
 	}
+	
+	
+	
+	
 	
 
 }
