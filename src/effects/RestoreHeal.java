@@ -1,13 +1,14 @@
 package effects;
 
-
+import character.Entitee;
 
 public class RestoreHeal extends Effect{
 	
 	private int amount;
 	
-	public RestoreHeal(int amount)
+	public RestoreHeal(int amount, Entitee cible)
 	{
+		super(cible);
 		this.amount = amount;
 	}
 

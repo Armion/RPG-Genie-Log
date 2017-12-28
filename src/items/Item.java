@@ -31,7 +31,7 @@ public abstract class Item {
 	
 	
 	//getters et setters
-	public boolean isFight() {
+	public boolean fightUsable() {
 		return fight;
 	}
 	public void setFight(boolean fight) {

@@ -11,6 +11,26 @@ public abstract class Effect {
 	
 	public abstract void activer();
 	
+	public Effect()
+	{
+		this.cible = null;
+		this.name = "EffectUnknow";
+		this.duree = 0;
+	}
+	
+	public Effect(Entitee cible)
+	{
+		this.cible = cible;
+		
+	}
+	
+	public Effect(Entitee cible, String name)
+	{
+		this(cible);
+		this.name = name;
+	}
+	
+	
 	final public String getName()
 	{
 		return this.name;

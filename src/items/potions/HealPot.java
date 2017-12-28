@@ -9,7 +9,7 @@ public class HealPot extends Item {
 	{
 		super();
 		
-		this.effects.add(new RestoreHeal(5));
+		this.effects.add(new RestoreHeal(5, null));
 	}
 
 
