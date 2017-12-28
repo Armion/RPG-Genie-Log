@@ -24,6 +24,7 @@ public class Guerrier extends Joueur {
 		 this.nom="Guerrier"; 
 		 this.manaMax=75;
 		 this.mana=75;
+		 this.path="src/Combat/personnages/sprites/generique.png";
 		 
 		 
 		 this.sorts.add(new Charge());

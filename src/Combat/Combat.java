@@ -26,8 +26,13 @@ public class Combat {
 	
 	
 	
-	public Combat(ArrayList<Joueur> groupe,GameContainer fenetre)
+	public Combat(ArrayList<Joueur> groupe,GameContainer fenetre) throws SlickException
 	{
+		for( Joueur i : groupe)
+		{
+			if(i.anim[0]==null)
+			i.setText(i.getPath());
+		}
 		this.log=new ArrayList<String>(); 
 		this.fenetre=fenetre;
 		this.protagonistes=new ArrayList<Entitee>();

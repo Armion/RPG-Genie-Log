@@ -8,6 +8,7 @@ import org.newdawn.slick.SlickException;
 public abstract class Joueur extends Entitee {
 	
 	protected int xp;
+	protected String path;
 	
 
 	protected abstract void UpgradeComp();
@@ -47,6 +48,11 @@ public abstract class Joueur extends Entitee {
 	public boolean isFriendly()
 	{
 		return true;
+	}
+	
+	public String getPath()
+	{
+		return this.path;
 	}
 	
 	

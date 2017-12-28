@@ -22,6 +22,7 @@ public class Assassin extends Joueur {
 		this.manaMax=100;
 		this.mana=100;
 		this.sorts.add(new Poison());
+		this.path="src/Combat/personnages/sprites/generique.png";
 		
 	}
 	

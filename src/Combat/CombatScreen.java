@@ -341,22 +341,7 @@ public class CombatScreen extends BasicGameState {
 	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
 		
-		if(!music.playing())
-		{
-			  music.loop();
-		}
-		if(debut==true)
-		{
-			this.status=1;
-			this.combat=new Combat(groupe,arg0);
-			this.combat.debutCombat(0);
-			debut=false;
-			for( Entitee i : this.groupe)
-			{
-				i.setText("src/Combat/personnages/sprites/generique.png");
-			}
-			
-		}
+	
 		
 		this.background.draw(0,0,container.getWidth(),container.getHeight());
 		affichagePerso(arg2,this.combat.getProta());
@@ -561,6 +546,19 @@ public class CombatScreen extends BasicGameState {
 
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
+		
+		if(!music.playing())
+		{
+			  music.loop();
+		}
+		if(debut==true)
+		{
+			this.status=1;
+			this.combat=new Combat(groupe,arg0);
+			this.combat.debutCombat(0);
+			debut=false;
+			
+		}
 		
 		if(this.actif==false && debut==false)
 		{
