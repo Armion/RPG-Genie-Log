@@ -125,7 +125,7 @@ public class MapGameState extends BasicGameState implements Observer{
 		this.camera.update(container);
 		
 		//enfin, on a une chance de rentrer en combat, dans ce cas on passe à la phase de combat
-		if (Math.random() < 0.010 && player.isMoving()) {
+		if (Math.random() < 0.000 && player.isMoving()) {
 			game.enterState(CombatScreen.ID);
 		}
 		
