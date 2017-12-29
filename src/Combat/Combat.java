@@ -107,15 +107,12 @@ public class Combat {
 	
 	public void getLog()
 	{
-		for(LigneLog i : Logs.getInstance().getLastLogs(Logs.getInstance().getNbLogs()-1))
+		for(LigneLog i : Logs.getInstance().getCombatLog())
 		{
-			if(i.getType().equals("Combat"))
-				{
-				this.log.add(i.getContent());
-				
-				}
-			
+			this.log.add(i.getContent());
+			System.out.println(this.log.get(this.log.size()-1));
 		}
+		
 	}
 	
 	
@@ -257,6 +254,7 @@ public class Combat {
 		{
 		actif.subirEffet();
 		}
+		System.out.println(actif.getNom());
 	}
 	
 	

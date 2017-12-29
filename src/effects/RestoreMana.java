@@ -17,7 +17,7 @@ private int amount;
 	@Override
 	public void activer() {
 		
-		this.logs.write( new LigneLog(cible.getNom() + " retrouve : " + amount + " points de mana"));
+		this.logs.write( new LigneLog(cible.getNom() + " retrouve : " + amount + " points de mana","Effect"));
 		
 		//merci Johann, getHeal vérifi deja qu'on depasse pas les PV max
 		cible.recupMana(amount);

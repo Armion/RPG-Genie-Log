@@ -62,6 +62,19 @@ public class Logs extends Observable{
 		return lastLogs;
 	}
 	
+	public List<LigneLog> getCombatLog()
+	{
+		ArrayList<LigneLog> retour=new ArrayList<LigneLog>();
+		for(LigneLog i : this.logs)
+		{
+			if(i.getType().equals("Combat") || i.getType().equals("Effect"));
+			retour.add(i);
+		}
+		
+		return retour;
+		
+	}
+	
 	public LigneLog getLatestLog()
 	{
 		return this.logs.get(this.logs.size()-1);

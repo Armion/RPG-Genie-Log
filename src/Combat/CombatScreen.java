@@ -60,10 +60,18 @@ public class CombatScreen extends BasicGameState {
 	
 	@Override
     public void keyReleased(int key, char c) {
-        if (Input.KEY_ESCAPE == key) {
-            container.exit();
+        if (Input.KEY_ESCAPE == key) 
+        {
+        	
+            
+        	 if(this.tourJoueur==true &&( this.status==3 || this.status==2 || this.status==4 || this.status==5 || this.status==11))
+        		{this.status=1;}
+        	else
+        		this.status=10;
         }
-    }
+        
+	}
+    
 	
 	@Override
 	public void keyPressed(int key, char c)
@@ -280,9 +288,10 @@ public class CombatScreen extends BasicGameState {
 				if(((Consommable)this.objets.get(objet)).isTargatable()==true)	
 				{
 					this.status=12;
-				
+					this.curseur=0;
 				}
 				else this.status=13;
+				this.curseur=0;
 				
 				
 			}
@@ -304,6 +313,7 @@ public class CombatScreen extends BasicGameState {
 				
 				this.combat.getLog();
 				this.status=6;
+				this.curseur=0;
 			}
 			
 			else if(this.status==6)
@@ -415,6 +425,7 @@ public class CombatScreen extends BasicGameState {
 			
 			else if(this.status==6)
 			{
+				//this.combat.getLog();
 				for(int i=0;i<this.combat.log.size();i++)
 				{
 				
@@ -438,7 +449,7 @@ public class CombatScreen extends BasicGameState {
 		{
 			if(this.status==2)
 			{
-				this.combat.getLog();
+				//this.combat.getLog();
 				for(int i=0;i<this.combat.log.size();i++)
 				{
 				
@@ -454,7 +465,6 @@ public class CombatScreen extends BasicGameState {
 		if(this.status==8)
 		{
 			arg2.drawString("Victoire !",(arg0.getWidth()/12)*4, 0*(arg0.getHeight()/19)+(arg0.getHeight()/5)*4);
-			this.combat.getLog();
 			for(int i=0;i<this.combat.log.size();i++)
 			{
 			
@@ -641,6 +651,8 @@ public class CombatScreen extends BasicGameState {
 			this.combat=new Combat(groupe,arg0);
 			this.combat.debutCombat(0);
 			debut=false;
+			Logs.getInstance().deleteType("Combat");
+			Logs.getInstance().deleteType("Effect");
 			
 		}
 		
@@ -658,6 +670,7 @@ public class CombatScreen extends BasicGameState {
 		if(this.tourJoueur==false && this.status==1 && debut==false)
 		{
 			this.combat.actionIA(this.current);
+			this.combat.getLog();
 			this.status=2;
 		}
 		
@@ -671,6 +684,7 @@ public class CombatScreen extends BasicGameState {
 		{
 			this.debut=true;
 			this.actif=false;
+			Logs.getInstance().deleteType("Combat");
 
 			this.status=0;
 			for(Entitee i :this.groupe)
@@ -714,6 +728,7 @@ public class CombatScreen extends BasicGameState {
 		{
 			this.combat.log=new ArrayList<String>();
 			Logs.getInstance().deleteType("Combat");
+			Logs.getInstance().deleteType("Effect");
 			if(this.passage.size()>0)
 			{this.passage.remove(0);}
 			
@@ -734,6 +749,9 @@ public class CombatScreen extends BasicGameState {
 			
 			if(combat.conditionVictoire()==1)
 			{
+				this.combat.log=new ArrayList<String>();
+				Logs.getInstance().deleteType("Combat");
+				this.combat.getLog();
 				this.status=8;
 			}
 			else if(combat.conditionVictoire()==2)
@@ -744,9 +762,6 @@ public class CombatScreen extends BasicGameState {
 		
 		if(this.status==8)	
 		{
-			this.combat.log=new ArrayList<String>();
-			Logs.getInstance().deleteType("Combat");
-			this.combat.getLog();
 			
 			for(Entitee i : this.groupe)
 			{
@@ -754,6 +769,7 @@ public class CombatScreen extends BasicGameState {
 				i.getXP(this.combat.getRecomp());
 			}
 			this.combat.loot();
+			this.combat.getLog();
 		}
 		
 		

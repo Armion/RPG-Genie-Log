@@ -20,7 +20,7 @@ public class RestoreHeal extends Effect{
 		
 		//merci Johann, getHeal vérifi deja qu'on depasse pas les PV max
 		
-		this.logs.write( new LigneLog(cible.getNom() + "est soigné de : " + amount));
+		this.logs.write( new LigneLog(cible.getNom() + "est soigné de : " + amount,"Effect"));
 		cible.getHeal(amount);	
 		
 	}
