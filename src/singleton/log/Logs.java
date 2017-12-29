@@ -88,6 +88,7 @@ public class Logs extends Observable{
 			if(ligne.getType().equals(type))
 			{
 				it.remove();
+				this.nbLogs --;
 			}
 		}
 	}
