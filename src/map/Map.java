@@ -12,20 +12,21 @@ public class Map {
 
 	//methode init qui est appellé quand on initialise la map
 	public void init() throws SlickException {
-		this.tiledMap = new TiledMap("resources/map/exemple-change-map.tmx");
+		this.tiledMap = new TiledMap("resources/map/zone_depart.tmx");
 	}
 
 	//cette methode affiche le background qui correspond au 3 premieres couches de la map
 	public void renderBackground() {
+		
+
 		this.tiledMap.render(0, 0, 0);
 		this.tiledMap.render(0, 0, 1);
-		this.tiledMap.render(0, 0, 2);
 	}
 
 	//cette fois la partie devant le joueur (2 couches suivantes)
 	public void renderForeground() {
+		this.tiledMap.render(0, 0, 2);
 		this.tiledMap.render(0, 0, 3);
-		this.tiledMap.render(0, 0, 4);
 	}
 
 	//methode qui detecte les collision avec le joueur et un element de la map
@@ -34,7 +35,7 @@ public class Map {
 		//on va charger la couche "logic" qui est la couche représenter les cases qui engendrent une collision
 		int tileW = this.tiledMap.getTileWidth();
 		int tileH = this.tiledMap.getTileHeight();
-		int logicLayer = this.tiledMap.getLayerIndex("logic");
+		int logicLayer = this.tiledMap.getLayerIndex("collision");
 		
 		//on va chercher la bonne image sur la couche des collisions
 		Image tile = this.tiledMap.getTileImage((int) x / tileW, (int) y / tileH, logicLayer);

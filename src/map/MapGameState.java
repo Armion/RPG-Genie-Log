@@ -19,6 +19,8 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import Combat.CombatScreen;
+import hud.MapInventory;
+import main.MainScreenGameState;
 import singleton.Team;
 import singleton.log.LigneLog;
 import singleton.log.Logs;
@@ -40,6 +42,7 @@ public class MapGameState extends BasicGameState implements Observer{
 	private MapPlayerController controller = new MapPlayerController(player);
 	private String log = "";
 	private List<LigneLog> logs;
+	private StateBasedGame jeu;
 	
 	
 
@@ -58,6 +61,8 @@ public class MapGameState extends BasicGameState implements Observer{
 		container.getInput().addKeyListener(controller);
 		Logs.getInstance().addObserver(this);
 		this.logs = new ArrayList<>();
+		
+		this.jeu = game;
 	}
 
 	//methode appellé quand on rentre dans cette phase
@@ -125,7 +130,7 @@ public class MapGameState extends BasicGameState implements Observer{
 		
 		switch(key)
 		{
-		case Input.KEY_ESCAPE : this.container.exit();
+		case Input.KEY_ESCAPE : jeu.enterState(MainScreenGameState.ID);
 			break;
 		case Input.KEY_I : inventaire.changeState();
 		}
@@ -171,6 +176,7 @@ public class MapGameState extends BasicGameState implements Observer{
 		
 		for(LigneLog e : logs)
 		{
+			if(! e.getType().equals("Combat"))
 			log += "\n" + e.getContent();
 		}
 		

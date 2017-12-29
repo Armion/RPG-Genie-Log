@@ -1,4 +1,4 @@
-package map;
+package hud;
 
 import java.util.HashMap;
 import java.util.Iterator;
