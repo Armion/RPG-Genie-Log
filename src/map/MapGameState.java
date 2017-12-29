@@ -143,7 +143,7 @@ public class MapGameState extends BasicGameState implements Observer{
 		
 		if(observable.equals(Logs.getInstance()))
 		{
-			this.log = Logs.getInstance().getLatestLog();
+			this.log =  Logs.getInstance().getLatestLogContent();
 			this.dt = 0;
 		}
 		

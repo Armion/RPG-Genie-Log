@@ -57,7 +57,12 @@ public class Logs extends Observable{
 		return lastLogs;
 	}
 	
-	public String getLatestLog()
+	public LigneLog getLatestLog()
+	{
+		return this.logs.get(this.logs.size()-1);
+	}
+	
+	public String getLatestLogContent()
 	{
 		return this.logs.get(this.logs.size()-1).getContent();
 	}
