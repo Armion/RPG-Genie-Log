@@ -3,6 +3,7 @@ package map;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -93,9 +94,8 @@ public class MapGameState extends BasicGameState implements Observer{
 		if(inventaire.isVisible())
 			inventaire.render(container, g);
 		
+		//on affiche les logs
 		this.writeLogs(g);
-		
-		
 		
 	}
 
@@ -143,7 +143,6 @@ public class MapGameState extends BasicGameState implements Observer{
 		if(observable.equals(Logs.getInstance()))
 		{
 			this.logs.add(Logs.getInstance().getLatestLog());
-			this.log =  Logs.getInstance().getLatestLogContent();
 		}
 		
 	}
@@ -154,14 +153,31 @@ public class MapGameState extends BasicGameState implements Observer{
 		
 		Date d = new Date();
 		
-		for(LigneLog e : logs)
+		
+		LigneLog ligne;
+		
+		for(Iterator<LigneLog> it = logs.iterator() ; it.hasNext();)
 		{
-			if(d.getTime() - e.getDate().getTime() > 2000)
+			ligne = it.next();
+			if(d.getTime() - ligne.getDate().getTime() > 2000)
 			{
-				
+				it.remove();
 			}
 			
 		}
+		
+		
+		log = "";
+		
+		for(LigneLog e : logs)
+		{
+			log += "\n" + e.getContent();
+		}
+		
+		g.drawString(log, container.getWidth()/2-100, container.getHeight()/2);
+
+		
+		
 	}
 
 }
