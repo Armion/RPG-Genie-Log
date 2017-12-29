@@ -3,17 +3,17 @@ package competences;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-public class Heal extends Competence{
+public class MultiHeal extends Competence{
 	
-	public Heal()
+	public MultiHeal()
 	{
 		try {
-			this.icone = new Image("resources/Icones/heal.png");
+			this.icone = new Image("resources/Icones/MultiHeal.png");
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.nom="Heal";
+		this.nom="Multi-Heal";
 		this.bolus= null;
 		this.cible=false;
 		this.duree=1;
@@ -24,7 +24,5 @@ public class Heal extends Competence{
 		this.tag = 3;
 		this.outOfFight = true;
 	}
-	
-	
 
 }

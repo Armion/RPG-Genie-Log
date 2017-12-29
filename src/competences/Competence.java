@@ -72,4 +72,9 @@ public abstract class Competence {
 		return this.tag;
 	}
 	
+	public Image getIcone()
+	{
+		return this.icone;
+	}
+	
 }

@@ -2,10 +2,19 @@ package competences;
 
 import java.util.ArrayList;
 
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+
 public class Smite extends Competence {
 	
 		public Smite()
 		{
+			try {
+				this.icone = new Image("resources/Icones/smite.png");
+			} catch (SlickException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			this.nom="Smite";
 			this.bolus=new ArrayList<Integer>();
 			this.bolus.add(-2);

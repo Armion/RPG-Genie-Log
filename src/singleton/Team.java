@@ -8,6 +8,7 @@ import org.newdawn.slick.SlickException;
 import character.Entitee;
 import character.Joueur;
 import character.Paladin;
+import character.Pretre;
 import inventaire.Inventory;
 import items.Item;
 import items.consommables.MedaillonArmion;
@@ -29,7 +30,7 @@ public class Team {
 			this.membres.add(new Paladin());
 			this.membres.add(new Paladin());
 			this.membres.add(new Paladin());
-			this.membres.add(new Paladin());
+			this.membres.add(new Pretre());
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

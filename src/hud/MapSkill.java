@@ -16,9 +16,10 @@ public class MapSkill extends HUD{
 	
 	private int x;
 	private int y;
-	private int page;
 	private Image skillsPicture;
-	List<Competence> liste;
+	private List<List<Competence>> liste;
+	private GameContainer container;
+	
 	
 	public void init(GameContainer container) throws SlickException 
 	{
@@ -36,27 +37,42 @@ public class MapSkill extends HUD{
 	public void render(GameContainer container, Graphics g) {
 		g.resetTransform();
 		g.drawImage(skillsPicture, x, y);
+		
+		for(int i = 0; i < liste.size(); i++)
+		{
+			
+			//for(Competence c : liste.get(i))
+			for(int t = 0; t < liste.get(i).size() ; t++)
+			{
+				
+				g.drawImage(liste.get(i).get(t).getIcone(), x+36 + i*60, y+71+t*72);
+			}
+		}
 	}
 	
 	
 	
 	private void loadSkill()
 	{
-		List<Competence> liste = new ArrayList<>();
+		this.liste = new ArrayList<>();
+		List<Competence> competences = new ArrayList<>();
 		
 		
 		for(Entitee e : Team.getInstance().getTeam())
 		{
-			
+			competences = new ArrayList<>();
 			
 			for(Competence c : e.getComp())
 			{
 				if(c.usableOutOfFight())
 				{
-					liste.add(c);
+					competences.add(c);
 				}
 			}
+			
+			this.liste.add(competences);
 		}
+		
 	}
 	
 	
