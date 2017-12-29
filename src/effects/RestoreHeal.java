@@ -14,12 +14,14 @@ public class RestoreHeal extends Effect{
 
 	//un effet de soin
 	@Override
-	public void activer(String log) {
+	public void activer() {
+		
 		
 		//merci Johann, getHeal vérifi deja qu'on depasse pas les PV max
 		
-		log = log+ cible.getNom() + "est soigné de : " + amount;
-		log=log+cible.getHeal(amount);	
+		this.logs.write( cible.getNom() + "est soigné de : " + amount);
+		cible.getHeal(amount);	
+		
 	}
 	
 	

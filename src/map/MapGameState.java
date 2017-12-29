@@ -1,6 +1,10 @@
 package map;
 
 
+import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
+
 //represente l'etat du jeu quand on est dans la map
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -11,11 +15,12 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import Combat.CombatScreen;
+import singleton.Logs;
 import singleton.Team;
 
 
 
-public class MapGameState extends BasicGameState {
+public class MapGameState extends BasicGameState implements Observer{
 	//l'ID de l'etat
 	public static final int ID = 2;
 
@@ -44,6 +49,7 @@ public class MapGameState extends BasicGameState {
 		this.player.init();
 		this.controller.setInput(container.getInput());
 		container.getInput().addKeyListener(controller);
+		Logs.getInstance().addObserver(this);
 	}
 
 	//methode appellé quand on rentre dans cette phase
@@ -114,6 +120,20 @@ public class MapGameState extends BasicGameState {
 	@Override
 	public int getID() {
 		return ID;
+	}
+
+	@Override
+	public void update(Observable observable, Object objectConcerne) {
+		
+		if(observable.equals(Logs.getInstance()))
+		{
+			List<String> logs = Logs.getInstance().getLastLogs(Logs.getInstance().getNbLogs());
+			for(int i = 0; i < logs.size(); i++)
+			{
+				System.out.println(logs.get(i));
+			}
+		}
+		
 	}
 
 }

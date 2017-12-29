@@ -48,7 +48,8 @@ public class HealPot extends Consommable {
 		for(Effect e : this.effects)
 		{
 			e.changeTarget(cible);
-			e.activer(log);
+			e.activer();
+			System.out.println(log);
 		}
 		
 		if(this.stacks>0)
