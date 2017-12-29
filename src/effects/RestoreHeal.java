@@ -1,6 +1,7 @@
 package effects;
 
 import character.Entitee;
+import singleton.log.LigneLog;
 
 public class RestoreHeal extends Effect{
 	
@@ -19,7 +20,7 @@ public class RestoreHeal extends Effect{
 		
 		//merci Johann, getHeal vérifi deja qu'on depasse pas les PV max
 		
-		this.logs.write( cible.getNom() + "est soigné de : " + amount);
+		this.logs.write( new LigneLog(cible.getNom() + "est soigné de : " + amount));
 		cible.getHeal(amount);	
 		
 	}

@@ -1,4 +1,4 @@
-package singleton;
+package singleton.log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.Observable;
 
 public class Logs extends Observable{
 	
-	private List<String> logs;
+	private List<LigneLog> logs;
 	private static Logs INSTANCE = new Logs();
 	private int nbLogs;
 	
@@ -22,7 +22,7 @@ public class Logs extends Observable{
 		return INSTANCE;
 	}
 	
-	public void write(String newlog)
+	public void write(LigneLog newlog)
 	{
 		this.logs.add(newlog);
 		setChanged();
@@ -45,9 +45,9 @@ public class Logs extends Observable{
 		this.logs.clear();
 	}
 	
-	public List<String> getLastLogs(int nb)
+	public List<LigneLog> getLastLogs(int nb)
 	{
-		List<String> lastLogs = new ArrayList<>();
+		List<LigneLog> lastLogs = new ArrayList<>();
 		
 		for(int i = this.logs.size() - nb -1 ; i < this.logs.size() ; i++)
 		{
@@ -59,7 +59,7 @@ public class Logs extends Observable{
 	
 	public String getLatestLog()
 	{
-		return this.logs.get(this.logs.size()-1);
+		return this.logs.get(this.logs.size()-1).getContent();
 	}
 	
 	public int getNbLogs()

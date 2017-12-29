@@ -1,7 +1,7 @@
 package effects;
 
 import character.Entitee;
-import singleton.Logs;
+import singleton.log.Logs;
 
 public abstract class Effect {
 	

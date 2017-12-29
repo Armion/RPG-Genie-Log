@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
+import org.newdawn.slick.Color;
 //represente l'etat du jeu quand on est dans la map
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -15,8 +16,8 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import Combat.CombatScreen;
-import singleton.Logs;
 import singleton.Team;
+import singleton.log.Logs;
 
 
 
@@ -33,6 +34,8 @@ public class MapGameState extends BasicGameState implements Observer{
 	private MapTriggerController triggers = new MapTriggerController(map, player);
 	private MapCamera camera = new MapCamera(player);
 	private MapPlayerController controller = new MapPlayerController(player);
+	private String log = "";
+	private float dt;
 	
 	
 
@@ -86,6 +89,14 @@ public class MapGameState extends BasicGameState implements Observer{
 		if(inventaire.isVisible())
 			inventaire.render(container, g);
 		
+		if(dt < 2000)
+		{
+			g.setColor(new Color(255,255,255));
+			g.drawString(log, container.getWidth()/2 - 100, container.getHeight()/2);
+		}
+		
+		
+		
 	}
 
 	//methode d'update pour mettre à jour les elements de la phase
@@ -102,7 +113,12 @@ public class MapGameState extends BasicGameState implements Observer{
 		if (Math.random() < 0.010 && player.isMoving()) {
 			game.enterState(CombatScreen.ID);
 		}
+		
+		dt += delta;
+		
 	}
+	
+	
 
 	//on regarde les touches relachées, si c'est un echappe, alors on quitte le jeu
 	@Override
@@ -127,11 +143,8 @@ public class MapGameState extends BasicGameState implements Observer{
 		
 		if(observable.equals(Logs.getInstance()))
 		{
-			List<String> logs = Logs.getInstance().getLastLogs(Logs.getInstance().getNbLogs());
-			for(int i = 0; i < logs.size(); i++)
-			{
-				System.out.println(logs.get(i));
-			}
+			this.log = Logs.getInstance().getLatestLog();
+			this.dt = 0;
 		}
 		
 	}
