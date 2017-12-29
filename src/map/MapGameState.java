@@ -226,7 +226,6 @@ public class MapGameState extends BasicGameState implements Observer{
 		
 		for(LigneLog e : logs)
 		{
-			if(! e.getType().equals("Combat"))
 			log += "\n" + e.getContent();
 		}
 		

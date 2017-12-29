@@ -1,35 +1,46 @@
 package hud;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.gui.AbstractComponent;
+import org.newdawn.slick.gui.ComponentListener;
+import org.newdawn.slick.gui.MouseOverArea;
 
 import character.Entitee;
 import competences.Competence;
+import main.Couple;
 import singleton.Team;
+import character.Joueur;
 
-public class MapSkill extends HUD{
+public class MapSkill extends HUD implements ComponentListener{
 	
 	private int x;
 	private int y;
 	private Image skillsPicture;
-	private List<List<Competence>> liste;
-	private GameContainer container;
+	private List<Couple<Joueur, List<Couple<Competence, MouseOverArea>>>> liste;
+
 	
 	
 	public void init(GameContainer container) throws SlickException 
 	{
+
 		
-		this.loadSkill();
+		
+		
 		
 		
 		skillsPicture = new Image("resources/hud/Skill.png");
 		this.x = 10;
 		this.y = container.getHeight()/2 - this.skillsPicture.getHeight()/2;
+		
+		this.loadSkill(container);
 		
 	}
 	
@@ -38,39 +49,67 @@ public class MapSkill extends HUD{
 		g.resetTransform();
 		g.drawImage(skillsPicture, x, y);
 		
-		for(int i = 0; i < liste.size(); i++)
+		
+		for(Couple<Joueur, List<Couple<Competence, MouseOverArea>>> l : liste)
 		{
-			
-			//for(Competence c : liste.get(i))
-			for(int t = 0; t < liste.get(i).size() ; t++)
+			for(Couple<Competence, MouseOverArea> c : l.getValue())
 			{
-				
-				g.drawImage(liste.get(i).get(t).getIcone(), x+36 + i*60, y+71+t*72);
+				c.getValue().render(container, g);
 			}
+			
 		}
 	}
 	
 	
 	
-	private void loadSkill()
+	private void loadSkill(GameContainer container)
 	{
+		List<Couple<Competence, MouseOverArea>> competences = new ArrayList<>();
 		this.liste = new ArrayList<>();
-		List<Competence> competences = new ArrayList<>();
 		
+		int i = 0;
+		int t = 0;
 		
-		for(Entitee e : Team.getInstance().getTeam())
+		for(Joueur e : Team.getInstance().getTeam())
 		{
 			competences = new ArrayList<>();
 			
+			
+			t = 0;
 			for(Competence c : e.getComp())
 			{
 				if(c.usableOutOfFight())
 				{
-					competences.add(c);
+					competences.add(new Couple<>(c, new MouseOverArea(container, c.getIcone(), x+36 + i*60, y+71 +t*72, this)));
+					t++;
+				}
+				
+			}
+			
+			this.liste.add(new Couple<>(e, competences));
+			
+			i++;
+		}
+		
+	}
+
+
+	
+	
+	@Override
+	public void componentActivated(AbstractComponent source) {
+		
+		for(Couple<Joueur, List<Couple<Competence, MouseOverArea>>> l : liste)
+		{
+			for(Couple<Competence, MouseOverArea> c : l.getValue())
+			{
+				if(source == c.getValue())
+				{
+					l.getKey().reduireMana(c.getKey().getCout());
+					Team.getInstance().getTeam().get(0).subirComp(c.getKey());
 				}
 			}
 			
-			this.liste.add(competences);
 		}
 		
 	}
