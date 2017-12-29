@@ -21,6 +21,7 @@ public class MapInventory implements ComponentListener{
 	
 	private boolean visible;
 	private Image inventairePicture;
+	private Image gold;
 	private int x;
 	private int y;
 	private int page;
@@ -35,6 +36,7 @@ public class MapInventory implements ComponentListener{
 	public void init(GameContainer container, Inventory inventaire) throws SlickException {
 		
 		this.inventairePicture = new Image("resources/hud/inventaire.png");
+		this.gold = new Image("resources/hud/GoldCoin.png");
 		this.visible = false;
 		this.page =1;
 		this.inventaire = inventaire;
@@ -45,8 +47,8 @@ public class MapInventory implements ComponentListener{
 		
 		
 		
-		gauche = new MouseOverArea(container, new Image("resources/hud/invGauche.png"), x+60, y+397, this);
-		droit = new MouseOverArea(container, new Image("resources/hud/invDroit.png"), x+150, y+397, this);
+		gauche = new MouseOverArea(container, new Image("resources/hud/invGauche.png"), x+10, y+397, this);
+		droit = new MouseOverArea(container, new Image("resources/hud/invDroit.png"), x+50, y+397, this);
 		
 		this.loadInventory(container);
 		
@@ -66,8 +68,12 @@ public class MapInventory implements ComponentListener{
 		}
 		
 		gauche.render(container, g);
-		g.drawString("" + page, x+ 120, y+397);
+		g.drawString("" + page, x+ 35, y+398);
 		droit.render(container, g);
+		
+		g.drawImage(gold, x+150, y+397);
+		g.drawString(Team.getInstance().getMoney() +"", x+175, y+398);
+		
 	}
 	
 	public boolean isVisible()

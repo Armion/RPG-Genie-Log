@@ -102,5 +102,10 @@ public class Team {
 		this.money=this.money-reduce;
 	}
 	
+	public int getMoney()
+	{
+		return this.money;
+	}
+	
 
 }
