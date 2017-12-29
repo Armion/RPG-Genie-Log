@@ -1,6 +1,8 @@
 package map;
 
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -17,6 +19,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import Combat.CombatScreen;
 import singleton.Team;
+import singleton.log.LigneLog;
 import singleton.log.Logs;
 
 
@@ -35,7 +38,7 @@ public class MapGameState extends BasicGameState implements Observer{
 	private MapCamera camera = new MapCamera(player);
 	private MapPlayerController controller = new MapPlayerController(player);
 	private String log = "";
-	private float dt;
+	private List<LigneLog> logs;
 	
 	
 
@@ -53,6 +56,7 @@ public class MapGameState extends BasicGameState implements Observer{
 		this.controller.setInput(container.getInput());
 		container.getInput().addKeyListener(controller);
 		Logs.getInstance().addObserver(this);
+		this.logs = new ArrayList<>();
 	}
 
 	//methode appellé quand on rentre dans cette phase
@@ -89,11 +93,7 @@ public class MapGameState extends BasicGameState implements Observer{
 		if(inventaire.isVisible())
 			inventaire.render(container, g);
 		
-		if(dt < 2000)
-		{
-			g.setColor(new Color(255,255,255));
-			g.drawString(log, container.getWidth()/2 - 100, container.getHeight()/2);
-		}
+		this.writeLogs(g);
 		
 		
 		
@@ -114,7 +114,6 @@ public class MapGameState extends BasicGameState implements Observer{
 			game.enterState(CombatScreen.ID);
 		}
 		
-		dt += delta;
 		
 	}
 	
@@ -143,10 +142,26 @@ public class MapGameState extends BasicGameState implements Observer{
 		
 		if(observable.equals(Logs.getInstance()))
 		{
+			this.logs.add(Logs.getInstance().getLatestLog());
 			this.log =  Logs.getInstance().getLatestLogContent();
-			this.dt = 0;
 		}
 		
+	}
+	
+	public void writeLogs(Graphics g)
+	{
+		g.setColor(new Color(255,255,255));
+		
+		Date d = new Date();
+		
+		for(LigneLog e : logs)
+		{
+			if(d.getTime() - e.getDate().getTime() > 2000)
+			{
+				
+			}
+			
+		}
 	}
 
 }

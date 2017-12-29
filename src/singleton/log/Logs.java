@@ -1,6 +1,7 @@
 package singleton.log;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Observable;
 
@@ -74,10 +75,16 @@ public class Logs extends Observable{
 	
 	public void deleteType(String type)
 	{
-		for(LigneLog e : this.logs)
+		
+		Iterator<LigneLog> it = this.logs.iterator();
+		LigneLog ligne;
+		
+		
+		while(it.hasNext())
 		{
-			if(e.getType().equals(type))
-				logs.remove(e);
+			ligne = it.next();
+			if(ligne.getType().equals(type))
+				this.logs.remove(ligne);
 		}
 	}
 
