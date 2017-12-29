@@ -84,7 +84,8 @@ public class MainScreenGameState extends BasicGameState implements ComponentList
 			game.enterState(MapGameState.ID);
 		}
 		if(source == exitButton){
-			System.exit(0);;
+			container.exit();
+			
 		}
 		
 		
