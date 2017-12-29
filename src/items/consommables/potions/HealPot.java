@@ -54,9 +54,6 @@ public class HealPot extends Consommable {
 		
 		if(this.stacks>0)
 			this.stacks --;
-		
-		
-		System.out.println(log);
 	}
 	
 
