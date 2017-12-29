@@ -14,6 +14,7 @@ public class Heal extends Competence{
 		this.deghealDurr=0;
 		this.cout=50;
 		this.tag = 3;
+		this.outOfFight = true;
 	}
 	
 	

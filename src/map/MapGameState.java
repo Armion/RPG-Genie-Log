@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Stack;
 
 import org.newdawn.slick.Color;
 //represente l'etat du jeu quand on est dans la map
@@ -19,7 +20,9 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import Combat.CombatScreen;
+import hud.HUD;
 import hud.MapInventory;
+import hud.MapSkill;
 import main.MainScreenGameState;
 import singleton.Team;
 import singleton.log.LigneLog;
@@ -43,6 +46,8 @@ public class MapGameState extends BasicGameState implements Observer{
 	private String log = "";
 	private List<LigneLog> logs;
 	private StateBasedGame jeu;
+	private MapSkill skills = new MapSkill();
+	Stack<HUD> fenetres;
 	
 	
 
@@ -52,8 +57,12 @@ public class MapGameState extends BasicGameState implements Observer{
 	//on charge et initialise si besoin les resources à l'initialisation
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 		
-		this.inventaire.init(container, this.team.getInventory());
 		this.container = container;
+		
+		
+		this.inventaire.init(container, this.team.getInventory());
+		this.skills.init(container);
+
 		this.musicBack = new Music("resources/sound/lost-in-the-meadows.ogg");
 		this.map.init();
 		this.player.init();
@@ -61,6 +70,7 @@ public class MapGameState extends BasicGameState implements Observer{
 		container.getInput().addKeyListener(controller);
 		Logs.getInstance().addObserver(this);
 		this.logs = new ArrayList<>();
+		this.fenetres = new Stack<>();
 		
 		this.jeu = game;
 	}
@@ -130,9 +140,33 @@ public class MapGameState extends BasicGameState implements Observer{
 		
 		switch(key)
 		{
-		case Input.KEY_ESCAPE : jeu.enterState(MainScreenGameState.ID);
-			break;
-		case Input.KEY_I : inventaire.changeState();
+		case Input.KEY_ESCAPE :
+			{
+				if(this.fenetres.isEmpty())
+				{
+					jeu.enterState(MainScreenGameState.ID);
+				}
+				else
+				{
+					fenetres.pop().changeState();
+				}
+				
+				
+				break;
+			}
+			
+		case Input.KEY_I : 
+			{
+				if(! this.inventaire.isVisible())
+				{
+					this.ouvrirFenetre(this.inventaire);
+				}
+				else
+				{
+					this.fermerFenetre(this.inventaire);
+				}
+				break;
+			}
 		}
 		
 	}
@@ -181,8 +215,40 @@ public class MapGameState extends BasicGameState implements Observer{
 		}
 		
 		g.drawString(log, container.getWidth()/2-100, container.getHeight()/2);
-
 		
+	}
+	
+	private void ouvrirFenetre(HUD win)
+	{
+		if(!win.isVisible())
+		{
+			win.changeState();
+			this.fenetres.push(this.inventaire);
+		}
+	}
+	
+	private void fermerFenetre(HUD win)
+	{
+		Stack<HUD> temp = new Stack<>();
+		HUD it = null;
+		
+		//recherche
+		while(! this.fenetres.isEmpty() &&  ! (it = this.fenetres.pop()).equals(win))
+		{
+			temp.push(it);
+		}
+		
+		//mise à jour
+		if(it != null)
+		{
+			it.changeState();
+		}
+		
+		//on rempile
+		while(! temp.isEmpty())
+		{
+			this.fenetres.push(temp.pop());
+		}
 		
 	}
 

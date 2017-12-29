@@ -17,9 +17,9 @@ import items.Item;
 import singleton.Team;
 
 
-public class MapInventory implements ComponentListener{
+public class MapInventory extends HUD implements ComponentListener{
 	
-	private boolean visible;
+	
 	private Image inventairePicture;
 	private Image gold;
 	private int x;
@@ -52,11 +52,6 @@ public class MapInventory implements ComponentListener{
 		
 		this.loadInventory(container);
 		
-		
-		
-		
-		
-		
 	}
 
 	public void render(GameContainer container, Graphics g) {
@@ -76,21 +71,7 @@ public class MapInventory implements ComponentListener{
 		
 	}
 	
-	public boolean isVisible()
-	{
-		return this.visible;
-	}
-	
-	public void changeState()
-	{
-		if(this.visible)
-			this.visible = false;
-		else
-			this.visible = true;
-		
-		
 
-	}
 
 	@Override
 	public void componentActivated(AbstractComponent source) {
