@@ -21,7 +21,7 @@ public class MainScreenGameState extends BasicGameState implements ComponentList
 	private Image background;
 	private StateBasedGame game;
 	private GameContainer container;
-	
+	private MouseOverArea exitButton;
 	private MouseOverArea playButton;
 
 	//surcharge d'init pour aller chercher les resources
@@ -34,6 +34,9 @@ public class MainScreenGameState extends BasicGameState implements ComponentList
 		Image play = new Image("resources/hud/Playnow.png");
 		this.playButton = new MouseOverArea(container, play, container.getWidth()/2 - play.getWidth()/2, container.getHeight()/2 - play.getHeight()/2, this);
 		this.container = container;
+		Image exit = new Image("resources/hud/exitGame.png");
+		this.exitButton = new MouseOverArea(container, exit, container.getWidth()/2 - play.getWidth()/2, (container.getHeight()/2)+100 - (play.getHeight()/2)+100, this);
+
 	}
 
 	//la methode qui gere l'affichage pour cette etat
@@ -43,6 +46,8 @@ public class MainScreenGameState extends BasicGameState implements ComponentList
 		//on affiche le fond et un message qui demande d'appuyer sur une touche
 		background.draw(0, 0, container.getWidth(), container.getHeight());
 		playButton.render(container, g);
+		exitButton.render(container, g);
+		//g.drawString("Appuyer sur une touche", 300, 300);
 	}
 
 	//methode d'uppdate, il n'y a rien a uppdate dans le menu principal
@@ -77,6 +82,9 @@ public class MainScreenGameState extends BasicGameState implements ComponentList
 		if(source == playButton)
 		{
 			game.enterState(MapGameState.ID);
+		}
+		if(source == exitButton){
+			System.exit(0);;
 		}
 		
 		

@@ -1,14 +1,7 @@
-/map/
-/Combat/
 /resources/
 /main/
-/character/
+/Combat/
+/map/
 /competences/
-/inventaire/
-/effect/
-/effects/
-/potions/
-/items/
-/singleton/
-/equipement/
 /hud/
+/items/
