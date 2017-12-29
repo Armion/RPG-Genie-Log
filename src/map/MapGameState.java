@@ -1,6 +1,14 @@
 package map;
 
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
+
+import org.newdawn.slick.Color;
 //represente l'etat du jeu quand on est dans la map
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -12,10 +20,12 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import Combat.CombatScreen;
 import singleton.Team;
+import singleton.log.LigneLog;
+import singleton.log.Logs;
 
 
 
-public class MapGameState extends BasicGameState {
+public class MapGameState extends BasicGameState implements Observer{
 	//l'ID de l'etat
 	public static final int ID = 2;
 
@@ -28,6 +38,8 @@ public class MapGameState extends BasicGameState {
 	private MapTriggerController triggers = new MapTriggerController(map, player);
 	private MapCamera camera = new MapCamera(player);
 	private MapPlayerController controller = new MapPlayerController(player);
+	private String log = "";
+	private List<LigneLog> logs;
 	
 	
 
@@ -44,6 +56,8 @@ public class MapGameState extends BasicGameState {
 		this.player.init();
 		this.controller.setInput(container.getInput());
 		container.getInput().addKeyListener(controller);
+		Logs.getInstance().addObserver(this);
+		this.logs = new ArrayList<>();
 	}
 
 	//methode appellé quand on rentre dans cette phase
@@ -80,6 +94,9 @@ public class MapGameState extends BasicGameState {
 		if(inventaire.isVisible())
 			inventaire.render(container, g);
 		
+		//on affiche les logs
+		this.writeLogs(g);
+		
 	}
 
 	//methode d'update pour mettre à jour les elements de la phase
@@ -96,7 +113,11 @@ public class MapGameState extends BasicGameState {
 		if (Math.random() < 0.010 && player.isMoving()) {
 			game.enterState(CombatScreen.ID);
 		}
+		
+		
 	}
+	
+	
 
 	//on regarde les touches relachées, si c'est un echappe, alors on quitte le jeu
 	@Override
@@ -114,6 +135,49 @@ public class MapGameState extends BasicGameState {
 	@Override
 	public int getID() {
 		return ID;
+	}
+
+	@Override
+	public void update(Observable observable, Object objectConcerne) {
+		
+		if(observable.equals(Logs.getInstance()))
+		{
+			this.logs.add(Logs.getInstance().getLatestLog());
+		}
+		
+	}
+	
+	public void writeLogs(Graphics g)
+	{
+		g.setColor(new Color(255,255,255));
+		
+		Date d = new Date();
+		
+		
+		LigneLog ligne;
+		
+		for(Iterator<LigneLog> it = logs.iterator() ; it.hasNext();)
+		{
+			ligne = it.next();
+			if(d.getTime() - ligne.getDate().getTime() > 2000)
+			{
+				it.remove();
+			}
+			
+		}
+		
+		
+		log = "";
+		
+		for(LigneLog e : logs)
+		{
+			log += "\n" + e.getContent();
+		}
+		
+		g.drawString(log, container.getWidth()/2-100, container.getHeight()/2);
+
+		
+		
 	}
 
 }

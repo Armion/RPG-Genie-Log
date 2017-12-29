@@ -21,7 +21,10 @@ public abstract class Ennemi extends Entitee {
 	}
 	
 
-
+	public int getLoot()
+	{
+		return this.loot;
+	}
 			
 		
 		
@@ -29,9 +32,8 @@ public abstract class Ennemi extends Entitee {
 
 	
 	@Override
-	public String getXP(int xp)
+	public void getXP(int xp)
 	{
-		return "";
 		
 	}
 	

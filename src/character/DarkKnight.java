@@ -29,10 +29,7 @@ public class DarkKnight extends Ennemi {
 		this.setText("src/Combat/personnages/sprites/chevalier.png");
 	}
 	
-	public static int getLoot()
-	{
-		return 1;
-	}
+
 	
 	
 	

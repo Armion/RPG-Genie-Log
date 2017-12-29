@@ -5,6 +5,9 @@ import java.util.Scanner;
 
 import org.newdawn.slick.SlickException;
 
+import singleton.log.LigneLog;
+import singleton.log.Logs;
+
 public abstract class Joueur extends Entitee {
 	
 	protected int xp;
@@ -18,6 +21,7 @@ public abstract class Joueur extends Entitee {
 	{
 		String log="";
 		log=log+this.getNom()+" monte d'un niveau !";
+		Logs.getInstance().write(new LigneLog(this.getNom()+" monte d'un niveau !","Combat"));
 		this.xp=this.xp-(this.lvl*100);
 		this.lvl=this.lvl+1;
 		getXP(0);
@@ -28,10 +32,11 @@ public abstract class Joueur extends Entitee {
 	}
 	
 	@Override
-	public String getXP(int xp)
+	public void getXP(int xp)
 	{
 		String log="";
 		log=log+this.getNom()+" gagne "+xp+" points d'xp !";
+		Logs.getInstance().write(new LigneLog(this.getNom()+" gagne "+xp+" points d'xp !","Combat"));
 		this.xp=this.xp+xp;
 	
 	
@@ -40,7 +45,7 @@ public abstract class Joueur extends Entitee {
 		log=log+this.lvlUp();
 	}
 	
-	return log;
+	
 		
 	}
 	

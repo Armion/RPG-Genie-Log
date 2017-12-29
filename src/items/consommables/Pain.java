@@ -34,7 +34,7 @@ public class Pain extends Consommable{
 		for(Effect e : this.effects)
 		{
 			e.changeTarget(cible);
-			e.activer(log);
+			e.activer();
 		}
 		
 		if(this.stacks>0)

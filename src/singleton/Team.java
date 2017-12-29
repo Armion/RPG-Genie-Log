@@ -37,43 +37,29 @@ public class Team {
 		
 		List<Item> listeInventaire = new ArrayList<>();
 		
-		listeInventaire.add(new HealPot(50));
-		listeInventaire.add(new HealPot(20));
+		for(int i = 0 ; i < 20 ; i++)
+		{
+			listeInventaire.add(new Pain());
+			listeInventaire.add(new HealPot(50));
+			listeInventaire.add(new HealPot(20));
+			listeInventaire.add(new HealPot(30));
+			listeInventaire.add(new HealPot(40));
+			listeInventaire.add(new HealPot(30));
+			listeInventaire.add(new Pain());
+			listeInventaire.add(new ManaPot(80));
+			listeInventaire.add(new ManaPot(80));
+			listeInventaire.add(new ManaPot(80));
+			listeInventaire.add(new ManaPot(80));
+			listeInventaire.add(new Pain());
+			listeInventaire.add(new Pain());
+			listeInventaire.add(new ManaPot(80));
+		}
+		
 
-		listeInventaire.add(new HealPot(30));
-		listeInventaire.add(new HealPot(40));
-		listeInventaire.add(new HealPot(30));
-		listeInventaire.add(new Pain());
-		listeInventaire.add(new ManaPot(80));
-		listeInventaire.add(new ManaPot(80));
-		listeInventaire.add(new ManaPot(80));
-		listeInventaire.add(new ManaPot(80));
-		listeInventaire.add(new Pain());
-		listeInventaire.add(new Pain());
-		listeInventaire.add(new ManaPot(80));
 
-		listeInventaire.add(new HealPot(20));
-		listeInventaire.add(new HealPot(20));
-		listeInventaire.add(new ManaPot(20));
-		listeInventaire.add(new HealPot(20));
-		listeInventaire.add(new HealPot(20));
-		listeInventaire.add(new HealPot(20));
 
-		listeInventaire.add(new HealPot(20));
-		listeInventaire.add(new HealPot(20));
-		listeInventaire.add(new HealPot(20));
-		listeInventaire.add(new ManaPot(20));
-		listeInventaire.add(new HealPot(20));
-		listeInventaire.add(new HealPot(20));
-		listeInventaire.add(new HealPot(20));
+		
 
-		listeInventaire.add(new HealPot(20));
-		listeInventaire.add(new HealPot(20));
-		listeInventaire.add(new HealPot(20));
-		listeInventaire.add(new ManaPot(20));
-		listeInventaire.add(new HealPot(20));
-		listeInventaire.add(new HealPot(20));
-		listeInventaire.add(new HealPot(20));
 
 		
 		this.inventaire = new Inventory( listeInventaire, 500);
@@ -104,6 +90,16 @@ public class Team {
 	public void addMembre(Joueur membre)
 	{
 		membres.add(membre);
+	}
+	
+	public void addMoney(int money)
+	{
+		this.money=this.money+money;
+	}
+	
+	public void removeMoney(int reduce)
+	{
+		this.money=this.money-reduce;
 	}
 	
 

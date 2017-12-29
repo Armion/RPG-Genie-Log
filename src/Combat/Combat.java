@@ -9,11 +9,16 @@ import org.newdawn.slick.state.BasicGameState;
 
 import Combat.personnages.*;
 import character.DarkKnight;
+import character.Ennemi;
 import character.Entitee;
 import character.Joueur;
 import character.Liche;
 import character.Squelette;
 import competences.*;
+import singleton.log.LigneLog;
+import singleton.log.Logs;
+import singleton.Loot;
+import singleton.Team;
 
 public class Combat {
 	
@@ -85,11 +90,35 @@ public class Combat {
 			this.protagonistes.get(debut+i).setX((fenetre.getWidth()/4)*3);
 			this.protagonistes.get(debut+i).setY(fenetre.getHeight()/5+(i*(fenetre.getHeight()/8))+3*fenetre.getHeight()/12);
 			
-			
+		this.recompense=this.recompense+((Ennemi)this.protagonistes.get(debut+i)).getLoot();
 		}
-		this.recompense=10*nb*moy;
+		this.recompense=(this.recompense*10*nb*moy)/2;
 		
 	}
+	
+	
+	public void loot()
+	{
+		 Team.getInstance().addMoney(recompense/4);
+		 Logs.getInstance().write(new LigneLog("Vous gagnez "+(recompense/4)+" pièces d'or","Combat"));
+		 Loot.getInstance().getFact().earnLoot(this.recompense);
+	}
+	
+	
+	public void getLog()
+	{
+		for(LigneLog i : Logs.getInstance().getLastLogs(Logs.getInstance().getNbLogs()-1))
+		{
+			if(i.getType().equals("Combat"))
+				{
+				this.log.add(i.getContent());
+				
+				}
+			
+		}
+	}
+	
+	
 	
 	
 	
@@ -166,21 +195,21 @@ public class Combat {
 		
 	}
 	
-	public String attaque(Entitee cible,Entitee attaquant)
+	public void attaque(Entitee cible,Entitee attaquant)
 	{
-		String log="";
+		
 		int deg=attaquant.getAtk()-cible.getDef();
-		log=log+attaquant.getNom()+" attaque "+cible.getNom()+" !"+'\n';
+		Logs.getInstance().write(new LigneLog(attaquant.getNom()+" attaque "+cible.getNom()+" !"+'\n',"Combat"));
 		if(deg>0)
 		{
-			log=log+cible.getNom()+" subis "+deg+" points de dégats !"+'\n';
-			log=log+cible.getDegats(deg);
+			Logs.getInstance().write(new LigneLog(cible.getNom()+" subis "+deg+" points de dégats !"+'\n',"Combat"));
+			cible.getDegats(deg);
 		}
 		else
 		{
-		log=log+"Mais il n'inflige aucun dégats !";
+			Logs.getInstance().write(new LigneLog("Mais il n'inflige aucun dégats !","Combat"));
 		}
-		return log;
+		
 	}
 	
 	private Entitee choixCible(Entitee instigateur,boolean offensif)//Interface pour que le joueur choisisse sa cible
@@ -212,13 +241,13 @@ public class Combat {
 		
 		if(choix.getSort()==null)
 		{
-			this.log.add(attaque(choix.getCible(),actif));
+			attaque(choix.getCible(),actif);
 		}
 		
 		else
 		{
-			this.log.add(actif.getNom()+" utilise "+choix.getSort().getNom()+'\n');
-			this.log.add(choix.getCible().subirComp(choix.getSort()));
+			Logs.getInstance().write(new LigneLog(actif.getNom()+" utilise "+choix.getSort().getNom()+'\n',"Combat"));
+			choix.getCible().subirComp(choix.getSort());
 			actif.reduireMana(choix.getSort().getCout());
 		}
 		
@@ -226,7 +255,7 @@ public class Combat {
 		
 		if(actif.getEffet().size()>0)
 		{
-			this.log.add(actif.subirEffet());
+		actif.subirEffet();
 		}
 	}
 	
@@ -242,24 +271,24 @@ public class Combat {
 					if(sort==null)
 						
 					{
-					this.log.add(attaque(Cible,actif));	
+					attaque(Cible,actif);	
 					
 					}
 					else
 					{
 						if(actif.getMana()<sort.getCout())
 						{
-							this.log.add("Pas assez de Mana !");
+							Logs.getInstance().write(new LigneLog("Pas assez de Mana !","Combat"));
 						}
 						else
 						{
-						this.log.add(Cible.subirComp(sort));
+						Cible.subirComp(sort);
 						actif.reduireMana(sort.getCout());
 						}
 					}
 					if(actif.getEffet().size()>0)
 					{
-						this.log.add(actif.subirEffet());
+						actif.subirEffet();
 					}
 					
 	

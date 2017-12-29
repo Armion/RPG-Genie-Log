@@ -37,7 +37,7 @@ public abstract class Item {
 	{
 		for(Effect e : effects)
 		{
-			e.activer(log);
+			e.activer();
 		}
 	}
 	

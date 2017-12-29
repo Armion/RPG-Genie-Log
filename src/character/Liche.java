@@ -38,12 +38,6 @@ public class Liche extends Ennemi {
 		this.setText("src/Combat/personnages/sprites/liche.png");
 	}
 	
-	public static int getLoot()
-	{
-		return 1;
-	}
-	
-	
 	
 	
 	
