@@ -454,6 +454,7 @@ public class CombatScreen extends BasicGameState {
 		if(this.status==8)
 		{
 			arg2.drawString("Victoire !",(arg0.getWidth()/12)*4, 0*(arg0.getHeight()/19)+(arg0.getHeight()/5)*4);
+			this.combat.getLog();
 			for(int i=0;i<this.combat.log.size();i++)
 			{
 			
@@ -656,7 +657,7 @@ public class CombatScreen extends BasicGameState {
 	
 		if(this.tourJoueur==false && this.status==1 && debut==false)
 		{
-			this.combat.actionIA(current);
+			this.combat.actionIA(this.current);
 			this.status=2;
 		}
 		
@@ -722,7 +723,7 @@ public class CombatScreen extends BasicGameState {
 			{
 				this.actif=false;
 			}
-			else
+			else if(this.passage.size()>0)
 			{
 				this.current=this.passage.get(0);
 				this.tourJoueur=this.current.isFriendly();
@@ -743,6 +744,10 @@ public class CombatScreen extends BasicGameState {
 		
 		if(this.status==8)	
 		{
+			this.combat.log=new ArrayList<String>();
+			Logs.getInstance().deleteType("Combat");
+			this.combat.getLog();
+			
 			for(Entitee i : this.groupe)
 			{
 			

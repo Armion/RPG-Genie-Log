@@ -120,7 +120,7 @@ public abstract class Entitee {
 	
 	public abstract boolean isFriendly();
 	
-	public abstract String getXP(int xp);
+	public abstract void getXP(int xp);
 	
 	
 	public void reduireMana(int cout)

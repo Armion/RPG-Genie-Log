@@ -32,7 +32,7 @@ public abstract class Joueur extends Entitee {
 	}
 	
 	@Override
-	public String getXP(int xp)
+	public void getXP(int xp)
 	{
 		String log="";
 		log=log+this.getNom()+" gagne "+xp+" points d'xp !";
@@ -45,7 +45,7 @@ public abstract class Joueur extends Entitee {
 		log=log+this.lvlUp();
 	}
 	
-	return log;
+	
 		
 	}
 	

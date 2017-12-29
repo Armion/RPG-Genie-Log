@@ -100,7 +100,6 @@ public class Combat {
 	public void loot()
 	{
 		 Team.getInstance().addMoney(recompense/4);
-		 this.log.add("Vous gagnez "+(recompense/4)+" pièces d'or");
 		 Logs.getInstance().write(new LigneLog("Vous gagnez "+(recompense/4)+" pièces d'or","Combat"));
 		 Loot.getInstance().getFact().earnLoot(this.recompense);
 	}

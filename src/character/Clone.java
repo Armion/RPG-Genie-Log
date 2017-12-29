@@ -34,9 +34,9 @@ public class Clone extends Entitee {
 	}
 
 	@Override
-	public String getXP(int xp) {
+	public void getXP(int xp) {
 		
-		return "";
+	
 	}
 	
 	@Override
