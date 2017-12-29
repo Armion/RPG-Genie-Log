@@ -92,5 +92,15 @@ public class Team {
 		membres.add(membre);
 	}
 	
+	public void addMoney(int money)
+	{
+		this.money=this.money+money;
+	}
+	
+	public void removeMoney(int reduce)
+	{
+		this.money=this.money-reduce;
+	}
+	
 
 }

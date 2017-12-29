@@ -21,7 +21,10 @@ public abstract class Ennemi extends Entitee {
 	}
 	
 
-
+	public int getLoot()
+	{
+		return this.loot;
+	}
 			
 		
 		

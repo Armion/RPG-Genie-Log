@@ -18,6 +18,7 @@ import character.Joueur;
 import competences.Competence;
 import items.Item;
 import map.MapGameState;
+import singleton.log.Logs;
 import singleton.Team;
 import items.consommables.*;;
 public class CombatScreen extends BasicGameState {
@@ -255,6 +256,7 @@ public class CombatScreen extends BasicGameState {
 			else if(this.status==3)
 			{
 				this.combat.actionJoueur(current, null, this.combat.ciblage(current, true).get(curseur));
+				this.combat.getLog();
 				this.status=6;
 				this.curseur=1;
 			}
@@ -264,6 +266,8 @@ public class CombatScreen extends BasicGameState {
 				this.combat.actionJoueur(current, this.choix, this.combat.ciblage(current, true).get(curseur));
 				else
 				this.combat.actionJoueur(current, this.choix, this.combat.ciblage(current, false).get(curseur));
+				
+				this.combat.getLog();
 				this.status=6;
 				this.choix=null;
 				this.curseur=1;
@@ -298,7 +302,7 @@ public class CombatScreen extends BasicGameState {
 				}
 				
 				
-				
+				this.combat.getLog();
 				this.status=6;
 			}
 			
@@ -415,6 +419,7 @@ public class CombatScreen extends BasicGameState {
 				{
 				
 				arg2.drawString(this.combat.log.get(i),(arg0.getWidth()/12)*4, i*(arg0.getHeight()/19)+(arg0.getHeight()/5)*4);
+					
 				
 				}
 			}
@@ -433,6 +438,7 @@ public class CombatScreen extends BasicGameState {
 		{
 			if(this.status==2)
 			{
+				this.combat.getLog();
 				for(int i=0;i<this.combat.log.size();i++)
 				{
 				
@@ -706,6 +712,7 @@ public class CombatScreen extends BasicGameState {
 		if(this.status==7)
 		{
 			this.combat.log=new ArrayList<String>();
+			Logs.getInstance().deleteType("Combat");
 			if(this.passage.size()>0)
 			{this.passage.remove(0);}
 			
@@ -735,12 +742,13 @@ public class CombatScreen extends BasicGameState {
 		}
 		
 		if(this.status==8)	
-		{this.combat.log=new ArrayList<String>();
+		{
 			for(Entitee i : this.groupe)
 			{
 			
-				this.combat.log.add(i.getXP(this.combat.getRecomp()));
+				i.getXP(this.combat.getRecomp());
 			}
+			this.combat.loot();
 		}
 		
 		

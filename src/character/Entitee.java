@@ -8,6 +8,10 @@ import org.newdawn.slick.SpriteSheet;
 import competences.*;
 import effects.FightEffect;
 import items.Item;
+import items.equipements.Equipement;
+import singleton.Team;
+import singleton.log.LigneLog;
+import singleton.log.Logs;
 
 
 public abstract class Entitee {
@@ -21,7 +25,7 @@ public abstract class Entitee {
 	protected int manaMax;
 	protected int mana;
 	protected ArrayList<Competence> sorts=new ArrayList<Competence>();
-	protected ArrayList<Item> equipements=new ArrayList<Item>();
+	protected ArrayList<Equipement> equipements=new ArrayList<Equipement>();
 	
 	protected int posX;
 	protected int posY;
@@ -64,33 +68,33 @@ public abstract class Entitee {
 	/*#####zone logique#####*/
 
 		
-	public String getDegats(int deg)
-	{String log="";
+	public void getDegats(int deg)
+	{
 		this.pv=this.pv-deg;
 		
 		if(this.pv>0)
 		{
-			return log;
+			
 		}
 		else 
 		{
-			log=log+this.getNom()+" est neutralisé !";
-			return log;
+			Logs.getInstance().write(new LigneLog(this.getNom()+" est neutralisé !","Combat"));
+			
 		}
 	}
-	public String getHeal(int heal)
+	public void getHeal(int heal)
 	{
-		String log="";
+		
 		if(heal>this.pvMax-this.pv)
 		{heal=this.pvMax-this.pv;}
 		this.pv=this.pv+heal;
-		log=log+this.nom+" regagne "+heal+" PV!"+'\n';
+		Logs.getInstance().write(new LigneLog(this.nom+" regagne "+heal+" PV!"+'\n',"Combat"));
 		
 		if(this.pv>this.pvMax)
 		{
 			this.pv=this.pvMax;
 		}
-		return log;
+		
 	}
 	
 	public int getAtk()
@@ -146,7 +150,7 @@ public abstract class Entitee {
 	}
 	
 	
-	public String subirComp(Competence sort)
+	public void subirComp(Competence sort)
 	{ 
 		String log="";
 		
@@ -168,15 +172,15 @@ public abstract class Entitee {
 			int degheal=sort.getDeg();
 			if(degheal<0)
 				{
-				log=log+this.nom+" subis "+(-degheal)+" points de degats de "+sort.getNom()+'\n';
-					log=log+this.getDegats(-degheal)+'\n';
+				Logs.getInstance().write(new LigneLog(this.nom+" subis "+(-degheal)+" points de degats de "+sort.getNom()+'\n',"Combat"));
+				this.getDegats(-degheal);
 				}
 			else if(degheal>0)
 				{
-					log=log+this.getHeal(degheal)+'\n';
+					this.getHeal(degheal);
 				}
 		
-		return log;
+		
 		
 	}
 	
@@ -205,30 +209,31 @@ public abstract class Entitee {
 		}
 	}
 	
-	public String subirEffet()
+	public void subirEffet()
 	{
 		retirerEffets();
-		String log="";
+		
 		for (FightEffect i : this.effets_subis)
 		{
 			
 			int deg=i.getDegheal();
 			if(deg<0)
 			{
-				log=log+this.nom+" subis "+(-deg)+" points de degats de l'effet de "+i.getNom()+'\n';
-				log=log+this.getDegats(-deg);
+				Logs.getInstance().write(new LigneLog(this.nom+" subis "+(-deg)+" points de degats de l'effet de "+i.getNom()+'\n',"Combat"));
+				this.getDegats(-deg);
 				
 			}
 			else if(deg>0)
 			{
-				log=log+this.getHeal(deg)+" venant de "+i.getNom()+'\n';
+				
+				this.getHeal(deg);
 			}
 			
 			i.reduireDurée();
 			
 		}
 		
-		return log;
+		
 	}
 	
 	public ArrayList<Competence> getSorts()
@@ -278,6 +283,73 @@ public abstract class Entitee {
 	public ArrayList<FightEffect> getEffet()
 	{
 		return this.effets_subis;
+	}
+	
+	
+	private String addEquip(Equipement equip)
+	{
+		this.equipements.add(equip);
+		this.atk=this.atk+equip.getBDeg();
+		this.def=this.def+equip.getBDef();
+		this.pvMax=this.pvMax+equip.getBPV();
+		this.manaMax=this.manaMax+equip.getBMana();
+		equip.setEquiped(true);
+		Team.getInstance().getInventory().deleteItem(equip.getId());
+		
+		return this.nom+" equipe "+equip.getName();
+	}
+	
+	public String EquiperItem(Equipement equip)
+	{
+		int type=equip.getType();
+		int nb=0;
+		for(Equipement i :this.equipements)
+		{
+			if(i.getType()==type)
+			{
+				nb++;
+			}
+		}
+		
+		if((nb==1 &&(type==1 || type==3))||nb==2 &&type==2)
+		{
+			return "Trop d'equipement de ce type déjà equipé !";
+		}
+		
+		else
+		{
+			return addEquip(equip);
+		}
+		
+	}
+	
+	public void DesequiperItem(Equipement equip)
+	{
+		boolean here=false;
+		for(Equipement i : this.equipements)
+		{
+			if (i==equip)
+			{
+				here=true;
+			}
+		}
+		
+		if(here==true)
+		{
+			this.equipements.remove(equip);
+			this.atk=this.atk-equip.getBDeg();
+			this.def=this.def-equip.getBDef();
+			this.pvMax=this.pvMax-equip.getBPV();
+			this.manaMax=this.manaMax-equip.getBMana();
+			equip.setEquiped(false);
+			Team.getInstance().getInventory().getItemsList().add(equip);
+		}
+		
+	}
+	
+	public ArrayList<Equipement> getEquip()
+	{
+		return this.equipements;
 	}
 	
 

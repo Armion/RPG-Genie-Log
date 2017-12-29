@@ -74,19 +74,41 @@ public class Logs extends Observable{
 	}
 	
 	public void deleteType(String type)
+
 	{
 		
+		boolean blesse=false;
+		int compteur=0;
+		while(blesse==false && compteur<this.logs.size())
+		{
+			if(this.logs.get(compteur).getType().equals(type))
+			{
+				this.logs.remove(this.logs.get(compteur));
+				this.nbLogs--;
+				
+				deleteType(type);
+				blesse=true;
+			}
+			
+			compteur++;
+		}
+		
+		
+		
+		/*
 		Iterator<LigneLog> it = this.logs.iterator();
 		LigneLog ligne;
 		
-		
 		while(it.hasNext())
-		{
-			ligne = it.next();
-			if(ligne.getType().equals(type))
-				this.logs.remove(ligne);
-		}
+		  {
+		   ligne = it.next();
+		   if(ligne.getType().equals(type))
+		    this.logs.remove(ligne);
+		  }*/
 	}
+
+	
+
 
 }
  

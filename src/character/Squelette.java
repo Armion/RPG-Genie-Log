@@ -21,10 +21,6 @@ public class Squelette extends Ennemi {
 		this.profil=1;
 		this.setText("src/Combat/personnages/sprites/squellete.png");
 	}
-	
-	public static int getLoot()
-	{
-		return 1;
-	}
+
 
 }
