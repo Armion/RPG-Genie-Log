@@ -66,6 +66,15 @@ public class Logs extends Observable{
 	{
 		return this.nbLogs;
 	}
+	
+	public void deleteType(String type)
+	{
+		for(LigneLog e : this.logs)
+		{
+			if(e.getType().equals(type))
+				logs.remove(e);
+		}
+	}
 
 }
  
