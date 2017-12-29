@@ -10,9 +10,11 @@ import character.Joueur;
 import character.Paladin;
 import inventaire.Inventory;
 import items.Item;
+import items.consommables.MedaillonArmion;
 import items.consommables.Pain;
 import items.consommables.potions.HealPot;
 import items.consommables.potions.ManaPot;
+import items.equipements.Amulette;
 
 public class Team {
 	
@@ -54,6 +56,9 @@ public class Team {
 			listeInventaire.add(new Pain());
 			listeInventaire.add(new ManaPot(80));
 		}
+		
+		listeInventaire.add(new MedaillonArmion());
+		listeInventaire.add(new Amulette());
 		
 
 

@@ -68,11 +68,11 @@ public class MapInventory implements ComponentListener{
 		}
 		
 		gauche.render(container, g);
-		g.drawString("" + page, x+ 35, y+398);
+		g.drawString("" + page, x+ 35, y+400);
 		droit.render(container, g);
 		
-		g.drawImage(gold, x+150, y+397);
-		g.drawString(Team.getInstance().getMoney() +"", x+175, y+398);
+		g.drawImage(gold, x+130, y+397);
+		g.drawString(Team.getInstance().getMoney() +"", x+160, y+400);
 		
 	}
 	
