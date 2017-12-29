@@ -15,6 +15,7 @@ import character.Joueur;
 import character.Liche;
 import character.Squelette;
 import competences.*;
+import effects.FightEffect;
 import singleton.log.LigneLog;
 import singleton.log.Logs;
 import singleton.Loot;
@@ -22,12 +23,15 @@ import singleton.Team;
 
 public class Combat {
 	
-	private int round;
+	public int round;
 	private int recompense;
 	private ArrayList<Entitee> protagonistes;
 	private GameContainer fenetre;
 	public ArrayList<String> log;
 	ArrayList<Entitee>passage=new ArrayList<Entitee>();
+	public Competence choixIA;
+	public Entitee cibleIA;
+	private IA ia=new IA();
 	
 	
 	
@@ -110,7 +114,7 @@ public class Combat {
 		for(LigneLog i : Logs.getInstance().getCombatLog())
 		{
 			this.log.add(i.getContent());
-			System.out.println(this.log.get(this.log.size()-1));
+			
 		}
 		
 	}
@@ -234,7 +238,7 @@ public class Combat {
 		
 		if(ciblage(actif,true).size()>0)
 		{
-		Action choix=IA.decision(actif, ciblage(actif,true), ciblage(actif,false));
+		Action choix=ia.decision(actif, ciblage(actif,true), ciblage(actif,false));
 		
 		if(choix.getSort()==null)
 		{
@@ -244,17 +248,41 @@ public class Combat {
 		else
 		{
 			Logs.getInstance().write(new LigneLog(actif.getNom()+" utilise "+choix.getSort().getNom()+'\n',"Combat"));
+			if(choix.getSort().getZone()==2)
+			{
+				
+				for(Entitee i :this.ciblage(actif,choix.getSort().getCible()))
+				{
+					i.subirComp(choix.getSort());
+				}
+			}
+			else if(choix.getSort().getZone()==1)
+			{
 			choix.getCible().subirComp(choix.getSort());
+			
+			}
 			actif.reduireMana(choix.getSort().getCout());
-		}
-		
+			
 		}
 		
 		if(actif.getEffet().size()>0)
 		{
 		actif.subirEffet();
+	
 		}
-		System.out.println(actif.getNom());
+		
+		
+	
+		
+			this.choixIA=choix.getSort();
+			this.cibleIA=choix.getCible();
+		}
+		
+		
+		
+		
+		
+		
 	}
 	
 	
@@ -263,7 +291,6 @@ public class Combat {
 	public void actionJoueur(Entitee actif,Competence sort,Entitee Cible)
 	{
 		
-	
 			if(ciblage(actif,true).size()>0) {
 				
 					if(sort==null)
@@ -280,12 +307,27 @@ public class Combat {
 						}
 						else
 						{
+							if(sort.getZone()==1)
+							{
 						Cible.subirComp(sort);
 						actif.reduireMana(sort.getCout());
+							}
+							
+							else if(sort.getZone()==2)
+							{
+							for(Entitee i : this.ciblage(actif, sort.getCible()))
+							{
+							
+								i.subirComp(sort);
+							}
+							
+							}
+							
 						}
 					}
 					if(actif.getEffet().size()>0)
 					{
+						
 						actif.subirEffet();
 					}
 					

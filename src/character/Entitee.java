@@ -152,7 +152,7 @@ public abstract class Entitee {
 	
 	public void subirComp(Competence sort)
 	{ 
-		String log="";
+		
 		
 		if (sort.getDuree()>0)
 		{

@@ -2,13 +2,16 @@ package competences;
 
 import java.util.ArrayList;
 
-import org.newdawn.slick.Image;
 
+import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Animation;
+import org.newdawn.slick.Image;
 public abstract class Competence {
-	
+	protected String path;
 	protected String nom;
-	protected boolean cible; //true=ennemis false =alliées
-	protected int zone;//1=1cibles, 0=self,-1:groupe
+	protected boolean cible; //true=ennemis false =alliï¿½es
+	protected int zone;//1=1cibles, 0=self,2:groupe
 	protected int duree;//0=instant, 1=1 round
 	protected ArrayList<Integer> bolus;//0=bolus sur l'atk, 1=bolus sur la def
 	protected int degheal;
@@ -16,8 +19,11 @@ public abstract class Competence {
 	protected int cout; // cout en mana
 	protected int tag;//1=offensif,2=support,3=soins;
 	protected boolean outOfFight;
+	public int tailleAnim;
+	public Animation[] anim;
+	int x;
+	int y;
 	protected Image icone = null;
-	
 	
 	
 	public int getDegDurr()
@@ -71,10 +77,22 @@ public abstract class Competence {
 	{
 		return this.tag;
 	}
+	public void genererAnim() throws SlickException
+	{
+
+		SpriteSheet sprite = new SpriteSheet(this.path,x,y);
+		Animation anima= new Animation();
+		for(int i=0;i<this.tailleAnim;i++)
+		{
+		anima.addFrame(sprite.getSprite(i, 0), 200);
+		
+		}
+		
 	
+		this.anim[0]=anima;
+	}
 	public Image getIcone()
 	{
 		return this.icone;
 	}
-	
 }

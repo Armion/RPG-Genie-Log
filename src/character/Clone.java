@@ -20,7 +20,6 @@ public class Clone extends Entitee {
 		this.atk=atk;
 		this.def=def;
 		this.lvl=lvl;
-		this.effets_subis=zffets;
 		this.manaMax=manaMax;
 		this.mana=mana;
 		this.sorts=sorts;
@@ -69,15 +68,18 @@ public class Clone extends Entitee {
 		
 	}
 	
-	@Override
-	public void subirComp(Competence sort)
+	
+	public void subirCompe(Competence sort)
 	{ 
 		
 		if (sort.getDuree()>0)
 		{
 			this.effets_subis.add(new FightEffect(sort.getDuree(),sort.getBolus(),sort.getDegDurr(),sort.getNom()));
+			if(sort.getBolus()!=null)
+			{
 			this.atk=this.atk+sort.getBolus().get(0);
 			this.def=this.def+sort.getBolus().get(1);
+			}
 			
 		}
 		
