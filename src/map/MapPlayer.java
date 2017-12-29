@@ -14,7 +14,7 @@ import character.Entitee;
 //classe qui représente le joueur sur la map
 public class MapPlayer {
 
-	private float x = 300, y = 300;
+	private float x = 608, y = 512;
 	private boolean onStair = false;
 	private Animation[] animations = new Animation[8];
 	private float dx = 0, dy = 0;

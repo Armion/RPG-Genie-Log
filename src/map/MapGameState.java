@@ -109,6 +109,10 @@ public class MapGameState extends BasicGameState implements Observer{
 		if(inventaire.isVisible())
 			inventaire.render(container, g);
 		
+		//si l'inventaire doit l'etre, on l'affiche
+		if(skills.isVisible())
+			this.skills.render(container, g);
+		
 		//on affiche les logs
 		this.writeLogs(g);
 		
@@ -167,6 +171,18 @@ public class MapGameState extends BasicGameState implements Observer{
 				}
 				break;
 			}
+		case Input.KEY_P : 
+			{
+				if(! this.skills.isVisible())
+				{
+					this.ouvrirFenetre(this.skills);
+				}
+				else
+				{
+					this.fermerFenetre(this.skills);
+				}
+			break;
+		}
 		}
 		
 	}
@@ -223,7 +239,7 @@ public class MapGameState extends BasicGameState implements Observer{
 		if(!win.isVisible())
 		{
 			win.changeState();
-			this.fenetres.push(this.inventaire);
+			this.fenetres.push(win);
 		}
 	}
 	

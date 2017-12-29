@@ -2,6 +2,8 @@ package competences;
 
 import java.util.ArrayList;
 
+import org.newdawn.slick.Image;
+
 public abstract class Competence {
 	
 	protected String nom;
@@ -14,6 +16,7 @@ public abstract class Competence {
 	protected int cout; // cout en mana
 	protected int tag;//1=offensif,2=support,3=soins;
 	protected boolean outOfFight;
+	protected Image icone = null;
 	
 	
 	
