@@ -47,13 +47,11 @@ public class MainScreenGameState extends BasicGameState implements ComponentList
 		background.draw(0, 0, container.getWidth(), container.getHeight());
 		playButton.render(container, g);
 		exitButton.render(container, g);
-		//g.drawString("Appuyer sur une touche", 300, 300);
 	}
 
 	//methode d'uppdate, il n'y a rien a uppdate dans le menu principal
 	@Override
-	public void update(GameContainer container, StateBasedGame game, int delta)
-			throws SlickException {
+	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 	}
 
 	
@@ -75,6 +73,7 @@ public class MainScreenGameState extends BasicGameState implements ComponentList
 	public int getID() {
 		return ID;
 	}
+	
 
 	@Override
 	public void componentActivated(AbstractComponent source) {

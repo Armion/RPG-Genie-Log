@@ -1,7 +1,7 @@
 
 package main;
 
-import java.util.ArrayList;
+
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
@@ -10,15 +10,11 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import map.MapGameState;
 import Combat.CombatScreen;
-import Combat.personnages.*;
-import character.Assassin;
-import character.Guerrier;
-import character.Joueur;
-import character.Paladin;
+import hud.SelectionTeam;
 
 //classe principal du jeu
 public class Moteur extends StateBasedGame {
-	ArrayList<Joueur> groupe= new ArrayList<Joueur>();
+
 	
 	
 
@@ -46,9 +42,7 @@ public class Moteur extends StateBasedGame {
 	@Override
 	public void initStatesList(GameContainer container) throws SlickException 
 	{
-		this.groupe.add(new Guerrier());
-		this.groupe.add(new Paladin());
-		this.groupe.add(new Assassin());
+
 		//ajout de l'etat menu princpale
 		addState(new MainScreenGameState());
 		
@@ -57,6 +51,8 @@ public class Moteur extends StateBasedGame {
 		
 		//ajout de l'etat des batailles
 		addState(new CombatScreen());
+		//ajout de l'état de selection
+		addState(new SelectionTeam());
 	}
 
 }

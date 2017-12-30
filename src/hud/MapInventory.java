@@ -11,6 +11,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.gui.AbstractComponent;
 import org.newdawn.slick.gui.ComponentListener;
 import org.newdawn.slick.gui.MouseOverArea;
+import org.newdawn.slick.state.StateBasedGame;
 
 import inventaire.Inventory;
 import items.Item;
@@ -30,17 +31,19 @@ public class MapInventory extends HUD implements ComponentListener{
 	private MouseOverArea gauche;
 	private MouseOverArea droit;
 	private GameContainer container;
+	private StateBasedGame game;
 	
 
 	
-	public void init(GameContainer container, Inventory inventaire) throws SlickException {
+	public void init(GameContainer container,StateBasedGame game) throws SlickException {
 		
 		this.inventairePicture = new Image("resources/hud/inventaire.png");
 		this.gold = new Image("resources/hud/GoldCoin.png");
 		this.visible = false;
 		this.page =1;
-		this.inventaire = inventaire;
+		this.inventaire = Team.getInstance().getInventory();
 		this.container = container;
+		this.game = game;
 		
 		this.x = container.getWidth() -  this.inventairePicture.getWidth();
 		this.y = container.getHeight()/2 - this.inventairePicture.getHeight()/2;
@@ -71,6 +74,10 @@ public class MapInventory extends HUD implements ComponentListener{
 		
 	}
 	
+	public void update()
+	{
+		this.loadInventory(container);
+	}
 
 
 	@Override
@@ -81,8 +88,11 @@ public class MapInventory extends HUD implements ComponentListener{
 		{
 			if(source == entry.getKey())
 			{
-				inventaire.useItem(entry.getValue().getId(), Team.getInstance().getTeam().get(0), "");
-				this.loadInventory(this.container);
+				
+				this.game.enterState(SelectionTeam.ID);
+				
+				((SelectionTeam) this.game.getState(SelectionTeam.ID)).setType("item");
+				((SelectionTeam) this.game.getState(SelectionTeam.ID)).setItem(entry.getValue().getId());
 			}
 			
 		}

@@ -13,6 +13,7 @@ import org.newdawn.slick.Color;
 //represente l'etat du jeu quand on est dans la map
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
@@ -23,6 +24,7 @@ import Combat.CombatScreen;
 import hud.HUD;
 import hud.MapInventory;
 import hud.MapSkill;
+import hud.SelectionTeam;
 import main.MainScreenGameState;
 import singleton.Team;
 import singleton.log.LigneLog;
@@ -58,10 +60,11 @@ public class MapGameState extends BasicGameState implements Observer{
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 		
 		this.container = container;
+
 		
 		
-		this.inventaire.init(container, this.team.getInventory());
-		this.skills.init(container);
+		this.inventaire.init(container, game);
+		this.skills.init(container, game);
 
 		this.musicBack = new Music("resources/sound/lost-in-the-meadows.ogg");
 		this.map.init();
@@ -112,6 +115,7 @@ public class MapGameState extends BasicGameState implements Observer{
 		//si l'inventaire doit l'etre, on l'affiche
 		if(skills.isVisible())
 			this.skills.render(container, g);
+		
 		
 		//on affiche les logs
 		this.writeLogs(g);
@@ -266,5 +270,16 @@ public class MapGameState extends BasicGameState implements Observer{
 		}
 		
 	}
+	
+	public MapSkill getmapSkill()
+	{
+		return this.skills;
+	}
+	
+	public MapInventory getInventory()
+	{
+		return this.inventaire;
+	}
+	
 
 }

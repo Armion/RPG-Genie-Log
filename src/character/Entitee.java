@@ -1,5 +1,6 @@
 package character;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
@@ -28,6 +29,7 @@ public abstract class Entitee {
 	protected ArrayList<Competence> sorts=new ArrayList<Competence>();
 	protected ArrayList<Equipement> equipements=new ArrayList<Equipement>();
 	protected Image portrait;
+	protected UUID id;
 	
 	
 	protected int posX;
@@ -37,6 +39,7 @@ public abstract class Entitee {
 	
 	public Entitee()
 	{
+		this.id = UUID.randomUUID();
 		 try {
 			portrait = new Image("resources/Icones/perso.png");
 		} catch (SlickException e) {

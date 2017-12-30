@@ -10,6 +10,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.gui.AbstractComponent;
 import org.newdawn.slick.gui.ComponentListener;
 import org.newdawn.slick.gui.MouseOverArea;
+import org.newdawn.slick.state.StateBasedGame;
 
 import competences.Competence;
 import main.Couple;
@@ -22,13 +23,16 @@ public class MapSkill extends HUD implements ComponentListener{
 	private int y;
 	private Image skillsPicture;
 	private List<Couple<Joueur, List<Couple<Competence, MouseOverArea>>>> liste;
-	private SelectionTeam select;
+	private GameContainer container;
+	private StateBasedGame game;
+	private Competence competence;
 
 	
 	
-	public void init(GameContainer container) throws SlickException 
+	public void init(GameContainer container, StateBasedGame game) throws SlickException 
 	{
-		
+		this.game = game;
+		this.container = container;
 
 		skillsPicture = new Image("resources/hud/Skill.png");
 		this.x = 10;
@@ -36,7 +40,6 @@ public class MapSkill extends HUD implements ComponentListener{
 		
 		this.loadSkill(container);
 		
-		this.select = SelectionTeam.getInstance(container);
 		
 	}
 	
@@ -53,8 +56,6 @@ public class MapSkill extends HUD implements ComponentListener{
 			}
 			
 		}
-		if(select.isVisible())
-			select.render(container, g);
 	}
 	
 	
@@ -66,6 +67,7 @@ public class MapSkill extends HUD implements ComponentListener{
 		
 		int i = 0;
 		int t = 0;
+
 		
 		for(Joueur e : Team.getInstance().getTeam())
 		{
@@ -91,6 +93,16 @@ public class MapSkill extends HUD implements ComponentListener{
 	}
 
 
+	public void update(StateBasedGame game)
+	{
+	
+	}
+	
+	public Competence getCompetence()
+	{
+		return this.competence;
+	}
+	
 	
 	
 	@Override
@@ -102,9 +114,12 @@ public class MapSkill extends HUD implements ComponentListener{
 			{
 				if(source == c.getValue())
 				{
+					game.enterState(SelectionTeam.ID);
 					l.getKey().reduireMana(c.getKey().getCout());
-						select.changeState();
-					Team.getInstance().getTeam().get(0).subirComp(c.getKey());
+					competence = c.getKey();
+					((SelectionTeam) game.getState(SelectionTeam.ID)).setType("competence");
+					System.out.println(((SelectionTeam) game.getState(SelectionTeam.ID)).getSelection().getNom());
+					
 				}
 			}
 			
