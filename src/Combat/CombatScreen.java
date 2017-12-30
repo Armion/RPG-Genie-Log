@@ -337,11 +337,11 @@ public class CombatScreen extends BasicGameState {
 				{
 					
 				
-				Team.getInstance().getInventory().useItem(this.objet,this.combat.ciblage(current, true).get(curseur), this.combat.log.get(0));
+				Team.getInstance().getInventory().useItem(this.objets.get(this.objet).getId(),this.combat.ciblage(current, true).get(curseur), this.combat.log.get(0));
 				}
 				else {
 				
-				Team.getInstance().getInventory().useItem(this.objet,this.combat.ciblage(current, false).get(curseur), this.combat.log.get(0));
+				Team.getInstance().getInventory().useItem(this.objets.get(this.objet).getId(),this.combat.ciblage(current, false).get(curseur), this.combat.log.get(0));
 				}
 				
 				

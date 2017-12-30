@@ -25,8 +25,8 @@ public abstract class Joueur extends Entitee {
 	protected String lvlUp()//TODO:Augmenter les carac(voir redéfinir dans la classe de perso)
 	{
 		String log="";
-		log=log+this.getNom()+" monte d'un niveau !";
-		Logs.getInstance().write(new LigneLog(this.getNom()+" monte d'un niveau !","Combat"));
+		log=log+this.getNom()+" monte d'un niveau ! ";
+		Logs.getInstance().write(new LigneLog(this.getNom()+" monte d'un niveau ! ","Combat"));
 		this.xp=this.xp-(this.lvl*100);
 		this.lvl=this.lvl+1;
 		getXP(0);
@@ -41,7 +41,7 @@ public abstract class Joueur extends Entitee {
 	{
 		String log="";
 		log=log+this.getNom()+" gagne "+xp+" points d'xp !";
-		Logs.getInstance().write(new LigneLog(this.getNom()+" gagne "+xp+" points d'xp !","Combat"));
+		Logs.getInstance().write(new LigneLog(this.getNom()+" gagne "+xp+" points d'xp ! ","Combat"));
 		this.xp=this.xp+xp;
 	
 	
