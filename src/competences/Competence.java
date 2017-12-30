@@ -84,13 +84,15 @@ public abstract class Competence {
 		Animation anima= new Animation();
 		for(int i=0;i<this.tailleAnim;i++)
 		{
-		anima.addFrame(sprite.getSprite(i, 0), 200);
+		anima.addFrame(sprite.getSprite(i, 0), 150);
 		
 		}
 		
 	
 		this.anim[0]=anima;
 	}
+	
+	
 	public Image getIcone()
 	{
 		return this.icone;

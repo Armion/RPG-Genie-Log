@@ -535,7 +535,11 @@ public class CombatScreen extends BasicGameState {
 	public void afficherCompetence(Graphics g,GameContainer con) throws SlickException
 	{
 		if(this.choix!=null)
+			{if(this.choix.getZone()==1)
 		g.drawAnimation(this.choix.anim[0], this.cible.getX(), this.cible.getY());
+			else if(this.choix.getZone()==2)
+			g.drawAnimation(this.choix.anim[0], this.current.getX(), con.getHeight()/5+(1*(con.getHeight()/8))+1*con.getHeight()/12);
+			}
 		else
 		g.drawAnimation(this.anim[0], this.cible.getX(), this.cible.getY());
 			
@@ -734,7 +738,9 @@ public class CombatScreen extends BasicGameState {
 			this.combat.getLog();
 			if(this.choix!=null && this.choix.path!=null)
 			{
+				System.out.println(this.choix.getNom());
 			this.choix.genererAnim();
+			System.out.println(this.choix.anim[0]==null);
 			}
 			this.status=2;
 			this.compteur=1;
@@ -804,8 +810,11 @@ public class CombatScreen extends BasicGameState {
 			Logs.getInstance().deleteType("Combat");
 			Logs.getInstance().deleteType("Effect");
 			this.choix=null;
+			this.cible=null;
+			this.objets=null;
 			if(this.passage.size()>0)
 			{this.passage.remove(0);}
+			
 			
 			this.combat.retirerBlesse(passage);
 			
