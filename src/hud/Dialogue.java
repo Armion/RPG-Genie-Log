@@ -49,19 +49,23 @@ public class Dialogue extends HUD  implements ComponentListener{
 		String msg = "";
 		int i = 0;
 		
+		msg = locuteur.getNom();
+		
+		g.drawString(msg, x+13, y+18);
+		msg = "";
 		
 		for(char c : locuteur.getDialogue().toCharArray())
 		{
 			msg += c;
 			if(msg.length() == 24)
 				{
-					g.drawString(msg, x+13, y+20 + 15*i);
+					g.drawString(msg, x+13, y+20 + 15*(1+ i));
 					i++;
 					msg = "";
 				}
 				
 		}
-		g.drawString(msg, x+13, y+20 + 15*i);
+		g.drawString(msg, x+13, y+20 + 15*(1+i));
 		
 	}
 	
