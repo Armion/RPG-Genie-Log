@@ -146,7 +146,7 @@ public class Combat {
 			{
 				popo=true;
 			}
-			System.out.println(i.getContent());
+			
 			
 		}
 		

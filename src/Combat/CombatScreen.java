@@ -395,7 +395,7 @@ public class CombatScreen extends BasicGameState {
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
 		this.groupe=(ArrayList<Joueur>) Team.getInstance().getTeam();
 		this.container=arg0;
-		this.background=new Image("src/Combat/background/grotte.jpg");
+		this.background=new Image("src/Combat/background/cave.png");
 		this.music=new Music("src/Combat/Combat_Music_1.ogg");
 		this.menu=new Image("src/Combat/background/interface.png");
 		this.hud=new Image("src/Combat/personnages/sprites/hud.png");
