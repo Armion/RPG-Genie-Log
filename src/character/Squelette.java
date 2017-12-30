@@ -19,7 +19,7 @@ public class Squelette extends Ennemi {
 		this.loot=1;
 		this.nom="Squellete "+nom;
 		this.profil=1;
-		this.setText("src/Combat/personnages/sprites/squellete.png");
+		this.setText("src/Combat/personnages/sprites/squelette.png");
 	}
 
 
