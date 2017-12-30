@@ -21,18 +21,19 @@ public class Map {
 
 		this.tiledMap.render(0, 0, 0);
 		this.tiledMap.render(0, 0, 1);
+		this.tiledMap.render(0, 0, 2);
 	}
 
 	//cette fois la partie devant le joueur (2 couches suivantes)
 	public void renderForeground() {
-		this.tiledMap.render(0, 0, 2);
 		this.tiledMap.render(0, 0, 3);
+		this.tiledMap.render(0, 0, 4);
 	}
 
 	//methode qui detecte les collision avec le joueur et un element de la map
 	public boolean isCollision(float x, float y) {
 		
-		//on va charger la couche "logic" qui est la couche représenter les cases qui engendrent une collision
+		//on va charger la couche "collision" qui est la couche représenter les cases qui engendrent une collision
 		int tileW = this.tiledMap.getTileWidth();
 		int tileH = this.tiledMap.getTileHeight();
 		int logicLayer = this.tiledMap.getLayerIndex("collision");

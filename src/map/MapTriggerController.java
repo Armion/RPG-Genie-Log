@@ -34,6 +34,10 @@ public class MapTriggerController {
 				} else if ("change-map".equals(this.map.getObjectType(objectID))) {
 					this.changeMap(objectID);
 				}
+				else if("PNJ".equals(this.map.getObjectType(objectID)))
+				{
+					
+				}
 			}
 		}
 	}
@@ -60,7 +64,7 @@ public class MapTriggerController {
 		this.teleport(objectID);
 		String newMap = this.map.getObjectProperty(objectID, "dest-map", "undefined");
 		if (!"undefined".equals(newMap)) {
-			this.map.changeMap("map/" + newMap);
+			this.map.changeMap("resources/map/" + newMap);
 		}
 	}
 
