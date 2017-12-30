@@ -11,7 +11,7 @@ public class Paladin extends Joueur {
 	public Paladin() throws SlickException
 	{
 		super();
-		this.atk=5;
+		this.atk=10;
 		this.def=10;
 		this.pvMax=20;
 		this.pv=this.pvMax;

@@ -17,7 +17,7 @@ public class MultiHeal extends Competence{
 		this.bolus= null;
 		this.cible=false;
 		this.duree=1;
-		this.zone=1;
+		this.zone=2;
 		this.degheal=19;
 		this.deghealDurr=0;
 		this.cout=50;

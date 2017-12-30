@@ -1,6 +1,7 @@
 package Combat;
 import java.util.ArrayList;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -9,6 +10,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.font.effects.ColorEffect;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -22,6 +24,7 @@ import map.MapGameState;
 import singleton.log.Logs;
 import singleton.Team;
 import items.consommables.*;;
+
 public class CombatScreen extends BasicGameState {
 	
 	private GameContainer container;
@@ -46,6 +49,8 @@ public class CombatScreen extends BasicGameState {
 	ArrayList<Item> objets;
 	int objet;
 	int compteur;
+	boolean bloqueurLoot=false;
+	Animation anim[]=new Animation[1];
 	
 	
 	private static final Color LIFE=new Color(255,0,0);
@@ -53,8 +58,17 @@ public class CombatScreen extends BasicGameState {
 	private static final Color WHITE=new Color(255,255,255);
 	private static final Color BLACK=new Color(0,0,0);
 	
-	public CombatScreen()
-	{}
+	public CombatScreen() throws SlickException
+	{
+
+		SpriteSheet sprite = new SpriteSheet("src/resources/sprites/Slash_2.png",102,138);
+		Animation anima= new Animation();
+		for(int i=0;i<5;i++)
+		{
+		anima.addFrame(sprite.getSprite(i, 0), 100);
+		}
+		this.anim[0]=anima;
+	}
 	
 
 	
@@ -263,7 +277,9 @@ public class CombatScreen extends BasicGameState {
 			
 			else if(this.status==3)
 			{
+				this.cible= this.combat.ciblage(current, true).get(curseur);
 				this.combat.actionJoueur(current, null, this.combat.ciblage(current, true).get(curseur));
+				
 				this.combat.getLog();
 				this.status=6;
 				this.curseur=1;
@@ -427,7 +443,8 @@ public class CombatScreen extends BasicGameState {
 			
 			else if(this.status==6)
 			{
-				
+				if(this.choix==null || this.choix.getNom().equals("Lance Flamme"))
+					afficherCompetence(arg2,arg0);
 				for(int i=0;i<this.combat.log.size();i++)
 				{
 				
@@ -452,9 +469,9 @@ public class CombatScreen extends BasicGameState {
 			if(this.status==2)
 			{
 				//this.combat.getLog();
-				/*
-				if(this.choix!=null && this.choix.getNom().equals("Lance Flamme"))
-				afficherCompetence(arg2,arg0);*/
+				
+				if(this.choix==null || this.choix.getNom().equals("Lance Flamme"))
+				afficherCompetence(arg2,arg0);
 				
 				for(int i=0;i<this.combat.log.size();i++)
 				{
@@ -497,8 +514,11 @@ public class CombatScreen extends BasicGameState {
 	}
 	public void afficherCompetence(Graphics g,GameContainer con) throws SlickException
 	{
-		
+		if(this.choix!=null)
 		g.drawAnimation(this.choix.anim[0], this.cible.getX(), this.cible.getY());
+		else
+		g.drawAnimation(this.anim[0], this.cible.getX(), this.cible.getY());
+			
 	}
 	
 	public void afficherObjets(Graphics g,GameContainer con,int page)
@@ -656,12 +676,14 @@ public class CombatScreen extends BasicGameState {
 		{
 			  music.loop();
 		}
+		
 		if(debut==true)
 		{
 			this.status=1;
 			this.combat=new Combat(groupe,arg0);
 			this.combat.debutCombat(0);
 			debut=false;
+			this.bloqueurLoot=false;
 			Logs.getInstance().deleteType("Combat");
 			Logs.getInstance().deleteType("Effect");
 	
@@ -679,7 +701,7 @@ public class CombatScreen extends BasicGameState {
 			maitreCombat();
 		}
 	
-		if(this.tourJoueur==false && this.status==1 && debut==false)
+		if(this.tourJoueur==false && this.status==1 && debut==false && arg2>5)
 		{	
 			if(this.compteur==0)
 			{	
@@ -688,10 +710,10 @@ public class CombatScreen extends BasicGameState {
 			this.choix=combat.choixIA;
 			this.cible=combat.cibleIA;
 			this.combat.getLog();
-			/*if(this.choix!=null && this.choix.getNom().equals("Lance Flamme"))
+			if(this.choix!=null && this.choix.getNom().equals("Lance Flamme"))
 			{
 			this.choix.genererAnim();
-			}*/
+			}
 			this.status=2;
 			this.compteur=1;
 			}
@@ -710,7 +732,7 @@ public class CombatScreen extends BasicGameState {
 			this.debut=true;
 			this.actif=false;
 			Logs.getInstance().deleteType("Combat");
-
+			Logs.getInstance().deleteType("Effect");
 			this.status=0;
 			for(Entitee i :this.groupe)
 			{
@@ -770,10 +792,10 @@ public class CombatScreen extends BasicGameState {
 				this.current=this.passage.get(0);
 				this.tourJoueur=this.current.isFriendly();
 			}
-			this.status=1;
+			
 
 			
-			
+			this.status=1;
 			if(combat.conditionVictoire()==1)
 			{
 				this.combat.log=new ArrayList<String>();
@@ -786,10 +808,13 @@ public class CombatScreen extends BasicGameState {
 				this.status=9;
 			}
 			this.compteur=0;
+			
 		}
 		
 		if(this.status==8)	
 		{
+			if(this.bloqueurLoot==false)
+			{
 			
 			for(Entitee i : this.groupe)
 			{
@@ -798,6 +823,8 @@ public class CombatScreen extends BasicGameState {
 			}
 			this.combat.loot();
 			this.combat.getLog();
+			this.bloqueurLoot=true;
+			}
 		}
 		
 		
