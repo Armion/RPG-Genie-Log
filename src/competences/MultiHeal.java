@@ -1,5 +1,6 @@
 package competences;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -23,6 +24,13 @@ public class MultiHeal extends Competence{
 		this.cout=50;
 		this.tag = 3;
 		this.outOfFight = true;
+		this.anim=new Animation[1];
+		this.path="src/resources/sprites/heal_zone.png";
+		this.tailleAnim=5;
+		this.anim=new Animation[1];
+		this.x=102;
+		this.y=396;
+		
 	}
 
 }
