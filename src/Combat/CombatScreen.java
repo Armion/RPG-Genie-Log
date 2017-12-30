@@ -285,11 +285,29 @@ public class CombatScreen extends BasicGameState {
 				this.curseur=1;
 			}
 			else if(this.status==4 || this.status==5)
-			{	
+			{
+				
 				if(this.status==4)
+				{
+				this.cible=this.combat.ciblage(current, true).get(curseur);
 				this.combat.actionJoueur(current, this.choix, this.combat.ciblage(current, true).get(curseur));
+				}
 				else
+				{
+				this.cible=this.combat.ciblage(current, false).get(curseur);
 				this.combat.actionJoueur(current, this.choix, this.combat.ciblage(current, false).get(curseur));
+				}
+				
+				if(this.choix.path!=null)
+				{
+					System.out.println(this.choix.getNom());
+					try {
+						this.choix.genererAnim();
+					} catch (SlickException e) {
+						e.printStackTrace();
+					}
+				}
+				
 				
 				this.combat.getLog();
 				this.status=6;
@@ -328,6 +346,7 @@ public class CombatScreen extends BasicGameState {
 				
 				
 				this.combat.getLog();
+				
 				this.status=6;
 				this.curseur=0;
 			}
@@ -337,6 +356,7 @@ public class CombatScreen extends BasicGameState {
 				
 				
 				this.status=7;
+				this.curseur=1;
 				
 			}
 			
@@ -443,8 +463,8 @@ public class CombatScreen extends BasicGameState {
 			
 			else if(this.status==6)
 			{
-				if(this.choix==null || this.choix.getNom().equals("Lance Flamme"))
-					afficherCompetence(arg2,arg0);
+				if(this.objets==null && (this.choix==null || this.choix.anim[0]!=null))
+					{afficherCompetence(arg2,arg0);}
 				for(int i=0;i<this.combat.log.size();i++)
 				{
 				
@@ -468,9 +488,9 @@ public class CombatScreen extends BasicGameState {
 		{
 			if(this.status==2)
 			{
-				//this.combat.getLog();
 				
-				if(this.choix==null || this.choix.getNom().equals("Lance Flamme"))
+				
+				if(this.choix==null || this.choix.anim[0]!=null)
 				afficherCompetence(arg2,arg0);
 				
 				for(int i=0;i<this.combat.log.size();i++)
@@ -672,6 +692,8 @@ public class CombatScreen extends BasicGameState {
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
 		
+		
+		
 		if(!music.playing())
 		{
 			  music.loop();
@@ -686,7 +708,10 @@ public class CombatScreen extends BasicGameState {
 			this.bloqueurLoot=false;
 			Logs.getInstance().deleteType("Combat");
 			Logs.getInstance().deleteType("Effect");
-	
+			this.objet=-1;
+			this.cible=null;
+			this.choix=null;
+			this.current=null;
 			
 		}
 		
@@ -696,12 +721,9 @@ public class CombatScreen extends BasicGameState {
 			
 		}
 		
-		if(this.status==7)
-		{
-			maitreCombat();
-		}
 	
-		if(this.tourJoueur==false && this.status==1 && debut==false && arg2>5)
+	
+		if(this.tourJoueur==false && this.status==1 && debut==false && arg2>10)
 		{	
 			if(this.compteur==0)
 			{	
@@ -710,16 +732,22 @@ public class CombatScreen extends BasicGameState {
 			this.choix=combat.choixIA;
 			this.cible=combat.cibleIA;
 			this.combat.getLog();
-			if(this.choix!=null && this.choix.getNom().equals("Lance Flamme"))
+			if(this.choix!=null && this.choix.path!=null)
 			{
 			this.choix.genererAnim();
 			}
 			this.status=2;
 			this.compteur=1;
 			}
-			
+
 	
 		}
+		
+		if(this.status==7)
+		{
+			maitreCombat();
+		}
+		
 		
 		if(this.status==9)
 		{
@@ -761,9 +789,7 @@ public class CombatScreen extends BasicGameState {
 		
 		if(this.actif==false)
 		{
-			
-		this.combat.mainCombat();
-		
+			this.combat.mainCombat();
 		passage = this.combat.getPassage();
 		this.current=passage.get(0);
 		this.tourJoueur=this.current.isFriendly();
@@ -773,6 +799,7 @@ public class CombatScreen extends BasicGameState {
 		
 		if(this.status==7)
 		{
+			
 			this.combat.log=new ArrayList<String>();
 			Logs.getInstance().deleteType("Combat");
 			Logs.getInstance().deleteType("Effect");

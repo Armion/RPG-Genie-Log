@@ -8,7 +8,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 public abstract class Competence {
-	protected String path;
+	public String path;
 	protected String nom;
 	protected boolean cible; //true=ennemis false =alli�es
 	protected int zone;//1=1cibles, 0=self,2:groupe

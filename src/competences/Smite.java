@@ -2,6 +2,7 @@ package competences;
 
 import java.util.ArrayList;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -25,6 +26,11 @@ public class Smite extends Competence {
 			this.degheal=-19;
 			this.deghealDurr=0;
 			this.cout=50;
+			this.path="src/resources/sprites/smite.png";
+			this.x=102;
+			this.y=138;
+			this.tailleAnim=5;
+			this.anim=new Animation[1];
 		}
 
 }

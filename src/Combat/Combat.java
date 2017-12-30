@@ -114,6 +114,7 @@ public class Combat {
 		for(LigneLog i : Logs.getInstance().getCombatLog())
 		{
 			this.log.add(i.getContent());
+			System.out.println(i.getContent());
 			
 		}
 		
