@@ -86,6 +86,11 @@ public abstract class Entitee {
 	
 	
 	/*#####zone logique#####*/
+	
+	public UUID getid()
+	{
+		return this.id;
+	}
 
 		
 	public void getDegats(int deg)

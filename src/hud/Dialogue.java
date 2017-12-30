@@ -1,5 +1,7 @@
 package hud;
 
+import java.util.UUID;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -9,11 +11,14 @@ import org.newdawn.slick.gui.AbstractComponent;
 import org.newdawn.slick.gui.ComponentListener;
 import org.newdawn.slick.state.StateBasedGame;
 
+import character.pnj.PNJ;
+import singleton.ListPNJ;
+
 public class Dialogue extends HUD  implements ComponentListener{
 
 	private Image dialImage;
 	private StateBasedGame game;
-	private String message;
+	private PNJ locuteur;
 	
 	
 	
@@ -30,7 +35,6 @@ public class Dialogue extends HUD  implements ComponentListener{
 		this.x = container.getWidth()/2 - dialImage.getWidth()/2;
 		this.y = container.getHeight() - 50 - dialImage.getHeight();
 		
-		this.message = "";
 		
 		
 		
@@ -46,7 +50,7 @@ public class Dialogue extends HUD  implements ComponentListener{
 		int i = 0;
 		
 		
-		for(char c : message.toCharArray())
+		for(char c : locuteur.getDialogue().toCharArray())
 		{
 			msg += c;
 			if(msg.length() == 24)
@@ -67,9 +71,9 @@ public class Dialogue extends HUD  implements ComponentListener{
 		
 	}
 	
-	public void changerMessage(String message)
+	public void changerLocuteur(UUID id)
 	{
-		this.message = message;
+		this.locuteur = ListPNJ.getInstance().getPNJ(id);
 	}
 
 }

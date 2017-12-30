@@ -206,7 +206,7 @@ public class MapGameState extends BasicGameState implements Observer{
 			{
 				if(! this.dialogue.isVisible())
 				{
-					this.dialogue.changerMessage(msg.getDialogue());
+					this.dialogue.changerLocuteur(msg.getid());
 					this.ouvrirFenetre(dialogue);
 				}
 					

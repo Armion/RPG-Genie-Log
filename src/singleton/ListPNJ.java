@@ -2,6 +2,7 @@ package singleton;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import character.pnj.PNJ;
 
@@ -26,6 +27,20 @@ public class ListPNJ {
 	public List<PNJ> getListe()
 	{
 		return this.liste;
+	}
+	
+	public PNJ getPNJ(UUID id)
+	{
+		int i =0;
+		while(i < this.liste.size())
+		{
+			if(this.liste.get(i).getid().equals(id))
+				return this.liste.get(i);
+			
+			i++;
+		}
+		
+		return null;
 	}
 
 }
