@@ -13,7 +13,6 @@ import org.newdawn.slick.Color;
 //represente l'etat du jeu quand on est dans la map
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
@@ -22,10 +21,10 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import Combat.CombatScreen;
 import character.pnj.PNJ;
+import hud.Dialogue;
 import hud.HUD;
 import hud.MapInventory;
 import hud.MapSkill;
-import hud.SelectionTeam;
 import main.MainScreenGameState;
 import singleton.ListPNJ;
 import singleton.Team;
@@ -51,6 +50,7 @@ public class MapGameState extends BasicGameState implements Observer{
 	private List<LigneLog> logs;
 	private StateBasedGame jeu;
 	private MapSkill skills = new MapSkill();
+	private Dialogue dialogue = new Dialogue();
 	Stack<HUD> fenetres;
 	
 	
@@ -80,6 +80,8 @@ public class MapGameState extends BasicGameState implements Observer{
 		Logs.getInstance().addObserver(this);
 		this.logs = new ArrayList<>();
 		this.fenetres = new Stack<>();
+		
+		this.dialogue.init(container, game);
 		
 		
 		
@@ -123,6 +125,9 @@ public class MapGameState extends BasicGameState implements Observer{
 		//si l'inventaire doit l'etre, on l'affiche
 		if(skills.isVisible())
 			this.skills.render(container, g);
+		
+		if(dialogue.isVisible())
+			this.dialogue.render(container, g);
 		
 		
 		//on affiche les logs
@@ -194,7 +199,29 @@ public class MapGameState extends BasicGameState implements Observer{
 					this.fermerFenetre(this.skills);
 				}
 			break;
+			}
+		case Input.KEY_ENTER : 
+		{
+			PNJ msg = this.controller.trigPNJ();
+			if(msg != null)
+			{
+				if(! this.dialogue.isVisible())
+				{
+					this.dialogue.changerMessage(msg.getDialogue());
+					this.ouvrirFenetre(dialogue);
+				}
+					
+				else
+				{
+					this.fermerFenetre(dialogue);
+				}
+					
+				
+			}
+				
+		break;
 		}
+			
 		}
 		
 	}

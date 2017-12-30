@@ -23,8 +23,6 @@ public class MapInventory extends HUD implements ComponentListener{
 	
 	private Image inventairePicture;
 	private Image gold;
-	private int x;
-	private int y;
 	private int page;
 	private Inventory inventaire;
 	private java.util.Map<MouseOverArea, Item> items;

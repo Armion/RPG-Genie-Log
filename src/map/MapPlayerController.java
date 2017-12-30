@@ -1,6 +1,5 @@
 package map;
 
-import java.util.List;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -8,7 +7,7 @@ import org.newdawn.slick.KeyListener;
 
 import character.pnj.PNJ;
 import singleton.ListPNJ;
-import singleton.log.Logs;
+
 
 //methode pour controler le joueur et ses mouvements
 
@@ -85,16 +84,16 @@ public class MapPlayerController implements KeyListener {
 		case Input.KEY_RIGHT:
 			this.player.setDx(0);
 			break;
-		case Input.KEY_ENTER :
+		/*case Input.KEY_ENTER :
 			this.trigPNJ();
-			break;
+			break;*/
 		}
 		
 	}
 	
 	
 	
-	private PNJ trigPNJ()
+	public PNJ trigPNJ()
 	{
 		int distance = 80;
 		
@@ -108,7 +107,7 @@ public class MapPlayerController implements KeyListener {
 							&& this.player.getX() - p.getPosX() > -33
 							&& this.player.getY() - p.getPosY() <= distance
 							&& this.player.getY() - p.getPosY() >= 0)
-						System.out.println(p.getDialogue());
+						return p;
 					break;
 				}
 			case 1 :
@@ -117,7 +116,7 @@ public class MapPlayerController implements KeyListener {
 							&& this.player.getX() - p.getPosX() > 0
 							&& this.player.getY() - p.getPosY() <= 33
 							&& this.player.getY() - p.getPosY() >= -33)
-						System.out.println(p.getDialogue());
+						return p;
 					break;
 				}
 			case 2 :
@@ -126,7 +125,7 @@ public class MapPlayerController implements KeyListener {
 							&& this.player.getX() - p.getPosX() > -33
 							&& this.player.getY() - p.getPosY() <= 0
 							&& this.player.getY() - p.getPosY() >= -distance)
-						System.out.println(p.getDialogue());
+						return p;
 					break;
 				}
 			case 3 :
@@ -135,7 +134,7 @@ public class MapPlayerController implements KeyListener {
 							&& this.player.getX() - p.getPosX() > -distance
 							&& this.player.getY() - p.getPosY() <= 33
 							&& this.player.getY() - p.getPosY() >= -33)
-						System.out.println(p.getDialogue());
+						return p;
 					break;
 				}
 			}

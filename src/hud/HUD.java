@@ -3,7 +3,8 @@ package hud;
 public class HUD {
 	
 	protected boolean visible;
-	
+	protected int x;
+	protected int y;
 	
 	public boolean isVisible()
 	{

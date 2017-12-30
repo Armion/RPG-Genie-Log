@@ -19,8 +19,6 @@ import character.Joueur;
 
 public class MapSkill extends HUD implements ComponentListener{
 	
-	private int x;
-	private int y;
 	private Image skillsPicture;
 	private List<Couple<Joueur, List<Couple<Competence, MouseOverArea>>>> liste;
 	private GameContainer container;
