@@ -22,7 +22,7 @@ public class Paladin extends Joueur {
 		this.mana=200;
 		this.sorts.add(new Smite());
 		this.sorts.add(new Heal());
-		this.path="src/Combat/personnages/sprites/generique.png";
+		this.path="src/Combat/personnages/sprites/paladin.png";
 		
 	}
 	

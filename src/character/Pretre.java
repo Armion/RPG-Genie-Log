@@ -24,7 +24,7 @@ public class Pretre extends Joueur{
 		this.mana= manaMax;
 		this.sorts.add(new MultiHeal());
 		this.sorts.add(new Heal());
-		this.path="src/Combat/personnages/sprites/generique.png";
+		this.path="src/Combat/personnages/sprites/Priest.png";
 		
 	}
 	
