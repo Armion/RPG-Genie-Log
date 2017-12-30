@@ -46,25 +46,18 @@ public class Dialogue extends HUD  implements ComponentListener{
 		int i = 0;
 		
 		
-		
 		for(char c : message.toCharArray())
 		{
 			msg += c;
 			if(msg.length() == 24)
 				{
-					g.drawString(msg, x+13, y+20 + 10*i);
+					g.drawString(msg, x+13, y+20 + 15*i);
 					i++;
 					msg = "";
 				}
 				
 		}
-		/*while(i < 1 + message.length()/25  && i < 4)
-		{
-			msg = message.substring(i*25, 25);
-			System.out.println(msg);
-			g.drawString(msg, x+10, y+20 + 10*i);
-			i++;
-		}*/
+		g.drawString(msg, x+13, y+20 + 15*i);
 		
 	}
 	
