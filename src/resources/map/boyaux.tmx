@@ -39,15 +39,15 @@
  </layer>
  <layer name="background2" width="39" height="90">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3WywqDMBCFYcG6skIk7fu/Wpd9gO56JdTgVLQpcZKZxvNBFiUFf8ZrVQEAAAAAAADkc+6lC/7bt/mdhGfrji99fqWPD/pI3xewDbjOti307tF+feR6d2qfA5RJ27eh5vtAc5tmpc5N270DYThnAPrdzefvq5n/nwS0xdHeRr9TtLVRGtp2/Xs1k/dp3Y97j4ydTzP27IfVTdpasldnanRdDek5DOs4abNkryWNqfp8V7fQs8SSxhR9tOvXprlG7j6OrlR97vnA0eX5Po7nTMPY5dlhdmv4maWwdnaujXtmnmVoSwltcdAWB21xSm1LTXMbQCkuJryk3Ex4rfECchrFV9g2AAA=
+   H4sIAAAAAAAAC+3W2wqCQBRA0cB8MkGZ+v9f67F/iC4MOXgSzRjnctS9YB5iAjfH6+EAAAAAAEA6tzZ3wbr9mt8182zt8XOf39zHhz657wvsA9fZvs29e7RfH6nendrngG3S9m2o+T7Q3KbZVuem7d7BPM4ZoN+j+f59b8b/lwNtfrS3ye8UbW2ShrZj+1nl4H1atP3eM2Hnq+l7Tt2qB22V2CsSNdquUvScu3UZtBmxV4nGWH2uq57omWJEY4w+2fVv01hj6L4QXbH67PMhRJfj+kI8Z8qAXY7pZreEm1kMS2dn20LPzDEB2mKizQ9tfmjzs9W22DS3AVi/N583pSXYNgAA
   </data>
  </layer>
  <layer name="foreground0" width="39" height="90">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2Z2wrCMAxA/YT9/2869WETZbDAkK0kTdI6PQd8a5qD9LImlwsAAAAAAJyF2+CLvzrjSzyGer/F657otlDj18JLsPi19BI0fj28hJJfTy/heZB/6uz172jWdK98rde0Nd/e+My9Zs33ueey95olH27HWNxag1sdJTfPt6MXzXlV67fMPTpiteeo1U/mnof6WAvaHNo7JspLm6M0tyfW6+dZu5H39N7Zor0zPLHZ8+MWB251RLpF3rOt3x9aWr8/tFDjosbl5dtrXK3rAVZ6v2sBAADg93jxPQEAACchs/fmffsv/amsvuW09r88ZPx3UfWSmt5eiW3PMIIov2gvweuX5SWI37j+NMjYTK+t32zIYx2/5Q2Mucpd2DYAAA==
+   H4sIAAAAAAAAC+2ZWwrCMBAAe4Te/5pW/aiiBAyItGGfidUZ6F83O5Q8mt1pAgAAAACAo3CeffEnZ3yL62z3K16XRLeCxa+HV0Xj19OrIvEb4VVp+Y30qtx38q+Dvf4dyZwela/3nNbm23o/c61p832uuey1psmH2z4at97gZqPl5vl39CLZr6x+ZezFESvdR7V+dezbbI/VIM0hPWOivKQ5WmN7Yr1+nrkbeU5v7S3SM8MTmz0+bnHgZiPSLfKc7X3/kNL7/iGFGhc1Li/fXuPqXQ/QMvpeCwAAAL/Hg/8JAAA4CJm9N+/dv/SnsvqW66v/5SHj20XVSyy9vRbvPcMIovyivSpevyyvSvVbDE+m17uf9dHyBGGUqi/YNgAA
   </data>
  </layer>
- <layer name="foreground1" width="39" height="90">
+ <layer name="foreground1" width="39" height="90" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3BMQEAAADCoPVPbQsvoAAAAAAAAAAAAAAAAADgZxYJLYfYNgAA
   </data>
@@ -61,8 +61,8 @@
   <object name="sb" type="change-map" x="608" y="2831" width="32" height="16">
    <properties>
     <property name="dest-map" value="mine.tmx"/>
-    <property name="dest-x" value="35"/>
-    <property name="dest-y" value="6"/>
+    <property name="dest-x" value="1136"/>
+    <property name="dest-y" value="208"/>
    </properties>
   </object>
  </objectgroup>

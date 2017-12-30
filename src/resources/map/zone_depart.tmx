@@ -49,8 +49,8 @@
   <object name="em" type="change-map" x="1024" y="240" width="32" height="22">
    <properties>
     <property name="dest-map" value="mine.tmx"/>
-    <property name="dest-x" value="8"/>
-    <property name="dest-y" value="87"/>
+    <property name="dest-x" value="272"/>
+    <property name="dest-y" value="2800"/>
    </properties>
   </object>
  </objectgroup>

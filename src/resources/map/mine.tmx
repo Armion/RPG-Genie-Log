@@ -43,15 +43,15 @@
   <object name="sm" type="change-map" x="256" y="2841" width="31" height="22">
    <properties>
     <property name="dest-map" value="zone_depart.tmx"/>
-    <property name="dest-x" value="32"/>
-    <property name="dest-y" value="8"/>
+    <property name="dest-x" value="1040"/>
+    <property name="dest-y" value="272"/>
    </properties>
   </object>
   <object name="eb" type="change-map" x="1120" y="161" width="30" height="15">
    <properties>
     <property name="dest-map" value="boyaux.tmx"/>
-    <property name="dest-x" value="19"/>
-    <property name="dest-y" value="87"/>
+    <property name="dest-x" value="624"/>
+    <property name="dest-y" value="2800"/>
    </properties>
   </object>
  </objectgroup>
