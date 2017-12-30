@@ -21,11 +21,13 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import Combat.CombatScreen;
+import character.pnj.PNJ;
 import hud.HUD;
 import hud.MapInventory;
 import hud.MapSkill;
 import hud.SelectionTeam;
 import main.MainScreenGameState;
+import singleton.ListPNJ;
 import singleton.Team;
 import singleton.log.LigneLog;
 import singleton.log.Logs;
@@ -42,9 +44,9 @@ public class MapGameState extends BasicGameState implements Observer{
 	private MapPlayer player = new MapPlayer(map);
 	private Team team = Team.getInstance();
 	private MapInventory inventaire = new MapInventory();
-	private MapTriggerController triggers = new MapTriggerController(map, player);
+	private MapTriggerController triggers;
 	private MapCamera camera = new MapCamera(player);
-	private MapPlayerController controller = new MapPlayerController(player);
+	private MapPlayerController controller;;
 	private String log = "";
 	private List<LigneLog> logs;
 	private StateBasedGame jeu;
@@ -61,19 +63,25 @@ public class MapGameState extends BasicGameState implements Observer{
 		
 		this.container = container;
 
+		this.map.init();
+		this.triggers = new MapTriggerController(map, player);
+		this.controller = new MapPlayerController(player, container.getGraphics());
 		
+		System.out.println(ListPNJ.getInstance().getListe().get(0).getPosY() + "");
 		
 		this.inventaire.init(container, game);
 		this.skills.init(container, game);
 
 		this.musicBack = new Music("resources/sound/lost-in-the-meadows.ogg");
-		this.map.init();
+
 		this.player.init();
 		this.controller.setInput(container.getInput());
 		container.getInput().addKeyListener(controller);
 		Logs.getInstance().addObserver(this);
 		this.logs = new ArrayList<>();
 		this.fenetres = new Stack<>();
+		
+		
 		
 		this.jeu = game;
 	}
@@ -133,7 +141,7 @@ public class MapGameState extends BasicGameState implements Observer{
 		this.camera.update(container);
 		
 		//enfin, on a une chance de rentrer en combat, dans ce cas on passe à la phase de combat
-		if (Math.random() < 0.010 && player.isMoving()) {
+		if (Math.random() < 0.000 && player.isMoving()) {
 			game.enterState(CombatScreen.ID);
 		}
 		

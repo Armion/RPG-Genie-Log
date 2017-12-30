@@ -15,6 +15,9 @@
  <tileset firstgid="3021" name="collision" tilewidth="32" tileheight="32">
   <image source="tuiles/logic.png" width="160" height="160"/>
  </tileset>
+ <tileset firstgid="3046" name="vieux" tilewidth="32" tileheight="32">
+  <image source="../sprites/vieux.png" width="32" height="32"/>
+ </tileset>
  <layer name="background0" width="51" height="39">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+2YTU4CMRSAS0JS3PkTtrrzAixd6gVc6iWEFWHnBQRmoZdw1AVyCTGTEA9hnJj4ewBbpk8etZ0+yjADZky+TDvTTt9nafugyxjrlpTkzIAzNuSz9dMCwbHAPb1soy2ed/hs/ZgVSyi49ZgXGfuX4F7xqVyOKsVRF+Nfe/hcitg3a7PxbwhGov6ieEXl2FB+VFfcB+qRKjMxToUn5Qi1iVT/CJX3K+y8oXxgjuoKl8+YT/pP3jXSYovVdaSc9Hs6seoPQH1XjLHH/z4HrwiVwQWQTkPHWpGcqM8VdpHjPQseFuCA+7fRXSQdgstYrQ/pgt/XFLS099loIijtMXUDWbjoz3oseZYWy4XWJ0uXLbGOr3jCh4cL7IvYJc0H9htXOx+XJz5tR9nHXPPSIMSJ5yZrl3n2ZJvLneAGjfnrUzXHEyqydMF7Mo4rtLjI82W7lrhAPKGKWx9j4lO13HfM3aJrH+JynTNwvui5hD7GGZvuVy2DR1Yuh4TcwOQhc8lvgous43XRW+K8wHmNGWlX13pxueAcKViiizyzcX4QozqUfV2gLD9bfdQ3YGaXJqOfnyYXSl7h4wJX/UzUz1Ogb2kzj4vruW3tp7lgbDl44PDI0wVyfpcL+MDeiL2CFI88XSRtyz7mwjRPWbiYxqK4DFDO7/N9luKTlwt1vaRh+tzhnMPn3C/KxeRFzc+oOUwRLsvKx0qX0sXXxRTnIi6mMyovXGflPC6Sd56/S52ZY1zUxZYnUMnyXTYfuL9TS/73lHxjFWhzs5/0oPy2tEqYXNbRw+Yy7+9Lq8IbT9YEZh3nhMp/+vsBn5/OGhQfAAA=
@@ -37,20 +40,28 @@
  </layer>
  <layer name="foreground1" width="51" height="39">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2Wu07DQBBFx3bgA0LPv1HmK+iApIcCKCHQ8pAgKcOjhYZHCSSfkNDCtYSllTW7mcWP7Np7pKtI9nh878T2LpFbTNf44716bTiFbiYc6pzy1/1ntrprbDw1kbbnDwTajI/vf5vXUJdY9uyE/yngOzsx0S60B/WhQVzPfav4Lp/A+yk0hM6g85qyVMEE3u+ge+gBevQ4ywe8f0Jf0BSaeZwl5Sf1nxBFUJys2k1xNmvI4Ns+zMavb9lUfNrDXEREl9GqXZTDE3I8/2XZx++BZa6t9fI9lcEVclwzWUzvyLajWQLu0tRvgYRDrNdH0LFw3batz7NsfTOdN527gZ9baASNBd4k9dl6JslcZC75XC/o8Qq9Qe+Jvn92HVfPIclsO0ddBpU5+iyg70TWX61X+6ozkGTmaoo8fyndDtFGR9/fVJ/BzUDNrENSo8OUK3vO8/0l+zluBlxm9f49TU2ZSPpzMykyY9eoesZN4he0olEtFB8AAA==
+   H4sIAAAAAAAAC+2WOU/EMBCFJ8lCsx30/DfK/RV0XD0UQMnVckiwlHvQQsNRAov4BUALLxKRrGjsHZPLTvxJTyslk8l7s0lsIreYLfDHB/XacArdTDjUOeWv+89sddfYeGojXc8fCHQZH9//Lq+hLjHv2Qn/U0Dlo9+0A3vWY6INaBPagrbjeu5bxXf5EN6PoGPoBDqtKUsVjOB9DE2gKXTrcZYXeH+F3qAZ9O5xlpSf1H9CFEFx0rSb4qzUkMG3fZiNX9+yqfi0hzmLiM6jpl2Uwx1y3P9l2cHvrmWu1cXyPZXBBXJcMllM78iao1kC7tLWb4GEPazX+9CBcN22rc8zb30znTedu4Kfa2gI3Qi8Seqz9UySuchc8rke0OMReoKeE33/7DqunkOS2XaOugwqn+jzBX0nsv5qvdpXnYEkM1dT5PlLWeoRLff0/U31GdwM1Mw6JDU6TLmy5zzfX7Kf42bAZVbvP9DUlImkPzeTIjN2japn3CZ+AVFOgacUHwAA
   </data>
  </layer>
  <layer name="collision" width="51" height="39" opacity="0.5">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2X2w6CMAxAfff/P2svCgEN+C1issamabcCHWzakzTGsEvP3Oq4XBzHcZzWCNdvWNEtY92W6A3HTEEduowTPHvEPHPxIdfmaeRK1wxcOmH8Pj63XGtprrW8lnHuMWBcrQvutwcrF4DuMY0L7LcBeYFb6jvEiOa0csB7G7sEJrAL9MO5hJgnrA39pOti6SKdlxT0vEjegThx63KESy4X6If317gxp1Iuk7Kuzsyabq1tpVzWMjF+aylRk1O1piTWNVlC+t0s7ztnu+CztJezXSiDck9y7WpzgXxy7bl2rbpA3ZsrduFy1FKbyx6OdKH3YO7/R9NG4kiX1Fya+6G2HpSmJZfce/vckIvmbP+SC/ceQO/GmjYStdz5LbB8368hHMdx/oE386ahVxQfAAA=
+   H4sIAAAAAAAAC+2XUQ7CIAxA9+/9j8WPbtk0m2dxJjQ2TQudKxtoX9IYMyg8hMq6znEcx2mNcPmEFf2a67rGYJgzBXXoM07w7B7nmYs3uTYPI1e6ZuDSC/mH+NxyraWxtvJc89xiQF6tC+63BysXgO4xjQvstxF5gVvqO8SExrRywHsbuwQmsAv0w3MJcZ6wNvSTrouli3ReUtDzInkH4sStyxEuublAP7y/JpJLW99LuczKurowa/ptbSvlspWZ8dtKiZqcqjUlsa7JEtLvZnnfOdsFn6W9nO1CGZV7kmtXmwvMJ9eea9eqC9S9pWIXbo5aanPZw5Eu9B7M/f9o2kgc6ZIaS3M/1NaD0rTkkntvXxpy0ZztX3Lh3gPo3VjTRqKWO78Flu/7NYTjOM4/8AJkEQfHFB8AAA==
   </data>
  </layer>
  <objectgroup name="trigger" width="51" height="39">
   <object name="em" type="change-map" x="1024" y="240" width="32" height="22">
    <properties>
     <property name="dest-map" value="mine.tmx"/>
-    <property name="dest-x" value="8"/>
-    <property name="dest-y" value="87"/>
+    <property name="dest-x" value="256"/>
+    <property name="dest-y" value="2787"/>
+   </properties>
+  </object>
+  <object name="vieux pas nette" type="PNJ" x="0" y="0" width="1537" height="1170">
+   <properties>
+    <property name="dialogue" value="salut, tu me présente ta grand mere ?"/>
+    <property name="pos-x" value="992"/>
+    <property name="pos-y" value="448"/>
+    <property name="start" value=""/>
    </properties>
   </object>
  </objectgroup>

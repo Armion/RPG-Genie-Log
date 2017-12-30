@@ -1,6 +1,12 @@
 package map;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.newdawn.slick.SlickException;
+
+import character.pnj.PNJ;
+import singleton.ListPNJ;
 
 //classe qui sert à controler les events de la map
 public class MapTriggerController {
@@ -10,12 +16,14 @@ public class MapTriggerController {
 	private MapPlayer player;
 
 	//constructeur
-	public MapTriggerController(Map map, MapPlayer player) {
+	public MapTriggerController(Map map, MapPlayer player) 
+	{
 		this.map = map;
 		this.player = player;
+		this.initEvent();
 	}
 
-	//
+
 	public void update() throws SlickException {
 		
 		//pour les deplacements en diagonal, par defaut le joueur n'est pas sur un escalier
@@ -34,21 +42,46 @@ public class MapTriggerController {
 				} else if ("change-map".equals(this.map.getObjectType(objectID))) {
 					this.changeMap(objectID);
 				}
-				else if("PNJ".equals(this.map.getObjectType(objectID)))
+			}
+		}
+		
+	}
+
+	public void initEvent()
+	{
+
+		for (int objectID = 0; objectID < this.map.getObjectCount(); objectID++) 
+		{
+			if(!this.map.getObjectProperty(objectID, "start", "undefined").equals("undefined"))
+			{
+				if(this.map.getObjectType(objectID).equals("PNJ"))
 				{
-					
+					ListPNJ.getInstance().getListe().add(new PNJ(
+							Float.parseFloat(this.map.getObjectProperty(objectID, "pos-x", "undefined")) ,
+							Float.parseFloat(this.map.getObjectProperty(objectID, "pos-y", "undefined") ),
+							this.map.getObjectName(objectID),
+							this.map.getObjectProperty(objectID, "dialogue", "undefined") ));
 				}
 			}
 		}
+		
+		
 	}
-
+	
 	//methode pour verifier si un trigger declanche un event
 	private boolean isInTrigger(int id) {
 		//on regarde si la position du joueur est comprise dans le trigger, si oui on retourne true
-		return this.player.getX() > this.map.getObjectX(id)
-				&& this.player.getX() < this.map.getObjectX(id) + this.map.getObjectWidth(id)
-				&& this.player.getY() > this.map.getObjectY(id)
-				&& this.player.getY() < this.map.getObjectY(id) + this.map.getObjectHeight(id);
+		
+		
+		if(this.map.getObjectProperty(id, "start", "undefined").equals("undefined"))
+		{
+			
+			return this.player.getX() > this.map.getObjectX(id)
+					&& this.player.getX() < this.map.getObjectX(id) + this.map.getObjectWidth(id)
+					&& this.player.getY() > this.map.getObjectY(id)
+					&& this.player.getY() < this.map.getObjectY(id) + this.map.getObjectHeight(id);
+		}
+		return false;
 	}
 
 	//pour les trigger de type teleport, on va chercher les coordonnées de destination et teleport le joueur
@@ -66,6 +99,8 @@ public class MapTriggerController {
 		if (!"undefined".equals(newMap)) {
 			this.map.changeMap("resources/map/" + newMap);
 		}
+		
 	}
+	
 
 }

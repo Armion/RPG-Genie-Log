@@ -9,6 +9,17 @@ import org.newdawn.slick.tiled.TiledMap;
 public class Map {
 	//on va faire de la delegation
 	private TiledMap tiledMap;
+	
+	
+	public Map()
+	{
+		try {
+			this.init();
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	//methode init qui est appellé quand on initialise la map
 	public void init() throws SlickException {
@@ -83,6 +94,11 @@ public class Map {
 
 	public float getObjectHeight(int objectID) {
 		return this.tiledMap.getObjectHeight(0, objectID);
+	}
+	
+	public String getObjectName(int objectID)
+	{
+		return this.tiledMap.getObjectName(0, objectID);
 	}
 
 	public String getObjectProperty(int objectID, String propertyName, String def) {

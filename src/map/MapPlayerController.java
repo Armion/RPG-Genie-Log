@@ -1,7 +1,14 @@
 package map;
 
+import java.util.List;
+
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
+
+import character.pnj.PNJ;
+import singleton.ListPNJ;
+import singleton.log.Logs;
 
 //methode pour controler le joueur et ses mouvements
 
@@ -9,10 +16,15 @@ public class MapPlayerController implements KeyListener {
 
 	private MapPlayer player;
 	private Input input;
+	private Graphics g;
 
-	public MapPlayerController(MapPlayer player) {
+
+	public MapPlayerController(MapPlayer player, Graphics g) {
 		this.player = player;
+		this.g = g;
+
 	}
+	
 
 	//methode d'update, elle est utile lorsque qu'une manette est connecté, sinon c'est le KeyListener qui s'en charge
 	public void update() {
@@ -73,7 +85,58 @@ public class MapPlayerController implements KeyListener {
 		case Input.KEY_RIGHT:
 			this.player.setDx(0);
 			break;
+		case Input.KEY_ENTER :
+			this.trigPNJ();
+			break;
 		}
+		
+	}
+	
+	
+	
+	private PNJ trigPNJ()
+	{
+		int distance = 80;
+		
+		for(PNJ p : ListPNJ.getInstance().getListe())
+		{
+			switch (this.player.getDirection())
+			{
+			case 0 :
+				{
+					System.out.println("haut !");
+					if(this.player.getX() - p.getPosX() < 32
+							&& this.player.getX() - p.getPosX() > 0
+							&& this.player.getY() - p.getPosY() <= distance
+							&& this.player.getY() - p.getPosY() >= -distance)
+						System.out.println(p.getDialogue());
+					break;
+				}
+			case 1 :
+				{
+					System.out.println("gauche !");
+					if(this.player.getX() - p.getPosX() < 32
+							&& this.player.getX() - p.getPosX() > -distance
+							&& this.player.getY() - p.getPosY() <= distance
+							&& this.player.getY() - p.getPosY() >= -distance)
+						System.out.println(p.getDialogue());
+					break;
+				}
+			case 2 :
+				{
+					System.out.println("bas !"); 
+					break;
+				}
+			case 3 :
+				{
+					System.out.println("droite !"); 
+					break;
+				}
+			}
+		}
+		
+		
+		return null;
 	}
 
 }

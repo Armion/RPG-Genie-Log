@@ -33,7 +33,7 @@ public class MapPlayer {
 	public void init() throws SlickException {
 		
 		//on charge l'animation
-		this.animations = this.createAnime("resources/sprites/character.png", 64, 64);
+		this.animations = MapPlayer.createAnime("resources/sprites/character.png", 64, 64);
 	}
 	
 	
@@ -171,6 +171,11 @@ public class MapPlayer {
 			dy = 0;
 			break;
 		}
+	}
+	
+	public int getDirection()
+	{
+		return this.direction;
 	}
 
 	//pour savoir si le joueur se deplace

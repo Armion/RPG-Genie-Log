@@ -60,16 +60,12 @@ public class Team {
 		
 		listeInventaire.add(new MedaillonArmion());
 		listeInventaire.add(new Amulette());
-		
-
-
-
-		
-
 
 		
 		this.inventaire = new Inventory( listeInventaire, 500);
 	}
+	
+	
 	
 	private static Team INSTANCE = new Team();
 	
