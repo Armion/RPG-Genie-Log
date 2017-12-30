@@ -15,6 +15,9 @@
  <tileset firstgid="3021" name="collision" tilewidth="32" tileheight="32">
   <image source="tuiles/logic.png" width="160" height="160"/>
  </tileset>
+ <tileset firstgid="3046" name="alladin" tilewidth="32" tileheight="32">
+  <image source="tuiles/Characterss12.png" trans="ffffff" width="384" height="256"/>
+ </tileset>
  <layer name="background0" width="51" height="39">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+2YTU4CMRSAS0JS3PkTtrrzAixd6gVc6iWEFWHnBQRmoZdw1AVyCTGTEA9hnJj4ewBbpk8etZ0+yjADZky+TDvTTt9nafugyxjrlpTkzIAzNuSz9dMCwbHAPb1soy2ed/hs/ZgVSyi49ZgXGfuX4F7xqVyOKsVRF+Nfe/hcitg3a7PxbwhGov6ieEXl2FB+VFfcB+qRKjMxToUn5Qi1iVT/CJX3K+y8oXxgjuoKl8+YT/pP3jXSYovVdaSc9Hs6seoPQH1XjLHH/z4HrwiVwQWQTkPHWpGcqM8VdpHjPQseFuCA+7fRXSQdgstYrQ/pgt/XFLS099loIijtMXUDWbjoz3oseZYWy4XWJ0uXLbGOr3jCh4cL7IvYJc0H9htXOx+XJz5tR9nHXPPSIMSJ5yZrl3n2ZJvLneAGjfnrUzXHEyqydMF7Mo4rtLjI82W7lrhAPKGKWx9j4lO13HfM3aJrH+JynTNwvui5hD7GGZvuVy2DR1Yuh4TcwOQhc8lvgous43XRW+K8wHmNGWlX13pxueAcKViiizyzcX4QozqUfV2gLD9bfdQ3YGaXJqOfnyYXSl7h4wJX/UzUz1Ogb2kzj4vruW3tp7lgbDl44PDI0wVyfpcL+MDeiL2CFI88XSRtyz7mwjRPWbiYxqK4DFDO7/N9luKTlwt1vaRh+tzhnMPn3C/KxeRFzc+oOUwRLsvKx0qX0sXXxRTnIi6mMyovXGflPC6Sd56/S52ZY1zUxZYnUMnyXTYfuL9TS/73lHxjFWhzs5/0oPy2tEqYXNbRw+Yy7+9Lq8IbT9YEZh3nhMp/+vsBn5/OGhQfAAA=
@@ -27,7 +30,7 @@
  </layer>
  <layer name="background2" width="51" height="39">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3BAQ0AAADCoPdPbQ8HFAAAAAAAAAB8GpdBLBAUHwAA
+   H4sIAAAAAAAAC+3OMQ0AAAgDsP34t4gOZJAlrYImAADQZ+d7AAAAAAA0OIZpoWYUHwAA
   </data>
  </layer>
  <layer name="foreground0" width="51" height="39">
@@ -40,7 +43,7 @@
    H4sIAAAAAAAAC+2Wu07DQBBFx3bgA0LPv1HmK+iApIcCKCHQ8pAgKcOjhYZHCSSfkNDCtYSllTW7mcWP7Np7pKtI9nh878T2LpFbTNf44716bTiFbiYc6pzy1/1ntrprbDw1kbbnDwTajI/vf5vXUJdY9uyE/yngOzsx0S60B/WhQVzPfav4Lp/A+yk0hM6g85qyVMEE3u+ge+gBevQ4ywe8f0Jf0BSaeZwl5Sf1nxBFUJys2k1xNmvI4Ns+zMavb9lUfNrDXEREl9GqXZTDE3I8/2XZx++BZa6t9fI9lcEVclwzWUzvyLajWQLu0tRvgYRDrNdH0LFw3batz7NsfTOdN527gZ9baASNBd4k9dl6JslcZC75XC/o8Qq9Qe+Jvn92HVfPIclsO0ddBpU5+iyg70TWX61X+6ozkGTmaoo8fyndDtFGR9/fVJ/BzUDNrENSo8OUK3vO8/0l+zluBlxm9f49TU2ZSPpzMykyY9eoesZN4he0olEtFB8AAA==
   </data>
  </layer>
- <layer name="collision" width="51" height="39" opacity="0.5">
+ <layer name="collision" width="51" height="39" visible="0" opacity="0.5">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+2X2w6CMAxAfff/P2svCgEN+C1issamabcCHWzakzTGsEvP3Oq4XBzHcZzWCNdvWNEtY92W6A3HTEEduowTPHvEPHPxIdfmaeRK1wxcOmH8Pj63XGtprrW8lnHuMWBcrQvutwcrF4DuMY0L7LcBeYFb6jvEiOa0csB7G7sEJrAL9MO5hJgnrA39pOti6SKdlxT0vEjegThx63KESy4X6If317gxp1Iuk7Kuzsyabq1tpVzWMjF+aylRk1O1piTWNVlC+t0s7ztnu+CztJezXSiDck9y7WpzgXxy7bl2rbpA3ZsrduFy1FKbyx6OdKH3YO7/R9NG4kiX1Fya+6G2HpSmJZfce/vckIvmbP+SC/ceQO/GmjYStdz5LbB8368hHMdx/oE386ahVxQfAAA=
   </data>
@@ -51,6 +54,14 @@
     <property name="dest-map" value="mine.tmx"/>
     <property name="dest-x" value="272"/>
     <property name="dest-y" value="2800"/>
+   </properties>
+  </object>
+  <object name="Alladin" type="PNJ" x="864" y="416" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="Oui c'est bien moi, Ali Ababwa."/>
+    <property name="pos-x" value="880"/>
+    <property name="pos-y" value="432"/>
+    <property name="start" value=""/>
    </properties>
   </object>
  </objectgroup>
