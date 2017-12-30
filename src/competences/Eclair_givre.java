@@ -2,6 +2,8 @@ package competences;
 
 import java.util.ArrayList;
 
+import org.newdawn.slick.Animation;
+
 public class Eclair_givre extends Competence {
 	
 	
@@ -17,6 +19,12 @@ public class Eclair_givre extends Competence {
 		this.zone=1;
 		this.degheal=-10;
 		this.deghealDurr=0;
+		this.path="src/resources/sprites/eclair_givre.png";
+		this.anim=new Animation[1];
+		this.tailleAnim=5;
+		this.x=102;
+		this.y=138;
+				
 	}
 
 }

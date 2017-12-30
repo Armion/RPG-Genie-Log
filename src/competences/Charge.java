@@ -14,6 +14,7 @@ public class Charge extends Competence {
 		this.degheal=-20;
 		this.deghealDurr=0;
 		this.cout=25;
+		
 	}
 	
 	

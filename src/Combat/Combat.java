@@ -111,9 +111,19 @@ public class Combat {
 	
 	public void getLog()
 	{
+		boolean popo=false;
 		for(LigneLog i : Logs.getInstance().getCombatLog())
 		{
 			this.log.add(i.getContent());
+			if(popo)
+			{
+				this.log.remove(this.log.size()-1);
+				popo=false;
+			}
+			if(i.getType().equals("Effect"))
+			{
+				popo=true;
+			}
 			System.out.println(i.getContent());
 			
 		}
