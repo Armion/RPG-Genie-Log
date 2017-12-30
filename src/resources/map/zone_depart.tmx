@@ -18,6 +18,12 @@
  <tileset firstgid="3046" name="alladin" tilewidth="32" tileheight="32">
   <image source="tuiles/Characterss12.png" trans="ffffff" width="384" height="256"/>
  </tileset>
+ <tileset firstgid="3142" name="vieux" tilewidth="32" tileheight="32">
+  <image source="tuiles/themooldmandanrtp_zpslyvse8bn.png" trans="ffffff" width="384" height="256"/>
+ </tileset>
+ <tileset firstgid="3238" name="gens" tilewidth="32" tileheight="32">
+  <image source="tuiles/people.png" trans="ffffff" width="384" height="256"/>
+ </tileset>
  <layer name="background0" width="51" height="39">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+2YTU4CMRSAS0JS3PkTtrrzAixd6gVc6iWEFWHnBQRmoZdw1AVyCTGTEA9hnJj4ewBbpk8etZ0+yjADZky+TDvTTt9nafugyxjrlpTkzIAzNuSz9dMCwbHAPb1soy2ed/hs/ZgVSyi49ZgXGfuX4F7xqVyOKsVRF+Nfe/hcitg3a7PxbwhGov6ieEXl2FB+VFfcB+qRKjMxToUn5Qi1iVT/CJX3K+y8oXxgjuoKl8+YT/pP3jXSYovVdaSc9Hs6seoPQH1XjLHH/z4HrwiVwQWQTkPHWpGcqM8VdpHjPQseFuCA+7fRXSQdgstYrQ/pgt/XFLS099loIijtMXUDWbjoz3oseZYWy4XWJ0uXLbGOr3jCh4cL7IvYJc0H9htXOx+XJz5tR9nHXPPSIMSJ5yZrl3n2ZJvLneAGjfnrUzXHEyqydMF7Mo4rtLjI82W7lrhAPKGKWx9j4lO13HfM3aJrH+JynTNwvui5hD7GGZvuVy2DR1Yuh4TcwOQhc8lvgous43XRW+K8wHmNGWlX13pxueAcKViiizyzcX4QozqUfV2gLD9bfdQ3YGaXJqOfnyYXSl7h4wJX/UzUz1Ogb2kzj4vruW3tp7lgbDl44PDI0wVyfpcL+MDeiL2CFI88XSRtyz7mwjRPWbiYxqK4DFDO7/N9luKTlwt1vaRh+tzhnMPn3C/KxeRFzc+oOUwRLsvKx0qX0sXXxRTnIi6mMyovXGflPC6Sd56/S52ZY1zUxZYnUMnyXTYfuL9TS/73lHxjFWhzs5/0oPy2tEqYXNbRw+Yy7+9Lq8IbT9YEZh3nhMp/+vsBn5/OGhQfAAA=
@@ -30,7 +36,7 @@
  </layer>
  <layer name="background2" width="51" height="39">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3OMQ0AAAgDsP34t4gOZJAlrYImAADQZ+d7AAAAAAA0OIZpoWYUHwAA
+   H4sIAAAAAAAAC+3TsQkAIRAEQPO3Lkv9wJ4EI+swVZDHRN5gJtvs2OVCAABgVOPfF7CjPXN+F7tlWx5R9Aqfkh8BAACAq3TyXp7CFB8AAA==
   </data>
  </layer>
  <layer name="foreground0" width="51" height="39">
@@ -40,12 +46,12 @@
  </layer>
  <layer name="foreground1" width="51" height="39">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2WOU/EMBCFJ8lCsx30/DfK/RV0XD0UQMnVckiwlHvQQsNRAov4BUALLxKRrGjsHZPLTvxJTyslk8l7s0lsIreYLfDHB/XacArdTDjUOeWv+89sddfYeGojXc8fCHQZH9//Lq+hLjHv2Qn/U0Dlo9+0A3vWY6INaBPagrbjeu5bxXf5EN6PoGPoBDqtKUsVjOB9DE2gKXTrcZYXeH+F3qAZ9O5xlpSf1H9CFEFx0rSb4qzUkMG3fZiNX9+yqfi0hzmLiM6jpl2Uwx1y3P9l2cHvrmWu1cXyPZXBBXJcMllM78iao1kC7tLWb4GEPazX+9CBcN22rc8zb30znTedu4Kfa2gI3Qi8Seqz9UySuchc8rke0OMReoKeE33/7DqunkOS2XaOugwqn+jzBX0nsv5qvdpXnYEkM1dT5PlLWeoRLff0/U31GdwM1Mw6JDU6TLmy5zzfX7Kf42bAZVbvP9DUlImkPzeTIjN2japn3CZ+AVFOgacUHwAA
+   H4sIAAAAAAAAC+2Wu07DQBBFx3bgA0LPv1HmK+iApIcCKCHQ8pAgKcOjhYZHCSSfkNDCtYSllTW7mcWP7Np7pKtI9nh878T2LpFbTNf44716bTiFbiYc6pzy1/1ntrprbDw1kbbnDwTajI/vf5vXUJdY9uyE/yngOzsx0S60B/WhQVzPfav4Lp/A+yk0hM6g85qyVMEE3u+ge+gBevQ4ywe8f0Jf0BSaeZwl5Sf1nxBFUJys2k1xNmvI4Ns+zMavb9lUfNrDXEREl9GqXZTDE3I8/2XZx++BZa6t9fI9lcEVclwzWUzvyLajWQLu0tRvgYRDrNdH0LFw3batz7NsfTOdN527gZ9baASNBd4k9dl6JslcZC75XC/o8Qq9Qe+Jvn92HVfPIclsO0ddBpU5+iyg70TWX61X+6ozkGTmaoo8fyndDtFGR9/fVJ/BzUDNrENSo8OUK3vO8/0l+zluBlxm9f49TU2ZSPpzMykyY9eoesZN4he0olEtFB8AAA==
   </data>
  </layer>
- <layer name="collision" width="51" height="39" visible="0" opacity="0.5">
+ <layer name="collision" width="51" height="39" opacity="0.5">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2XUQ7CIAxA9+/9j8WPbtk0m2dxJjQ2TQudKxtoX9IYMyg8hMq6znEcx2mNcPmEFf2a67rGYJgzBXXoM07w7B7nmYs3uTYPI1e6ZuDSC/mH+NxyraWxtvJc89xiQF6tC+63BysXgO4xjQvstxF5gVvqO8SExrRywHsbuwQmsAv0w3MJcZ6wNvSTrouli3ReUtDzInkH4sStyxEuublAP7y/JpJLW99LuczKurowa/ptbSvlspWZ8dtKiZqcqjUlsa7JEtLvZnnfOdsFn6W9nO1CGZV7kmtXmwvMJ9eea9eqC9S9pWIXbo5aanPZw5Eu9B7M/f9o2kgc6ZIaS3M/1NaD0rTkkntvXxpy0ZztX3Lh3gPo3VjTRqKWO78Flu/7NYTjOM4/8AJkEQfHFB8AAA==
+   H4sIAAAAAAAAC+2XUQ6DIAxA/d/9j8XPptEtY2eZS2jWNAWqFoStL2mWRYQ+hIrDYBiGYfSGu3xDi3Ht67rGpNhnCuowZpzg2j3kmYsPuTYPJVc6Z+AyRvqfwnXNuY6NtZXX2s8tBPQrdcH3HUHLBaBrTOIC621GXuCW+g+xoDG1HPDaxi6OCewC9+FcXMgT5ob+0nnRdIntlxR0v8S8HXHi5qWGSy4XuA+vr2VnTqVcnpm6CmvSM3O6t7aVctkKdvcnu+CanKo1JdGuyTFiz03zvFPThcsZ76WjnP1cKLNwTXLtWnOBfHLtuXa9ukDd8w27cDlKac3lCDVd6DmYe/9I2sSo6ZIaS3I+lNaD0vTkkvtu9x25SPb2L7lw3wH0bCxpE6OVM78Gmt/7LYRhGMY/8AYKitscFB8AAA==
   </data>
  </layer>
  <objectgroup name="trigger" width="51" height="39">
@@ -61,6 +67,46 @@
     <property name="dialogue" value="Oui c'est bien moi, Ali Ababwa."/>
     <property name="pos-x" value="880"/>
     <property name="pos-y" value="432"/>
+    <property name="start" value=""/>
+   </properties>
+  </object>
+  <object name="Papy Prothèse" type="PNJ" x="544" y="608" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="Je suis vieux."/>
+    <property name="pos-x" value="560"/>
+    <property name="pos-y" value="624"/>
+    <property name="start" value=""/>
+   </properties>
+  </object>
+  <object name="Enfant" type="PNJ" x="736" y="352" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="Pf, j'en ai déjà vu des comme vous."/>
+    <property name="pos-x" value="752"/>
+    <property name="pos-y" value="368"/>
+    <property name="start" value=""/>
+   </properties>
+  </object>
+  <object name="Pélagie" type="PNJ" x="992" y="416" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="Je vends des choux."/>
+    <property name="pos-x" value="1008"/>
+    <property name="pos-y" value="432"/>
+    <property name="start" value=""/>
+   </properties>
+  </object>
+  <object name="Hanz" type="PNJ" x="1152" y="416" width="32" height="32">
+   <properties>
+    <property name="dialog" value="L'imagination est la reine du vrai, et le possible est une des provinces du vrai."/>
+    <property name="pos-x" value="1168"/>
+    <property name="pos-y" value="432"/>
+    <property name="start" value=""/>
+   </properties>
+  </object>
+  <object name="Bonny" type="PNJ" x="640" y="480" width="32" height="32">
+   <properties>
+    <property name="dialog" value="L'accés au village est bloqué ! Va chercher la sainte grenade mon chéri !"/>
+    <property name="pos-x" value="656"/>
+    <property name="pos-y" value="496"/>
     <property name="start" value=""/>
    </properties>
   </object>
