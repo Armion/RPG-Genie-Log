@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -40,13 +41,13 @@ public class SelectionTeam extends BasicGameState implements ComponentListener{
 	private void loadPlayers(GameContainer container)
 	{
 		this.liste = new ArrayList<>();
-		int x = this.x +26;
+		int x = this.x +35;
 		
 		for(Joueur j : Team.getInstance().getTeam())
 		{
-			liste.add(new Couple<>(j, new MouseOverArea(container, j.getPortrait(), x, this.y+60, this)));
+			liste.add(new Couple<>(j, new MouseOverArea(container, j.getPortrait(), x, this.y+78, this)));
 			
-			x+= 61;
+			x+= 83;
 		}
 	}
 	
@@ -107,8 +108,15 @@ public class SelectionTeam extends BasicGameState implements ComponentListener{
 		
 		for(Couple<Joueur, MouseOverArea> c : liste)
 		{
+			
+			g.setColor(new Color(255,0,0));
+			g.fillRect(c.getValue().getX(), c.getValue().getY() - 35, 50*c.getKey().getPV()/c.getKey().getPVMax(), 9);
+			g.setColor(new Color(0,0,255));
+			g.fillRect(c.getValue().getX(), c.getValue().getY() - 22, 50*c.getKey().getMana()/c.getKey().getManaMax(), 9);
+
+			g.setColor(new Color(255,255,255));
 			c.getValue().render(container, g);
-			g.drawString(c.getKey().getNom(), c.getValue().getX(), c.getValue().getY()+32);
+			g.drawString(c.getKey().getNom(), c.getValue().getX(), c.getValue().getY()+50);
 		}
 		
 		
