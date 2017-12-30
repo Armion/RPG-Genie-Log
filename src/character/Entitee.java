@@ -2,6 +2,7 @@ package character;
 import java.util.ArrayList;
 
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
@@ -26,12 +27,23 @@ public abstract class Entitee {
 	protected int mana;
 	protected ArrayList<Competence> sorts=new ArrayList<Competence>();
 	protected ArrayList<Equipement> equipements=new ArrayList<Equipement>();
+	protected Image portrait;
+	
 	
 	protected int posX;
 	protected int posY;
 	public Animation[] anim=new Animation[1];
 	
 	
+	public Entitee()
+	{
+		 try {
+			portrait = new Image("resources/Icones/perso.png");
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	/*#####Zone graphique####*/
 	
@@ -53,6 +65,11 @@ public abstract class Entitee {
 	public void setY(int y)
 	{
 		this.posY=y;
+	}
+	
+	public Image getPortrait()
+	{
+		return this.portrait;
 	}
 	
 	public void setText(String path) throws SlickException

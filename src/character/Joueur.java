@@ -16,6 +16,11 @@ public abstract class Joueur extends Entitee {
 
 	protected abstract void UpgradeComp();
 	
+	public Joueur()
+	{
+		super();
+	}
+	
 	
 	protected String lvlUp()//TODO:Augmenter les carac(voir redéfinir dans la classe de perso)
 	{

@@ -1,9 +1,7 @@
 package hud;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -13,7 +11,6 @@ import org.newdawn.slick.gui.AbstractComponent;
 import org.newdawn.slick.gui.ComponentListener;
 import org.newdawn.slick.gui.MouseOverArea;
 
-import character.Entitee;
 import competences.Competence;
 import main.Couple;
 import singleton.Team;
@@ -25,22 +22,21 @@ public class MapSkill extends HUD implements ComponentListener{
 	private int y;
 	private Image skillsPicture;
 	private List<Couple<Joueur, List<Couple<Competence, MouseOverArea>>>> liste;
+	private SelectionTeam select;
 
 	
 	
 	public void init(GameContainer container) throws SlickException 
 	{
+		
 
-		
-		
-		
-		
-		
 		skillsPicture = new Image("resources/hud/Skill.png");
 		this.x = 10;
 		this.y = container.getHeight()/2 - this.skillsPicture.getHeight()/2;
 		
 		this.loadSkill(container);
+		
+		this.select = SelectionTeam.getInstance(container);
 		
 	}
 	
@@ -48,7 +44,6 @@ public class MapSkill extends HUD implements ComponentListener{
 	public void render(GameContainer container, Graphics g) {
 		g.resetTransform();
 		g.drawImage(skillsPicture, x, y);
-		
 		
 		for(Couple<Joueur, List<Couple<Competence, MouseOverArea>>> l : liste)
 		{
@@ -58,6 +53,8 @@ public class MapSkill extends HUD implements ComponentListener{
 			}
 			
 		}
+		if(select.isVisible())
+			select.render(container, g);
 	}
 	
 	
@@ -106,6 +103,7 @@ public class MapSkill extends HUD implements ComponentListener{
 				if(source == c.getValue())
 				{
 					l.getKey().reduireMana(c.getKey().getCout());
+						select.changeState();
 					Team.getInstance().getTeam().get(0).subirComp(c.getKey());
 				}
 			}
