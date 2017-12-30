@@ -7,6 +7,7 @@ import org.newdawn.slick.SlickException;
 
 import character.pnj.PNJ;
 import singleton.ListPNJ;
+import singleton.Team;
 
 //classe qui sert à controler les events de la map
 public class MapTriggerController {
@@ -97,6 +98,18 @@ public class MapTriggerController {
 		this.teleport(objectID);
 		String newMap = this.map.getObjectProperty(objectID, "dest-map", "undefined");
 		if (!"undefined".equals(newMap)) {
+			if(newMap.equals("zone_depart.tmx"))
+			{
+				Team.getInstance().setZone(0);
+			}
+			else if(newMap.equals("mine.tmx"))
+			{
+				Team.getInstance().setZone(1);
+			}
+			else if(newMap.equals("boyaux.tmx"))
+			{
+				Team.getInstance().setZone(2);
+			}
 			this.map.changeMap("resources/map/" + newMap);
 		}
 		

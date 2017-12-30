@@ -8,7 +8,10 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 
 import Combat.personnages.*;
+import character.Blob;
 import character.DarkKnight;
+import character.Elementaire_Flamme;
+import character.Elementaire_Terre;
 import character.Ennemi;
 import character.Entitee;
 import character.Joueur;
@@ -68,6 +71,8 @@ public class Combat {
 	
 	private Entitee factoryMonstres(int id,int nom,int moy) throws SlickException
 	{
+		if(Team.getInstance().getZone()==1)
+		{
 		if(id<=25)
 		{
 			return new Squelette(moy,nom+1);
@@ -79,6 +84,23 @@ public class Combat {
 		else
 		{
 			return new DarkKnight(moy,nom+1);
+		}
+		}
+		else 
+		{
+			if(id<=25)
+			{
+				return new Blob(moy,nom+1);
+			}
+			else if(id>25 && id<=35)
+			{
+				return new Elementaire_Terre(moy,nom+1);
+			}
+			else
+			{
+				return new Elementaire_Flamme(moy,nom+1);
+			}
+			
 		}
 	}
 	

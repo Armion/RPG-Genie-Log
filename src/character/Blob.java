@@ -11,7 +11,7 @@ import competences.SRituel;
 
 public class Blob extends Ennemi {
 	
-	public Blob(int diff,String nom) throws SlickException
+	public Blob(int diff,int nom) throws SlickException
 	{
 		this.atk=8+((diff-1)*3);
 		this.def=8+((diff-1)*3);

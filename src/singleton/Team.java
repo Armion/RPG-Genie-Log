@@ -22,6 +22,7 @@ public class Team {
 	private List<Joueur> membres;
 	private int money;
 	private Inventory inventaire;
+	private int zone;
 	
 	private Team()
 	{
@@ -63,6 +64,7 @@ public class Team {
 
 		
 		this.inventaire = new Inventory( listeInventaire, 500);
+		this.zone=0;
 	}
 	
 	
@@ -107,6 +109,14 @@ public class Team {
 	public int getMoney()
 	{
 		return this.money;
+	}
+	public int getZone()
+	{
+		return this.zone;
+	}
+	public void setZone(int z)
+	{
+		this.zone=z;
 	}
 	
 	
