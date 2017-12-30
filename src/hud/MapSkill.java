@@ -118,7 +118,6 @@ public class MapSkill extends HUD implements ComponentListener{
 					l.getKey().reduireMana(c.getKey().getCout());
 					competence = c.getKey();
 					((SelectionTeam) game.getState(SelectionTeam.ID)).setType("competence");
-					System.out.println(((SelectionTeam) game.getState(SelectionTeam.ID)).getSelection().getNom());
 					
 				}
 			}

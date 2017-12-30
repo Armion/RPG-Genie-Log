@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.gui.AbstractComponent;
 import org.newdawn.slick.gui.ComponentListener;
 import org.newdawn.slick.gui.MouseOverArea;
@@ -85,7 +87,7 @@ public class SelectionTeam extends BasicGameState implements ComponentListener{
 		
 		this.loadPlayers(container);
 		
-		this.selection = Team.getInstance().getTeam().get(0);
+		this.selection = null;
 		this.game = game;
 		
 		
@@ -102,9 +104,11 @@ public class SelectionTeam extends BasicGameState implements ComponentListener{
 		g.drawImage(selectionImage, x, y);
 		
 		
+		
 		for(Couple<Joueur, MouseOverArea> c : liste)
 		{
 			c.getValue().render(container, g);
+			g.drawString(c.getKey().getNom(), c.getValue().getX(), c.getValue().getY()+32);
 		}
 		
 		
@@ -120,16 +124,20 @@ public class SelectionTeam extends BasicGameState implements ComponentListener{
 	@Override
 	public void leave(GameContainer container, StateBasedGame game) throws SlickException {
 		
-		if(this.type.equals("competence"))
-			selection.subirComp(((MapGameState)game.getState(MapGameState.ID)).getmapSkill().getCompetence());
-		else
+		if(selection != null)
 		{
-			if(this.type.equals("item"))
+			if(this.type.equals("competence"))
+				selection.subirComp(((MapGameState)game.getState(MapGameState.ID)).getmapSkill().getCompetence());
+			else
 			{
-				Team.getInstance().getInventory().useItem(item, selection, "");
-				((MapGameState) game.getState(MapGameState.ID)).getInventory().update();
+				if(this.type.equals("item"))
+				{
+					Team.getInstance().getInventory().useItem(item, selection, "");
+					((MapGameState) game.getState(MapGameState.ID)).getInventory().update();
+				}
 			}
 		}
+		
 	}
 	
 
