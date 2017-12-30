@@ -463,7 +463,7 @@ public class CombatScreen extends BasicGameState {
 			
 			else if(this.status==6)
 			{
-				if(this.objets==null && (this.choix==null || this.choix.anim[0]!=null))
+				if(this.objets==null && (this.choix==null || this.choix.path!=null))
 					{afficherCompetence(arg2,arg0);}
 				for(int i=0;i<this.combat.log.size();i++)
 				{
@@ -490,7 +490,7 @@ public class CombatScreen extends BasicGameState {
 			{
 				
 				
-				if(this.choix==null || this.choix.anim[0]!=null)
+				if(this.choix==null || this.choix.path!=null)
 				afficherCompetence(arg2,arg0);
 				
 				for(int i=0;i<this.combat.log.size();i++)
