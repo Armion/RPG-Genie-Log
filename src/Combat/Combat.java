@@ -222,7 +222,7 @@ public class Combat {
 		{
 		for(int i=0;i<cibles.size();i++)
 		{
-			System.out.println((i+1)+". "+cibles.get(i).getNom()+" LVL"+cibles.get(i).getLVL());		
+			System.out.println((i+1)+" . "+cibles.get(i).getNom()+" LVL "+cibles.get(i).getLVL());		
 		}
 		Scanner sc=new Scanner(System.in);
 		choix=(sc.nextInt())-1;
