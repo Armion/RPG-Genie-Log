@@ -66,8 +66,7 @@ public class MapGameState extends BasicGameState implements Observer{
 		this.map.init();
 		this.triggers = new MapTriggerController(map, player);
 		this.controller = new MapPlayerController(player, container.getGraphics());
-		
-		System.out.println(ListPNJ.getInstance().getListe().get(0).getPosY() + "");
+
 		
 		this.inventaire.init(container, game);
 		this.skills.init(container, game);

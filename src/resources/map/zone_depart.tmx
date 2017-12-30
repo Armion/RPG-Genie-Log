@@ -96,7 +96,7 @@
   </object>
   <object name="Hanz" type="PNJ" x="1152" y="416" width="32" height="32">
    <properties>
-    <property name="dialog" value="L'imagination est la reine du vrai, et le possible est une des provinces du vrai."/>
+    <property name="dialogue" value="L'imagination est la reine du vrai, \n et le possible est une des provinces du vrai."/>
     <property name="pos-x" value="1168"/>
     <property name="pos-y" value="432"/>
     <property name="start" value=""/>

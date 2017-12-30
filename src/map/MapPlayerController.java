@@ -84,9 +84,6 @@ public class MapPlayerController implements KeyListener {
 		case Input.KEY_RIGHT:
 			this.player.setDx(0);
 			break;
-		/*case Input.KEY_ENTER :
-			this.trigPNJ();
-			break;*/
 		}
 		
 	}
