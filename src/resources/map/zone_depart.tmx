@@ -15,8 +15,8 @@
  <tileset firstgid="3021" name="collision" tilewidth="32" tileheight="32">
   <image source="tuiles/logic.png" width="160" height="160"/>
  </tileset>
- <tileset firstgid="3046" name="vieux" tilewidth="32" tileheight="32">
-  <image source="../sprites/vieux.png" width="32" height="32"/>
+ <tileset firstgid="3046" name="alladin" tilewidth="32" tileheight="32">
+  <image source="tuiles/Characterss12.png" trans="ffffff" width="384" height="256"/>
  </tileset>
  <layer name="background0" width="51" height="39">
   <data encoding="base64" compression="gzip">
@@ -30,7 +30,7 @@
  </layer>
  <layer name="background2" width="51" height="39">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3BAQ0AAADCoPdPbQ8HFAAAAAAAAAB8GpdBLBAUHwAA
+   H4sIAAAAAAAAC+3OMQ0AAAgDsP34t4gOZJAlrYImAADQZ+d7AAAAAAA0OIZpoWYUHwAA
   </data>
  </layer>
  <layer name="foreground0" width="51" height="39">
@@ -43,7 +43,7 @@
    H4sIAAAAAAAAC+2WOU/EMBCFJ8lCsx30/DfK/RV0XD0UQMnVckiwlHvQQsNRAov4BUALLxKRrGjsHZPLTvxJTyslk8l7s0lsIreYLfDHB/XacArdTDjUOeWv+89sddfYeGojXc8fCHQZH9//Lq+hLjHv2Qn/U0Dlo9+0A3vWY6INaBPagrbjeu5bxXf5EN6PoGPoBDqtKUsVjOB9DE2gKXTrcZYXeH+F3qAZ9O5xlpSf1H9CFEFx0rSb4qzUkMG3fZiNX9+yqfi0hzmLiM6jpl2Uwx1y3P9l2cHvrmWu1cXyPZXBBXJcMllM78iao1kC7tLWb4GEPazX+9CBcN22rc8zb30znTedu4Kfa2gI3Qi8Seqz9UySuchc8rke0OMReoKeE33/7DqunkOS2XaOugwqn+jzBX0nsv5qvdpXnYEkM1dT5PlLWeoRLff0/U31GdwM1Mw6JDU6TLmy5zzfX7Kf42bAZVbvP9DUlImkPzeTIjN2japn3CZ+AVFOgacUHwAA
   </data>
  </layer>
- <layer name="collision" width="51" height="39" opacity="0.5">
+ <layer name="collision" width="51" height="39" visible="0" opacity="0.5">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+2XUQ7CIAxA9+/9j8WPbtk0m2dxJjQ2TQudKxtoX9IYMyg8hMq6znEcx2mNcPmEFf2a67rGYJgzBXXoM07w7B7nmYs3uTYPI1e6ZuDSC/mH+NxyraWxtvJc89xiQF6tC+63BysXgO4xjQvstxF5gVvqO8SExrRywHsbuwQmsAv0w3MJcZ6wNvSTrouli3ReUtDzInkH4sStyxEuublAP7y/JpJLW99LuczKurowa/ptbSvlspWZ8dtKiZqcqjUlsa7JEtLvZnnfOdsFn6W9nO1CGZV7kmtXmwvMJ9eea9eqC9S9pWIXbo5aanPZw5Eu9B7M/f9o2kgc6ZIaS3M/1NaD0rTkkntvXxpy0ZztX3Lh3gPo3VjTRqKWO78Flu/7NYTjOM4/8AJkEQfHFB8AAA==
   </data>
@@ -52,15 +52,15 @@
   <object name="em" type="change-map" x="1024" y="240" width="32" height="22">
    <properties>
     <property name="dest-map" value="mine.tmx"/>
-    <property name="dest-x" value="256"/>
-    <property name="dest-y" value="2787"/>
+    <property name="dest-x" value="272"/>
+    <property name="dest-y" value="2800"/>
    </properties>
   </object>
-  <object name="vieux pas nette" type="PNJ" x="0" y="0" width="1537" height="1170">
+  <object name="Alladin" type="PNJ" x="864" y="416" width="32" height="32">
    <properties>
-    <property name="dialogue" value="salut, tu me présente ta grand mere ?"/>
-    <property name="pos-x" value="992"/>
-    <property name="pos-y" value="448"/>
+    <property name="dialogue" value="Oui c'est bien moi, Ali Ababwa."/>
+    <property name="pos-x" value="880"/>
+    <property name="pos-y" value="432"/>
     <property name="start" value=""/>
    </properties>
   </object>

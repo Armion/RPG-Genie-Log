@@ -27,6 +27,7 @@ public class Elementaire_Terre extends Ennemi {
 		this.mana=this.manaMax;
 		this.sorts=new ArrayList<Competence> ();
 		this.sorts.add(new Abime());
+		this.setText("src/Combat/personnages/sprites/elementaireTerre.png");
 		if(diff>=3)
 		{
 			this.sorts.add(new Charge());

@@ -26,7 +26,7 @@ public class Blob extends Ennemi {
 		this.sorts=new ArrayList<Competence> ();
 		this.sorts.add(new Poison());
 		
-		this.setText("src/Combat/personnages/sprites/genrique.png");
+		this.setText("src/Combat/personnages/sprites/slime.png");
 	}
 
 }

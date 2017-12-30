@@ -104,32 +104,38 @@ public class MapPlayerController implements KeyListener {
 			{
 			case 0 :
 				{
-					System.out.println("haut !");
-					if(this.player.getX() - p.getPosX() < 32
-							&& this.player.getX() - p.getPosX() > 0
+					if(this.player.getX() - p.getPosX() < 33
+							&& this.player.getX() - p.getPosX() > -33
 							&& this.player.getY() - p.getPosY() <= distance
-							&& this.player.getY() - p.getPosY() >= -distance)
+							&& this.player.getY() - p.getPosY() >= 0)
 						System.out.println(p.getDialogue());
 					break;
 				}
 			case 1 :
 				{
-					System.out.println("gauche !");
-					if(this.player.getX() - p.getPosX() < 32
-							&& this.player.getX() - p.getPosX() > -distance
-							&& this.player.getY() - p.getPosY() <= distance
-							&& this.player.getY() - p.getPosY() >= -distance)
+					if(this.player.getX() - p.getPosX() < distance
+							&& this.player.getX() - p.getPosX() > 0
+							&& this.player.getY() - p.getPosY() <= 33
+							&& this.player.getY() - p.getPosY() >= -33)
 						System.out.println(p.getDialogue());
 					break;
 				}
 			case 2 :
 				{
-					System.out.println("bas !"); 
+					if(this.player.getX() - p.getPosX() < 33
+							&& this.player.getX() - p.getPosX() > -33
+							&& this.player.getY() - p.getPosY() <= 0
+							&& this.player.getY() - p.getPosY() >= -distance)
+						System.out.println(p.getDialogue());
 					break;
 				}
 			case 3 :
 				{
-					System.out.println("droite !"); 
+					if(this.player.getX() - p.getPosX() < 0
+							&& this.player.getX() - p.getPosX() > -distance
+							&& this.player.getY() - p.getPosY() <= 33
+							&& this.player.getY() - p.getPosY() >= -33)
+						System.out.println(p.getDialogue());
 					break;
 				}
 			}

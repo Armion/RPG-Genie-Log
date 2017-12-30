@@ -27,6 +27,7 @@ public class Elementaire_Flamme extends Ennemi {
 		this.mana=this.manaMax;
 		this.sorts=new ArrayList<Competence> ();
 		this.sorts.add(new LanceFlamme());
+		this.setText("src/Combat/personnages/sprites/fire_elemental.png");
 		if(diff>=3)
 		{
 			this.sorts.add(new Pluie_Feu());
