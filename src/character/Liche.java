@@ -6,6 +6,7 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
+import competences.Abime;
 import competences.Competence;
 import competences.Eclair_givre;
 import competences.LanceFlamme;
@@ -32,7 +33,8 @@ public class Liche extends Ennemi {
 		this.mana=this.manaMax;
 		this.sorts=new ArrayList<Competence> ();
 		//this.sorts.add(new Eclair_givre());
-		this.sorts.add(new LanceFlamme());
+		//this.sorts.add(new LanceFlamme());
+		this.sorts.add(new Abime());
 		
 		if(diff>=3)
 		{
