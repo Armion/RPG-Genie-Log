@@ -26,7 +26,7 @@ public class DarkKnight extends Ennemi {
 		this.sorts=new ArrayList<Competence> ();
 		this.sorts.add(new Eclair_givre());
 		
-		this.setText("src/Combat/personnages/sprites/chevalier2.png");
+		this.setText("src/Combat/personnages/sprites/chevalier_noir.png");
 	}
 	
 
