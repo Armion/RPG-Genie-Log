@@ -32,10 +32,10 @@ public class MainScreenGameState extends BasicGameState implements ComponentList
 		
 		//rien que pour toi Nico, on met ton bouton play \o/
 		Image play = new Image("resources/hud/Playnow.png");
-		this.playButton = new MouseOverArea(container, play, container.getWidth()/2 - play.getWidth()/2, container.getHeight()/2 - play.getHeight()/2, this);
+		this.playButton = new MouseOverArea(container, play, container.getWidth()/2 - play.getWidth()/2, container.getHeight()/2 - (play.getHeight()/2)-50, this);
 		this.container = container;
 		Image exit = new Image("resources/hud/exitGame.png");
-		this.exitButton = new MouseOverArea(container, exit, container.getWidth()/2 - play.getWidth()/2, (container.getHeight()/2)+100 - (play.getHeight()/2)+100, this);
+		this.exitButton = new MouseOverArea(container, exit, container.getWidth()/2 - play.getWidth()/2, (container.getHeight()/2)+50 - (play.getHeight()/2)+100, this);
 
 	}
 
@@ -85,7 +85,6 @@ public class MainScreenGameState extends BasicGameState implements ComponentList
 		}
 		if(source == exitButton){
 			container.exit();
-			
 		}
 		
 		
