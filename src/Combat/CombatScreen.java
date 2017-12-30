@@ -396,7 +396,7 @@ public class CombatScreen extends BasicGameState {
 		this.groupe=(ArrayList<Joueur>) Team.getInstance().getTeam();
 		this.container=arg0;
 		this.background=new Image("src/Combat/background/battle.jpg");
-		this.music=new Music("src/Combat/battle-song.ogg");
+		this.music=new Music("src/Combat/Combat_Music_1.ogg");
 		this.menu=new Image("src/Combat/background/interface.png");
 		this.hud=new Image("src/Combat/personnages/sprites/hud.png");
 		
