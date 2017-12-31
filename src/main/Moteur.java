@@ -53,6 +53,10 @@ public class Moteur extends StateBasedGame {
 		addState(new CombatScreen());
 		//ajout de l'état de selection
 		addState(new SelectionTeam());
+		
+		addState(new EndGameState());
+		
+		
 	}
 
 }
