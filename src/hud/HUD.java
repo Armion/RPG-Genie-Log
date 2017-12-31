@@ -1,6 +1,6 @@
 package hud;
 
-public class HUD {
+public abstract class HUD {
 	
 	protected boolean visible;
 	protected int x;
