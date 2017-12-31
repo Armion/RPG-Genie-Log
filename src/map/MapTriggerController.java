@@ -50,6 +50,8 @@ public class MapTriggerController {
 	public void initEvent()
 	{
 
+		ListPNJ.getInstance().getListe().clear();
+		
 		for (int objectID = 0; objectID < this.map.getObjectCount(); objectID++) 
 		{
 			if(!this.map.getObjectProperty(objectID, "start", "undefined").equals("undefined"))
@@ -99,6 +101,7 @@ public class MapTriggerController {
 		if (!"undefined".equals(newMap)) {
 			this.map.changeMap("resources/map/" + newMap);
 		}
+		this.initEvent();
 		
 	}
 	
