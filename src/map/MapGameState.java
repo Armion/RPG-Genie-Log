@@ -86,7 +86,6 @@ public class MapGameState extends BasicGameState implements Observer{
 		this.dialogue.init(container, game);
 		
 		
-		
 		this.jeu = game;
 	}
 

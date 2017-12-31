@@ -17,7 +17,7 @@ public class Squelette extends Ennemi {
 		this.pvMax=25+((diff-1)*4);
 		this.pv=this.pvMax;
 		this.loot=1;
-		this.nom="Squellete "+nom;
+		this.nom="Squelette "+nom;
 		this.profil=1;
 		this.setText("src/Combat/personnages/sprites/squelette.png");
 	}
