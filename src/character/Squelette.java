@@ -3,7 +3,7 @@ package character;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
-
+//Sous-classe d'ennemi, chaque type possède sa classe avec ses propres caractéristiques
 public class Squelette extends Ennemi {
 	
 	

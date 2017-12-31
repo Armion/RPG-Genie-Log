@@ -74,7 +74,7 @@ public abstract class Entitee {
 	{
 		return this.portrait;
 	}
-	
+	//charge l'animation du personnage
 	public void setText(String path) throws SlickException
 	{
 		SpriteSheet sprite = new SpriteSheet(path,102,138);
@@ -92,7 +92,7 @@ public abstract class Entitee {
 		return this.id;
 	}
 
-		
+		//permet a l'entité de subir des dégats
 	public void getDegats(int deg)
 	{
 		this.pv=this.pv-deg;
@@ -107,6 +107,7 @@ public abstract class Entitee {
 			
 		}
 	}
+	//permet a l'entité de subir des soins
 	public void getHeal(int heal)
 	{
 		
@@ -174,7 +175,7 @@ public abstract class Entitee {
 		this.pv=pv;
 	}
 	
-	
+	//permet a l'entité de subir des compétence
 	public void subirComp(Competence sort)
 	{ 
 		
@@ -208,7 +209,7 @@ public abstract class Entitee {
 		
 		
 	}
-	
+	//retire les effets subis dont la durée ==0
 	public void retirerEffets()
 	{
 
@@ -233,7 +234,7 @@ public abstract class Entitee {
 			compteur++;
 		}
 	}
-	
+	//fait subir les effets contenus dans effets_subis et reduit leur durée
 	public void subirEffet()
 	{
 		retirerEffets();

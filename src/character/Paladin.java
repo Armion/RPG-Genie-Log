@@ -5,7 +5,7 @@ import org.newdawn.slick.SlickException;
 
 import competences.*;
 
-
+// sous classe de Joueur,on definie chaque type de personnage, avec ses propre stats, méthodes redéfinies, ect..
 public class Paladin extends Joueur {
 	
 	public Paladin() throws SlickException

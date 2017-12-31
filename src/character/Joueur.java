@@ -7,7 +7,7 @@ import org.newdawn.slick.SlickException;
 
 import singleton.log.LigneLog;
 import singleton.log.Logs;
-
+//Sous classe d'entité qui permet de définir des classes de joueurs
 public abstract class Joueur extends Entitee {
 	
 	protected int xp;
@@ -22,7 +22,7 @@ public abstract class Joueur extends Entitee {
 	}
 	
 	
-	protected String lvlUp()//TODO:Augmenter les carac(voir redéfinir dans la classe de perso)
+	protected String lvlUp()
 	{
 		String log="";
 		log=log+this.getNom()+" monte d'un niveau ! ";
