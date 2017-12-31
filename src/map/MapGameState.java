@@ -146,6 +146,7 @@ public class MapGameState extends BasicGameState implements Observer{
 		this.player.update(delta);
 		this.camera.update(container);
 		
+		//si on se deplace et qu'on parlait à un PNJ, alors on lui parle plus
 		if(this.player.isMoving() && this.dialogue.isVisible())
 			this.fermerFenetre(dialogue);
 		
@@ -168,13 +169,14 @@ public class MapGameState extends BasicGameState implements Observer{
 	
 	
 
-	//on regarde les touches relachées, si c'est un echappe, alors on quitte le jeu
+	//on regarde les touches relachées, pour afficher les HUD ou retourner à l'ancienne state
 	@Override
 	public void keyReleased(int key, char c) {
 		
+		
 		switch(key)
 		{
-		case Input.KEY_ESCAPE :
+		case Input.KEY_ESCAPE : //on regarde qu'aucun HUD n'est ouvert sinon on le ferme, le cas contraire ou retourne au Main Screen
 			{
 				if(this.fenetres.isEmpty())
 				{
@@ -189,7 +191,7 @@ public class MapGameState extends BasicGameState implements Observer{
 				break;
 			}
 			
-		case Input.KEY_I : 
+		case Input.KEY_I : //si on appuis sur i on ouvre l'inventaire
 			{
 				if(! this.inventaire.isVisible())
 				{
@@ -201,7 +203,7 @@ public class MapGameState extends BasicGameState implements Observer{
 				}
 				break;
 			}
-		case Input.KEY_P : 
+		case Input.KEY_P : //p sert pour les skills
 			{
 				if(! this.skills.isVisible())
 				{
@@ -213,7 +215,7 @@ public class MapGameState extends BasicGameState implements Observer{
 				}
 			break;
 			}
-		case Input.KEY_ENTER : 
+		case Input.KEY_ENTER :  //comme il n'y a pas des masses de PNJ on verifi directement ici, le PNJ coffre, sinan on ouvre le bon dialogue
 		{
 			PNJ msg = this.controller.trigPNJ();
 			if(msg != null)
@@ -249,6 +251,7 @@ public class MapGameState extends BasicGameState implements Observer{
 		return ID;
 	}
 
+	//methode quand l'unique objet observé est mit à jour
 	@Override
 	public void update(Observable observable, Object objectConcerne) {
 		
@@ -259,15 +262,19 @@ public class MapGameState extends BasicGameState implements Observer{
 		
 	}
 	
+	//methode pour afficher es logs
 	public void writeLogs(Graphics g)
 	{
+		//on change la couleur
 		g.setColor(new Color(255,255,255));
 		
+		//on regarde l'heure actuelle
 		Date d = new Date();
 		
-		
+		//on instanci une ligne de logs
 		LigneLog ligne;
 		
+		//on parcourt tout les logs à la recherche d'un log qui ne doit plus etre affiché et retirer de la liste
 		for(Iterator<LigneLog> it = logs.iterator() ; it.hasNext();)
 		{
 			ligne = it.next();
@@ -280,16 +287,17 @@ public class MapGameState extends BasicGameState implements Observer{
 		
 		
 		log = "";
-		
+		//on creer un string qui va contenir tout les logs à raison de 1 par ligne
 		for(LigneLog e : logs)
 		{
 			log += "\n" + e.getContent();
 		}
-		
+		//on peut enfin afficher le string des logs à l'écran
 		g.drawString(log, container.getWidth()/2-100, container.getHeight()/2);
 		
 	}
 	
+	//methode qui tente de passer un HUD en visible
 	private void ouvrirFenetre(HUD win)
 	{
 		if(!win.isVisible())
@@ -299,8 +307,10 @@ public class MapGameState extends BasicGameState implements Observer{
 		}
 	}
 	
+	//methode qui tente de cacher un HUD
 	private void fermerFenetre(HUD win)
 	{
+		//on prepare une pile temporaire pour aller chercher le bon HUD sans perdre ceux au dessus
 		Stack<HUD> temp = new Stack<>();
 		HUD it = null;
 		
@@ -310,13 +320,13 @@ public class MapGameState extends BasicGameState implements Observer{
 			temp.push(it);
 		}
 		
-		//mise à jour
+		//mise à jour si on a trouvé le bon HUD
 		if(it != null)
 		{
 			it.changeState();
 		}
 		
-		//on rempile
+		//on rempile les HUD qui etaient au dessus
 		while(! temp.isEmpty())
 		{
 			this.fenetres.push(temp.pop());

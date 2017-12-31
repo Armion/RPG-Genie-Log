@@ -72,7 +72,7 @@ public abstract class Equipement extends Item {
 	}
 	
 	@Override
-	public void utiliser(String log, Entitee cible)
+	public void utiliser(Entitee cible)
 	{
 		if (this.equiped==false)
 		{

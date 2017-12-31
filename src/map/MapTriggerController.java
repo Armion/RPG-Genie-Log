@@ -48,17 +48,22 @@ public class MapTriggerController {
 		
 	}
 
+	//methode qui va charger tout les events "statics" qui doivent etre charger qu'une fois au début de la map comme les PNJs
 	public void initEvent()
 	{
-
+		//on nettoi les PNJs de l'ancienne map
 		ListPNJ.getInstance().getListe().clear();
 		
+		//on va aller charger tout les triggers
 		for (int objectID = 0; objectID < this.map.getObjectCount(); objectID++) 
 		{
+			//si c'est un PNJ static il a l'atribut start, si un trigger n'as pas l'attribut start getObjectProperty renvoit undefined
 			if(!this.map.getObjectProperty(objectID, "start", "undefined").equals("undefined"))
 			{
+				//si c'est un PNJ, on aurait pu check directement si c'est un PNJ diront certain, mais c'etait pour pouvoir ajouter d'autres events static
 				if(this.map.getObjectType(objectID).equals("PNJ"))
 				{
+					//on ajoute alors une nouvelle instance de PNJ au singleton ListPNJ
 					ListPNJ.getInstance().getListe().add(new PNJ(
 							Float.parseFloat(this.map.getObjectProperty(objectID, "pos-x", "undefined")) ,
 							Float.parseFloat(this.map.getObjectProperty(objectID, "pos-y", "undefined") ),
@@ -75,7 +80,7 @@ public class MapTriggerController {
 	private boolean isInTrigger(int id) {
 		//on regarde si la position du joueur est comprise dans le trigger, si oui on retourne true
 		
-		
+		//on regarde si l'item n'est pas pas un item static avant de le charger
 		if(this.map.getObjectProperty(id, "start", "undefined").equals("undefined"))
 		{
 			
@@ -114,6 +119,7 @@ public class MapTriggerController {
 			}
 			this.map.changeMap("resources/map/" + newMap);
 		}
+		//on oubli pas de recharger les events static si on change de map
 		this.initEvent();
 		
 	}

@@ -8,6 +8,8 @@ import effects.Effect;
 import effects.RestoreHeal;
 import effects.RestoreMana;
 
+
+//car y'en a marre de se faire casser en deux par les mobs !
 public class MedaillonArmion extends Consommable{
 	
 	public MedaillonArmion()
@@ -26,7 +28,7 @@ public class MedaillonArmion extends Consommable{
 	
 	
 	@Override
-	public void utiliser(String log, Entitee cible)
+	public void utiliser(Entitee cible)
 	{
 		for(Effect e : this.effects)
 		{

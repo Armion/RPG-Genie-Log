@@ -1,6 +1,5 @@
 package character;
-import java.util.ArrayList;
-import java.util.Random;
+
 //Sous-classes d'entité permmettant d'implémenter des ennemis
 public abstract class Ennemi extends Entitee {
 	

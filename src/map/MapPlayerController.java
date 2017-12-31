@@ -25,6 +25,7 @@ public class MapPlayerController implements KeyListener {
 	}
 	
 
+	//désactivé à cause d'un bug chez l'un d'entre nous
 	//methode d'update, elle est utile lorsque qu'une manette est connecté, sinon c'est le KeyListener qui s'en charge
 	public void update() {
 		/*if (input.getControllerCount() > 0) {
@@ -33,6 +34,7 @@ public class MapPlayerController implements KeyListener {
 		}*/
 	}
 
+	//on regle la classe pour récuperer les entrées au clavier
 	@Override
 	public void setInput(Input input) {
 		this.input = input;
@@ -89,13 +91,16 @@ public class MapPlayerController implements KeyListener {
 	}
 	
 	
-	
+	//c'est ici que l'ont regarde si l'ont parle à un PNJ
 	public PNJ trigPNJ()
 	{
+		//distance maximum à la quelle on peut parler à un PNJ
 		int distance = 80;
 		
+		//pour tout les PNJ chargés dans le singleton, donc les PNJs de la map
 		for(PNJ p : ListPNJ.getInstance().getListe())
 		{
+			//on regarde si le joueur regarde dans sa direction et se tient devant dans la limite de distance
 			switch (this.player.getDirection())
 			{
 			case 0 :

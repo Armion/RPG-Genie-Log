@@ -9,6 +9,7 @@ import effects.RestoreHeal;
 import items.Item;
 import items.consommables.Consommable;
 
+//classe pour les popos de Heal
 public class HealPot extends Consommable {
 
 	private int amount;
@@ -43,13 +44,12 @@ public class HealPot extends Consommable {
 	
 	
 	@Override
-	public void utiliser(String log, Entitee cible)
+	public void utiliser(Entitee cible)
 	{
 		for(Effect e : this.effects)
 		{
 			e.changeTarget(cible);
 			e.activer();
-			System.out.println(log);
 		}
 		
 		if(this.stacks>0)

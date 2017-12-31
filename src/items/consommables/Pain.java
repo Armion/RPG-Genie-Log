@@ -7,6 +7,7 @@ import character.Entitee;
 import effects.Effect;
 import effects.RestoreHeal;
 import effects.RestoreMana;
+import singleton.log.Logs;
 
 public class Pain extends Consommable{
 	
@@ -29,7 +30,7 @@ public class Pain extends Consommable{
 	
 	
 	@Override
-	public void utiliser(String log, Entitee cible)
+	public void utiliser(Entitee cible)
 	{
 		for(Effect e : this.effects)
 		{
@@ -39,9 +40,6 @@ public class Pain extends Consommable{
 		
 		if(this.stacks>0)
 			this.stacks --;
-		
-		
-		System.out.println(log);
 	}
 
 }

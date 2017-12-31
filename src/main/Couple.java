@@ -1,5 +1,7 @@
 package main;
 
+
+//classe pour ne pas s'embeter à carrément aller chercher des Map si on a qu'une entré
 public class Couple <K,V>{
 	
 	private K key;

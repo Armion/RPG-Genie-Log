@@ -140,7 +140,7 @@ public class SelectionTeam extends BasicGameState implements ComponentListener{
 			{
 				if(this.type.equals("item"))
 				{
-					Team.getInstance().getInventory().useItem(item, selection, "");
+					Team.getInstance().getInventory().useItem(item, selection);
 					((MapGameState) game.getState(MapGameState.ID)).getInventory().update();
 				}
 			}

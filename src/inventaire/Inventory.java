@@ -8,6 +8,8 @@ import java.util.UUID;
 import character.Entitee;
 import items.Item;
 
+
+//classe pour représenter l'inventaire de la team
 public class Inventory {
 	
 	
@@ -27,24 +29,27 @@ public class Inventory {
 		this.list = list;
 	}
 	
+	
 	public List<Item> getItemsList()
 	{
 		return this.list;
 	}
 	
-	public void useItem(int index, Entitee cible, String log)
+	//methode pour utiliser un item
+	public void useItem(int index, Entitee cible)
 	{
+		//on vérifi qu'on demande un index possible
 		if(index >= 0 && index < this.list.size())
-		{
-			this.list.get(index).utiliser(log, cible);
+		{	//on utilise l'item, et si il est egal à 0 on le retire de la liste
+			this.list.get(index).utiliser(cible);
 			if(this.list.get(index).getStacks() == 0)
 				this.list.remove(index);
 		}
 		
 
 	}
-	
-	public void useItem(UUID id, Entitee cible, String log)
+	//
+	public void useItem(UUID id, Entitee cible)
 	{
 		
 		Iterator<Item> it = this.list.iterator();
@@ -55,7 +60,7 @@ public class Inventory {
 			i = it.next();	
 		}
 		
-			i.utiliser(log, cible);
+			i.utiliser(cible);
 			if(i.getStacks() == 0)
 				this.list.remove(i);
 

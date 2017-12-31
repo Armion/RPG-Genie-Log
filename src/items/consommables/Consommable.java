@@ -22,9 +22,9 @@ public abstract class Consommable extends Item {
 	
 	
 	@Override
-	public void utiliser(String log, Entitee cible)
+	public void utiliser(Entitee cible)
 	{
-		super.utiliser(log, cible);
+		super.utiliser(cible);
 		if(this.stacks >0)
 			this.stacks --;
 		

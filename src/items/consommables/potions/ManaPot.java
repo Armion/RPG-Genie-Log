@@ -43,7 +43,7 @@ private int amount;
 	
 	
 	@Override
-	public void utiliser(String log, Entitee cible)
+	public void utiliser(Entitee cible)
 	{
 		for(Effect e : this.effects)
 		{

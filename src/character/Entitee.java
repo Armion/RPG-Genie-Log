@@ -9,7 +9,6 @@ import org.newdawn.slick.SpriteSheet;
 
 import competences.*;
 import effects.FightEffect;
-import items.Item;
 import items.equipements.Equipement;
 import singleton.Team;
 import singleton.log.LigneLog;

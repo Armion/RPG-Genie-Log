@@ -8,6 +8,7 @@ import org.newdawn.slick.Image;
 import character.Entitee;
 import effects.*;
 
+//classe abstraite qui doit etre implémenté par tout les items
 public abstract class Item {
 	
 	protected boolean fight;
@@ -32,13 +33,17 @@ public abstract class Item {
 	}
 	
 
-	
-	public void utiliser(String log, Entitee cible)
+	//methode pour utiliser un objet en utilisant tout ses ses effets
+	public void utiliser(Entitee cible)
 	{
-		for(Effect e : effects)
+		if(cible != null)
 		{
-			e.activer();
+			for(Effect e : effects)
+			{
+				e.activer();
+			}
 		}
+		
 	}
 	
 	

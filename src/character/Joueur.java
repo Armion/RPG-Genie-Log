@@ -1,10 +1,5 @@
 package character;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
-import org.newdawn.slick.SlickException;
-
 import singleton.log.LigneLog;
 import singleton.log.Logs;
 //Sous classe d'entité qui permet de définir des classes de joueurs
