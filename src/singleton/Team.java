@@ -18,6 +18,9 @@ import items.consommables.Pain;
 import items.consommables.potions.HealPot;
 import items.consommables.potions.ManaPot;
 import items.equipements.Amulette;
+import items.equipements.Armure_leg;
+import items.equipements.Dague;
+import items.equipements.Epee_courte;
 
 public class Team {
 	
@@ -63,6 +66,9 @@ public class Team {
 		
 		listeInventaire.add(new MedaillonArmion());
 		listeInventaire.add(new Amulette());
+		listeInventaire.add(new Epee_courte());
+		listeInventaire.add(new Dague());
+		listeInventaire.add(new Armure_leg());
 
 		
 		this.inventaire = new Inventory( listeInventaire, 500);

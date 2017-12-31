@@ -12,7 +12,7 @@ public class Amulette extends Equipement {
 		this.name="Amulette";
 		this.type=4;
 		try {
-			this.icone = new Image("resources/Icones/Amulette.png");
+			this.icone = new Image("src/resources/Icones/Amulette.png");
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
