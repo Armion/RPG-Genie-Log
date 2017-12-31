@@ -11,6 +11,7 @@ import competences.Competence;
 import competences.Eclair_givre;
 import competences.Fumigene;
 import competences.LanceFlamme;
+import competences.Pluie_Feu;
 import competences.SRituel;
 import competences.Smite;
 
@@ -35,7 +36,7 @@ public class Liche extends Ennemi {
 		this.sorts=new ArrayList<Competence> ();
 		this.sorts.add(new Eclair_givre());
 		this.sorts.add(new LanceFlamme());
-		this.sorts.add(new Abime());
+		
 		
 		
 		if(diff>=3)

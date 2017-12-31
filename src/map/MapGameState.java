@@ -156,7 +156,7 @@ public class MapGameState extends BasicGameState implements Observer{
 		}
 		else
 		{
-			if (Math.random() < 0.010 && player.isMoving()) {
+			if (Math.random() < 0.005 && player.isMoving()) {
 				game.enterState(CombatScreen.ID);
 			}
 			

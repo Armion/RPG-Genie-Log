@@ -300,7 +300,7 @@ public class CombatScreen extends BasicGameState {
 				
 				if(this.choix.path!=null)
 				{
-					System.out.println(this.choix.getNom());
+					
 					try {
 						this.choix.genererAnim();
 					} catch (SlickException e) {
@@ -421,7 +421,7 @@ public class CombatScreen extends BasicGameState {
 	
 		
 		this.background.draw(0,0,container.getWidth(),container.getHeight());
-		arg2.drawString("Round "+this.combat.round, arg0.getWidth()/2, 0);
+		arg2.drawString("Round "+(this.combat.round+1), arg0.getWidth()/2, 0);
 		affichagePerso(arg2,this.combat.getProta());
 		
 		this.menu.draw(0, 0, arg0.getWidth(),arg0.getHeight());
@@ -535,11 +535,24 @@ public class CombatScreen extends BasicGameState {
 	public void afficherCompetence(Graphics g,GameContainer con) throws SlickException
 	{
 		if(this.choix!=null)
+		
 			{if(this.choix.getZone()==1)
 		g.drawAnimation(this.choix.anim[0], this.cible.getX(), this.cible.getY());
-			else if(this.choix.getZone()==2)
+			else if(this.choix.getZone()==2 && this.tourJoueur==false) {
+				if(this.choix.getCible()==false)
 			g.drawAnimation(this.choix.anim[0], this.current.getX(), con.getHeight()/5+(1*(con.getHeight()/8))+1*con.getHeight()/12);
+				else if(this.choix.getCible()==true)
+				{
+					g.drawAnimation(this.choix.anim[0],con.getWidth()/6, con.getHeight()/5+(1*(con.getHeight()/8))+1*con.getHeight()/12);
+				}
 			}
+				else
+			{
+				g.drawAnimation(this.choix.anim[0], this.cible.getX(), this.cible.getY());
+				
+			}
+			}
+			
 		else
 		g.drawAnimation(this.anim[0], this.cible.getX(), this.cible.getY());
 			
@@ -738,9 +751,9 @@ public class CombatScreen extends BasicGameState {
 			this.combat.getLog();
 			if(this.choix!=null && this.choix.path!=null)
 			{
-				System.out.println(this.choix.getNom());
+				
 			this.choix.genererAnim();
-			System.out.println(this.choix.anim[0]==null);
+			
 			}
 			this.status=2;
 			this.compteur=1;

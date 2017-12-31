@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.newdawn.slick.SlickException;
 
+import character.Assassin;
 import character.Entitee;
+import character.Guerrier;
 import character.Joueur;
 import character.Paladin;
 import character.Pretre;
@@ -28,9 +30,9 @@ public class Team {
 	{
 		this.membres = new ArrayList<>();
 		try {
+			this.membres.add(new Guerrier());
 			this.membres.add(new Paladin());
-			this.membres.add(new Paladin());
-			this.membres.add(new Paladin());
+			this.membres.add(new Assassin());
 			this.membres.add(new Pretre());
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
