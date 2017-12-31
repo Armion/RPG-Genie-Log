@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import character.pnj.PNJ;
+import character.PNJ;
 
 public class ListPNJ {
 	

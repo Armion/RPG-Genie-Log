@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.newdawn.slick.SlickException;
 
-import character.pnj.PNJ;
+import character.PNJ;
 import singleton.ListPNJ;
 import singleton.Team;
 

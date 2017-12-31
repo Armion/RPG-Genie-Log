@@ -20,7 +20,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import Combat.CombatScreen;
-import character.pnj.PNJ;
+import character.PNJ;
 import hud.Dialogue;
 import hud.HUD;
 import hud.MapInventory;

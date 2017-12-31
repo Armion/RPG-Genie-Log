@@ -11,7 +11,7 @@ import org.newdawn.slick.gui.AbstractComponent;
 import org.newdawn.slick.gui.ComponentListener;
 import org.newdawn.slick.state.StateBasedGame;
 
-import character.pnj.PNJ;
+import character.PNJ;
 import singleton.ListPNJ;
 
 public class Dialogue extends HUD  implements ComponentListener{

@@ -1,6 +1,5 @@
-package character.pnj;
+package character;
 
-import character.Entitee;
 import map.MapPlayer;
 
 public class PNJ extends Entitee{

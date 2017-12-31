@@ -5,7 +5,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
 
-import character.pnj.PNJ;
+import character.PNJ;
 import singleton.ListPNJ;
 
 

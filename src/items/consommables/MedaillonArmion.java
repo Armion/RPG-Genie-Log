@@ -6,6 +6,7 @@ import org.newdawn.slick.SlickException;
 import character.Entitee;
 import effects.Effect;
 import effects.RestoreHeal;
+import effects.RestoreMana;
 
 public class MedaillonArmion extends Consommable{
 	
@@ -13,12 +14,14 @@ public class MedaillonArmion extends Consommable{
 	{
 		super();
 		this.effects.add(new RestoreHeal(9999, null));
+		this.effects.add(new RestoreMana(9999, null));
 		this.name="Medaillon d'Armion";
 		try {
 			this.icone = new Image("resources/Icones/medaillonArmion.png");
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
+		this.stacks = -1;
 	}
 	
 	
