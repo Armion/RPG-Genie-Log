@@ -147,6 +147,9 @@ public class MapGameState extends BasicGameState implements Observer{
 		this.player.update(delta);
 		this.camera.update(container);
 		
+		if(this.player.isMoving() && this.dialogue.isVisible())
+			this.fermerFenetre(dialogue);
+		
 		//enfin, on a une chance de rentrer en combat, dans ce cas on passe à la phase de combat
 		if(Team.getInstance().getZone()==0)
 		{
