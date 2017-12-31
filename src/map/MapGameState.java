@@ -25,6 +25,7 @@ import hud.Dialogue;
 import hud.HUD;
 import hud.MapInventory;
 import hud.MapSkill;
+import main.EndGameState;
 import main.MainScreenGameState;
 import singleton.ListPNJ;
 import singleton.Team;
@@ -52,6 +53,7 @@ public class MapGameState extends BasicGameState implements Observer{
 	private MapSkill skills = new MapSkill();
 	private Dialogue dialogue = new Dialogue();
 	Stack<HUD> fenetres;
+	private StateBasedGame game;
 	
 	
 
@@ -62,6 +64,7 @@ public class MapGameState extends BasicGameState implements Observer{
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 		
 		this.container = container;
+		this.game =game;
 
 		this.map.init();
 		this.triggers = new MapTriggerController(map, player);
@@ -213,6 +216,11 @@ public class MapGameState extends BasicGameState implements Observer{
 			PNJ msg = this.controller.trigPNJ();
 			if(msg != null)
 			{
+				if(msg.getNom().equals("Coffre"))
+				{
+					this.game.enterState(EndGameState.ID);
+				}
+				
 				if(! this.dialogue.isVisible())
 				{
 					this.dialogue.changerLocuteur(msg.getid());
