@@ -86,7 +86,7 @@ public class CombatScreen extends BasicGameState {
         
 	}
     
-	
+	//Listener sur les touches du clavier, on effectue une action spécifique pour chaque combinaison touche/statut
 	@Override
 	public void keyPressed(int key, char c)
 	{
@@ -390,7 +390,7 @@ public class CombatScreen extends BasicGameState {
 	}
 
 
-
+//initialise les ressources de base du combat
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
 		this.groupe=(ArrayList<Joueur>) Team.getInstance().getTeam();
@@ -403,7 +403,7 @@ public class CombatScreen extends BasicGameState {
 		
 		
 	}
-	
+	//affiche les personnages encore en vie 
 	public void affichagePerso(Graphics g, ArrayList<Entitee> prota)
 	{
 		for(Entitee i : prota)
@@ -414,7 +414,7 @@ public class CombatScreen extends BasicGameState {
 	}
 
 
-
+	//focntion d'affichage de slick
 	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
 		
@@ -532,6 +532,8 @@ public class CombatScreen extends BasicGameState {
 			
 	
 	}
+	
+	//affiche l'animation du sort choisi
 	public void afficherCompetence(Graphics g,GameContainer con) throws SlickException
 	{
 		if(this.choix!=null)
@@ -558,6 +560,8 @@ public class CombatScreen extends BasicGameState {
 			
 	}
 	
+	
+	//affiche la liste des objets sur plusieurs pages
 	public void afficherObjets(Graphics g,GameContainer con,int page)
 	{
 		int nb;
@@ -620,7 +624,7 @@ public class CombatScreen extends BasicGameState {
 		
 		 
 	
-	
+	//Permet d'afficher les barres de vie et mana des entités en combat
 	public void afficherHUD(Graphics g,GameContainer con)
 	{
 		for(Entitee i : this.combat.getProta())
@@ -659,6 +663,7 @@ public class CombatScreen extends BasicGameState {
 		
 	}
 	
+	//affiche dans la boite de commande les cibles disponibles pour le sort
 	public void afficherCibles(Graphics g,GameContainer con,boolean allies)
 	{
 		ArrayList<Entitee> cibles=this.combat.ciblage(this.current, allies);
@@ -670,7 +675,7 @@ public class CombatScreen extends BasicGameState {
 		
 		
 	}
-	
+	//affiche les compétences disponible spour un personnage
 	public void afficherComp(Graphics g,GameContainer con)
 			{
 			int i=0;
@@ -682,7 +687,7 @@ public class CombatScreen extends BasicGameState {
 				g.drawString("Retour",(con.getWidth()/12)*4, i*(con.getHeight()/19)+(con.getHeight()/5)*4);
 		
 			}
-	
+	//Affiche les actions disponible pour un personnage
 	public void afficherAction(Graphics g,GameContainer con)
 	{	g.drawString("Action de "+this.current.getNom()+"(PV:"+this.current.getPV()+"/Mana:"+this.current.getMana()+")",(con.getWidth()/12)*4, 0*(con.getHeight()/19)+(con.getHeight()/5)*4);
 		g.drawString("Attaque",(con.getWidth()/12)*4, 1*(con.getHeight()/19)+(con.getHeight()/5)*4);
@@ -691,6 +696,7 @@ public class CombatScreen extends BasicGameState {
 		g.drawString("Fuir",(con.getWidth()/12)*6, 1*(con.getHeight()/19)+(con.getHeight()/5)*4);
 	}
 	
+	//affiche le cursuer de selection en fonction de la variable curseur
 	public void afficherCurseur(Graphics g,GameContainer con)
 	{
 		if(this.curseur%8>=4)
@@ -705,7 +711,7 @@ public class CombatScreen extends BasicGameState {
 	}
 
 
-
+	//permet d'actualiser l'etat de jeu en focntions des statuts
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
 		
@@ -802,7 +808,7 @@ public class CombatScreen extends BasicGameState {
 		return this.ID;
 	}
 	
-	
+	//permet d'initialiser les débuts de tour de personnages et de rounds, et gère la fin du combat
 	public void maitreCombat()
 	{
 		

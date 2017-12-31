@@ -68,7 +68,7 @@ public class Combat {
 	{
 		return this.protagonistes;
 	}
-	
+	//renvoi un certains type de monstres en fonction de la variable aléatoire passé en paramètre et de la zone de la map
 	private Entitee factoryMonstres(int id,int nom,int moy) throws SlickException
 	{
 		if(Team.getInstance().getZone()==1)
@@ -104,7 +104,7 @@ public class Combat {
 		}
 	}
 	
-	
+	//Génère un nombre aléatoire d'ennemis
 	private void GenererMonstres(int moy,int debut) throws SlickException
 	{
 		Random rand=new Random();
@@ -122,7 +122,7 @@ public class Combat {
 		
 	}
 	
-	
+	//gère les fonction de butin
 	public void loot()
 	{
 		 Team.getInstance().addMoney(recompense/4);
@@ -130,21 +130,21 @@ public class Combat {
 		 Loot.getInstance().getFact().earnLoot(this.recompense);
 	}
 	
-	
+	//récupère les logs de combat depuis le Singleton Logs
 	public void getLog()
 	{
-		boolean popo=false;
+		boolean potion=false;
 		for(LigneLog i : Logs.getInstance().getCombatLog())
 		{
 			this.log.add(i.getContent());
-			if(popo)
+			if(potion)
 			{
 				this.log.remove(this.log.size()-1);
-				popo=false;
+				potion=false;
 			}
 			if(i.getType().equals("Effect"))
 			{
-				popo=true;
+				potion=true;
 			}
 			
 			
@@ -155,7 +155,7 @@ public class Combat {
 	
 	
 	
-	
+	// determine la difficulté du cumbat
 	public void debutCombat(int difficult) throws SlickException
 	{
 		int moyenneNiveau=0;
@@ -171,7 +171,7 @@ public class Combat {
 		
 		
 	}
-	
+	//TIre aléatoirement l'ordre de passage des entités
 	private ArrayList<Integer> Initiative()
 	{
 		int max=0;
@@ -180,7 +180,7 @@ public class Combat {
 		
 		for (int i=0;i<this.protagonistes.size();i++)
 		{
-			init.add(dice.nextInt(10));//TODO: ajouter la vitesse des entitées
+			init.add(dice.nextInt(10));
 		}
 		
 		ArrayList<Integer> ordre=new ArrayList<Integer>();
@@ -203,6 +203,7 @@ public class Combat {
 		return ordre;
 		
 	}
+	//permet de renvoyer les alliés ou les ennemis de l'instigateur
 	public ArrayList<Entitee> ciblage(Entitee instigateur,boolean offensif)
 	{
 		ArrayList<Entitee> cibles=new ArrayList<Entitee>();
@@ -228,7 +229,7 @@ public class Combat {
 		return cibles;
 		
 	}
-	
+	//Effectue une attaque de base d'une entité vers une autre
 	public void attaque(Entitee cible,Entitee attaquant)
 	{
 		
@@ -246,26 +247,8 @@ public class Combat {
 		
 	}
 	
-	private Entitee choixCible(Entitee instigateur,boolean offensif)//Interface pour que le joueur choisisse sa cible
-	{
-		ArrayList<Entitee> cibles=ciblage(instigateur,offensif);
-		int choix=-1;
-		while(choix>=cibles.size() || choix<0)
-		{
-		for(int i=0;i<cibles.size();i++)
-		{
-			System.out.println((i+1)+" . "+cibles.get(i).getNom()+" LVL "+cibles.get(i).getLVL());		
-		}
-		Scanner sc=new Scanner(System.in);
-		choix=(sc.nextInt())-1;
-		
-		}
-		return cibles.get(choix);
-		
-	}
 	
-	
-	
+	//détermine l'action de l'ia
 	public void actionIA(Entitee actif)
 	{
 		
@@ -320,7 +303,7 @@ public class Combat {
 	
 	
 	
-	
+	//applique l'action choisie par le joueur dans combatScreen sur la cible choisie
 	public void actionJoueur(Entitee actif,Competence sort,Entitee Cible)
 	{
 		
@@ -373,7 +356,7 @@ public class Combat {
 		
 			
 	}
-	
+	//retire les enité avec pv<=0
 	public void retirerBlesse(ArrayList<Entitee> passage)
 	{
 		boolean blesse=false;
@@ -395,7 +378,7 @@ public class Combat {
 	
 	
 	
-	
+	//renvoi 0 si personne n'a gagné, 1 si les alliés gagne, 2 si les ennemis gagne
 	public int conditionVictoire()
 	{
 		int compteur=0;
@@ -422,7 +405,7 @@ public class Combat {
 
 	}
 	
-	
+	//genene et met en place l'odre de passsage des entités
 	public void mainCombat()
 	{
 		ArrayList<Integer> ordre;
@@ -435,63 +418,7 @@ public class Combat {
 		}
 		
 		
-		/*
-		int victory=0;
-		this.log=new ArrayList<String> ();
-		ArrayList<Integer> ordre;
-		ArrayList<Entitee>passage=new ArrayList<Entitee>();
-		while(victory==0)
-		{ 
-			this.round++;
-			System.out.println("###########ROUND "+this.round+"###########");
-			ordre=this.Initiative();
-			for(int j : ordre)
-			{
-				passage.add(this.protagonistes.get(j));
-			}
-			for(Entitee i : passage)
-			{
-				if(i.getPV()>0 && conditionVictoire()==0)
-				{
-					
-					if(i.isFriendly()==true)
-						{
-							actionJoueur(i);
-						}
-					
-				
-					else
-					{
-						actionIA(i);
-					}
-				}
-				
-			}
 		
-			this.retirerBlesse(passage);
-			
-			victory=conditionVictoire();
-			
-			
-		}
-		
-		if(victory == 1)
-		{
-			
-			System.out.println("Victoire !");
-			
-			for(Entitee i : protagonistes)
-			{
-				i.getXP(this.recompense);
-			}
-		}
-		
-		if(victory==2)
-		{
-			System.out.println("Défaite...");
-		}
-		
-		*/
 	}
 	
 	
